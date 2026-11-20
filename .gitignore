@@ -1,0 +1,12 @@
+# Saída do Swift Package Manager e do build-app.sh
+.build/
+build/
+
+# Xcode (para quando o projeto passar a usar)
+*.xcodeproj/xcuserdata/
+*.xcworkspace/xcuserdata/
+DerivedData/
+.swiftpm/
+
+# macOS
+.DS_Store
