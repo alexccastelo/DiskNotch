@@ -2,7 +2,7 @@
 projeto: DiskNotch
 slug: disknotch
 descricao: Monitor de armazenamento do Mac no notch, na barra de menus e em widgets, com histórico, análise e limpeza assistida.
-atualizado: 2026-11-20 09:33
+atualizado: 2026-11-20 09:39
 ---
 
 # Roadmap · DiskNotch
@@ -14,11 +14,11 @@ _20 nov 2026_ — Provar que o painel no notch e a leitura do disco funcionam no
   Um painel preto que se funde ao notch e aparece em todos os espaços de trabalho, inclusive em tela cheia.
   - Posição calculada a partir da área do notch informada pelo sistema
   - Em telas sem notch, vira uma pílula no topo
-  > local: 2026-11-20
+  > local: 2026-11-20 · github: 17ebb1d
 - [entregue] **Leitura de espaço livre, usado e purgável** · Armazenamento · pedido
   Mostra o espaço livre como o Finder mostra e separa a parte que o macOS consegue liberar sozinho.
   - Números conferidos com o `df`
-  > local: 2026-11-20
+  > local: 2026-11-20 · github: 17ebb1d
 
 ## Fase 1 · Primeira versão
 _20 nov 2026_ — Ver o espaço do disco a qualquer momento, sem abrir nenhuma janela.
@@ -27,18 +27,18 @@ _20 nov 2026_ — Ver o espaço do disco a qualquer momento, sem abrir nenhuma j
   Recolhido, mostra um anel de ocupação e os GB livres. Ao passar o mouse, abre com detalhes, barra de uso e atalhos.
   - Cores por nível: verde, âmbar (menos de 20% livre) e vermelho (menos de 10%)
   - Fora da forma desenhada, os cliques passam para as janelas de baixo
-  > local: 2026-11-20
+  > local: 2026-11-20 · github: 17ebb1d
 - [entregue] **Painel que não cobre os ícones da barra de menus** · Notch · pedido
   A informação recolhida fica só de um lado do notch, e o lado pode ser escolhido no menu.
-  > local: 2026-11-20
+  > local: 2026-11-20 · github: 17ebb1d
 - [entregue] **Ícone na barra de menus** · Barra de menus · sugestão
   Mostra os GB livres e abre a lista de volumes com uso, espaço purgável e opções do painel.
-  > local: 2026-11-20
+  > local: 2026-11-20 · github: 17ebb1d
 - [entregue] **Abre sozinho no login** · Infra · pedido
   O app abre logo após o login, volta sozinho se travar e é recompilado automaticamente quando o código muda.
   - Dois LaunchAgents: um abre o app direto, outro recompila em baixa prioridade
   - Validado com reinício real do Mac
-  > local: 2026-11-20
+  > local: 2026-11-20 · github: 17ebb1d
 - [proximo] **Alertas de espaço baixo** · Alertas · pedido
   Notificação do macOS quando o espaço livre cai abaixo de um limite, com limites ajustáveis no menu.
 - [proximo] **Discos externos com botão de ejetar** · Armazenamento · sugestão
@@ -102,4 +102,4 @@ _sem data_ — Possibilidades levantadas no caminho.
 
 - **Widgets dependem do Xcode** — Sem o Xcode instalado, a Fase 2 avança só no histórico e na previsão.
 - **Notch sem API oficial** — O posicionamento é manual e pode mudar entre versões do macOS; o ícone na barra de menus fica sempre como alternativa.
-- **Sem testes automatizados e sem Git** — Cada mudança é verificada à mão, e o projeto ainda não tem controle de versão.
+- **Sem testes automatizados** — Cada mudança é verificada à mão.
