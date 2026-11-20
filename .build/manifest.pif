@@ -1,0 +1,1904 @@
+[
+  {
+    "contents" : {
+      "guid" : "Workspace:/Users/alexccastelo/projetos-temp/DiskNotch",
+      "name" : "DiskNotch",
+      "path" : "/Users/alexccastelo/projetos-temp/DiskNotch",
+      "projects" : [
+        "46f3095207a48eb09eb1399194c3bc2499acb100b0414d83c5bcaa1c2e2d3a5b",
+        "d9e9c8e6d18ca7a7d4f97acc34ac5f23533e4858b5368183e6c16507011c2832"
+      ]
+    },
+    "signature" : "04233ba0b51ebe5ed26dc5dfe56a962f7019dce5743507a8f1e6bf0f01d6b1dc",
+    "type" : "workspace"
+  },
+  {
+    "contents" : {
+      "buildConfigurations" : [
+        {
+          "buildSettings" : {
+            "CLANG_ENABLE_MODULES[__platform_filter=driverkit]" : "YES",
+            "CLANG_ENABLE_MODULES[__platform_filter=ios-maccatalyst]" : "YES",
+            "CLANG_ENABLE_MODULES[__platform_filter=ios;ios-simulator]" : "YES",
+            "CLANG_ENABLE_MODULES[__platform_filter=macos]" : "YES",
+            "CLANG_ENABLE_MODULES[__platform_filter=tvos;tvos-simulator]" : "YES",
+            "CLANG_ENABLE_MODULES[__platform_filter=watchos;watchos-simulator]" : "YES",
+            "CLANG_ENABLE_MODULES[__platform_filter=xros;xros-simulator]" : "YES",
+            "CODE_SIGNING_REQUIRED" : "NO",
+            "CODE_SIGN_IDENTITY" : "",
+            "COMPILER_WORKING_DIRECTORY" : "$(WORKSPACE_DIR)",
+            "COPY_PHASE_STRIP" : "NO",
+            "DEBUG_INFORMATION_FORMAT" : "dwarf",
+            "DRIVERKIT_DEPLOYMENT_TARGET" : "21.0",
+            "DYLIB_INSTALL_NAME_BASE[__platform_filter=driverkit]" : "@rpath",
+            "DYLIB_INSTALL_NAME_BASE[__platform_filter=ios-maccatalyst]" : "@rpath",
+            "DYLIB_INSTALL_NAME_BASE[__platform_filter=ios;ios-simulator]" : "@rpath",
+            "DYLIB_INSTALL_NAME_BASE[__platform_filter=macos]" : "@rpath",
+            "DYLIB_INSTALL_NAME_BASE[__platform_filter=tvos;tvos-simulator]" : "@rpath",
+            "DYLIB_INSTALL_NAME_BASE[__platform_filter=watchos;watchos-simulator]" : "@rpath",
+            "DYLIB_INSTALL_NAME_BASE[__platform_filter=xros;xros-simulator]" : "@rpath",
+            "ENABLE_NS_ASSERTIONS" : "YES",
+            "ENABLE_TESTABILITY" : "YES",
+            "ENABLE_TESTING_SEARCH_PATHS" : "YES",
+            "ENTITLEMENTS_REQUIRED" : "NO",
+            "GCC_OPTIMIZATION_LEVEL" : "0",
+            "GCC_PREPROCESSOR_DEFINITIONS" : [
+              "$(inherited)",
+              "SWIFT_PACKAGE",
+              "DEBUG=1"
+            ],
+            "INDEX_ENABLE_DATA_STORE" : "YES",
+            "IPHONEOS_DEPLOYMENT_TARGET" : "15.0",
+            "IPHONEOS_DEPLOYMENT_TARGET[__platform_filter=ios-maccatalyst]" : "15.0",
+            "KEEP_PRIVATE_EXTERNS" : "NO",
+            "LIBTOOL_NO_WARNING_FOR_NO_SYMBOLS" : "YES",
+            "LINKER_DRIVER" : "auto",
+            "MACOSX_DEPLOYMENT_TARGET" : "15.0",
+            "ONLY_ACTIVE_ARCH" : "YES",
+            "OTHER_CFLAGS" : [
+              "$(inherited)",
+              "-DXcode"
+            ],
+            "OTHER_LDRFLAGS" : [
+
+            ],
+            "OTHER_SWIFT_FLAGS" : [
+              "$(inherited)",
+              "-DXcode"
+            ],
+            "PRODUCT_NAME" : "$(TARGET_NAME)",
+            "SKIP_INSTALL" : "YES",
+            "SPECIALIZATION_SDK_OPTIONS[__platform_filter=macos]" : [
+
+            ],
+            "SUPPORTED_PLATFORMS" : [
+              "$(AVAILABLE_PLATFORMS)"
+            ],
+            "SWIFT_ACTIVE_COMPILATION_CONDITIONS" : [
+              "$(inherited)",
+              "SWIFT_PACKAGE",
+              "DEBUG"
+            ],
+            "SWIFT_INSTALL_OBJC_HEADER" : "NO",
+            "SWIFT_OBJC_INTERFACE_HEADER_NAME" : "",
+            "SWIFT_OPTIMIZATION_LEVEL" : "-Onone",
+            "TARGETED_DEVICE_FAMILY" : "",
+            "TVOS_DEPLOYMENT_TARGET" : "15.0",
+            "USE_HEADERMAP" : "NO",
+            "WATCHOS_DEPLOYMENT_TARGET" : "9.0",
+            "XROS_DEPLOYMENT_TARGET" : "1.0"
+          },
+          "guid" : "PACKAGE:disknotch::BUILDCONFIG_0",
+          "impartedBuildProperties" : {
+            "buildSettings" : {
+
+            }
+          },
+          "name" : "Debug"
+        },
+        {
+          "buildSettings" : {
+            "CLANG_ENABLE_MODULES[__platform_filter=driverkit]" : "YES",
+            "CLANG_ENABLE_MODULES[__platform_filter=ios-maccatalyst]" : "YES",
+            "CLANG_ENABLE_MODULES[__platform_filter=ios;ios-simulator]" : "YES",
+            "CLANG_ENABLE_MODULES[__platform_filter=macos]" : "YES",
+            "CLANG_ENABLE_MODULES[__platform_filter=tvos;tvos-simulator]" : "YES",
+            "CLANG_ENABLE_MODULES[__platform_filter=watchos;watchos-simulator]" : "YES",
+            "CLANG_ENABLE_MODULES[__platform_filter=xros;xros-simulator]" : "YES",
+            "CODE_SIGNING_REQUIRED" : "NO",
+            "CODE_SIGN_IDENTITY" : "",
+            "COMPILER_WORKING_DIRECTORY" : "$(WORKSPACE_DIR)",
+            "COPY_PHASE_STRIP" : "YES",
+            "DEBUG_INFORMATION_FORMAT" : "dwarf-with-dsym",
+            "DEPLOYMENT_POSTPROCESSING" : "YES",
+            "DRIVERKIT_DEPLOYMENT_TARGET" : "21.0",
+            "DYLIB_INSTALL_NAME_BASE[__platform_filter=driverkit]" : "@rpath",
+            "DYLIB_INSTALL_NAME_BASE[__platform_filter=ios-maccatalyst]" : "@rpath",
+            "DYLIB_INSTALL_NAME_BASE[__platform_filter=ios;ios-simulator]" : "@rpath",
+            "DYLIB_INSTALL_NAME_BASE[__platform_filter=macos]" : "@rpath",
+            "DYLIB_INSTALL_NAME_BASE[__platform_filter=tvos;tvos-simulator]" : "@rpath",
+            "DYLIB_INSTALL_NAME_BASE[__platform_filter=watchos;watchos-simulator]" : "@rpath",
+            "DYLIB_INSTALL_NAME_BASE[__platform_filter=xros;xros-simulator]" : "@rpath",
+            "ENABLE_TESTING_SEARCH_PATHS" : "YES",
+            "ENTITLEMENTS_REQUIRED" : "NO",
+            "GCC_OPTIMIZATION_LEVEL" : "s",
+            "GCC_PREPROCESSOR_DEFINITIONS" : [
+              "$(inherited)",
+              "SWIFT_PACKAGE"
+            ],
+            "IPHONEOS_DEPLOYMENT_TARGET" : "15.0",
+            "IPHONEOS_DEPLOYMENT_TARGET[__platform_filter=ios-maccatalyst]" : "15.0",
+            "KEEP_PRIVATE_EXTERNS" : "NO",
+            "LIBTOOL_NO_WARNING_FOR_NO_SYMBOLS" : "YES",
+            "LINKER_DRIVER" : "auto",
+            "MACOSX_DEPLOYMENT_TARGET" : "15.0",
+            "OTHER_CFLAGS" : [
+              "$(inherited)",
+              "-DXcode"
+            ],
+            "OTHER_LDRFLAGS" : [
+
+            ],
+            "OTHER_SWIFT_FLAGS" : [
+              "$(inherited)",
+              "-DXcode"
+            ],
+            "PRODUCT_NAME" : "$(TARGET_NAME)",
+            "SKIP_INSTALL" : "YES",
+            "SPECIALIZATION_SDK_OPTIONS[__platform_filter=macos]" : [
+
+            ],
+            "SUPPORTED_PLATFORMS" : [
+              "$(AVAILABLE_PLATFORMS)"
+            ],
+            "SWIFT_ACTIVE_COMPILATION_CONDITIONS" : [
+              "$(inherited)",
+              "SWIFT_PACKAGE"
+            ],
+            "SWIFT_INSTALL_OBJC_HEADER" : "NO",
+            "SWIFT_OBJC_INTERFACE_HEADER_NAME" : "",
+            "SWIFT_OPTIMIZATION_LEVEL" : "-Owholemodule",
+            "TARGETED_DEVICE_FAMILY" : "",
+            "TVOS_DEPLOYMENT_TARGET" : "15.0",
+            "USE_HEADERMAP" : "NO",
+            "WATCHOS_DEPLOYMENT_TARGET" : "9.0",
+            "XROS_DEPLOYMENT_TARGET" : "1.0"
+          },
+          "guid" : "PACKAGE:disknotch::BUILDCONFIG_1",
+          "impartedBuildProperties" : {
+            "buildSettings" : {
+
+            }
+          },
+          "name" : "Release"
+        }
+      ],
+      "defaultConfigurationName" : "Release",
+      "groupTree" : {
+        "children" : [
+          {
+            "children" : [
+
+            ],
+            "guid" : "PACKAGE:disknotch::MAINGROUP::REF_0",
+            "name" : "AdditionalFiles",
+            "path" : "/",
+            "sourceTree" : "<absolute>",
+            "type" : "group"
+          },
+          {
+            "children" : [
+
+            ],
+            "guid" : "PACKAGE:disknotch::MAINGROUP::REF_1",
+            "name" : "Binaries",
+            "path" : "/",
+            "sourceTree" : "<absolute>",
+            "type" : "group"
+          },
+          {
+            "children" : [
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:disknotch::MAINGROUP::REF_2::REF_0",
+                "name" : "Components.swift",
+                "path" : "Components.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:disknotch::MAINGROUP::REF_2::REF_1",
+                "name" : "DiskNotchApp.swift",
+                "path" : "DiskNotchApp.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:disknotch::MAINGROUP::REF_2::REF_2",
+                "name" : "NotchPanelController.swift",
+                "path" : "NotchPanelController.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:disknotch::MAINGROUP::REF_2::REF_3",
+                "name" : "NotchView.swift",
+                "path" : "NotchView.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:disknotch::MAINGROUP::REF_2::REF_4",
+                "name" : "StorageModel.swift",
+                "path" : "StorageModel.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              }
+            ],
+            "guid" : "PACKAGE:disknotch::MAINGROUP::REF_2",
+            "name" : "/Users/alexccastelo/projetos-temp/DiskNotch/Sources/DiskNotch",
+            "path" : "/Users/alexccastelo/projetos-temp/DiskNotch/Sources/DiskNotch",
+            "sourceTree" : "<absolute>",
+            "type" : "group"
+          },
+          {
+            "children" : [
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:disknotch::MAINGROUP::REF_3::REF_0",
+                "name" : "main.swift",
+                "path" : "main.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              }
+            ],
+            "guid" : "PACKAGE:disknotch::MAINGROUP::REF_3",
+            "name" : "/Users/alexccastelo/projetos-temp/DiskNotch/Sources/disknotch-probe",
+            "path" : "/Users/alexccastelo/projetos-temp/DiskNotch/Sources/disknotch-probe",
+            "sourceTree" : "<absolute>",
+            "type" : "group"
+          },
+          {
+            "children" : [
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:disknotch::MAINGROUP::REF_4::REF_0",
+                "name" : "VolumeInfo.swift",
+                "path" : "VolumeInfo.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:disknotch::MAINGROUP::REF_4::REF_1",
+                "name" : "VolumeService.swift",
+                "path" : "VolumeService.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              }
+            ],
+            "guid" : "PACKAGE:disknotch::MAINGROUP::REF_4",
+            "name" : "/Users/alexccastelo/projetos-temp/DiskNotch/Sources/StorageCore",
+            "path" : "/Users/alexccastelo/projetos-temp/DiskNotch/Sources/StorageCore",
+            "sourceTree" : "<absolute>",
+            "type" : "group"
+          },
+          {
+            "children" : [
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:disknotch::MAINGROUP::REF_5::REF_0",
+                "name" : "VolumeInfo.swift",
+                "path" : "VolumeInfo.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:disknotch::MAINGROUP::REF_5::REF_1",
+                "name" : "VolumeService.swift",
+                "path" : "VolumeService.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              }
+            ],
+            "guid" : "PACKAGE:disknotch::MAINGROUP::REF_5",
+            "name" : "/Users/alexccastelo/projetos-temp/DiskNotch/Sources/StorageCore",
+            "path" : "/Users/alexccastelo/projetos-temp/DiskNotch/Sources/StorageCore",
+            "sourceTree" : "<absolute>",
+            "type" : "group"
+          },
+          {
+            "children" : [
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:disknotch::MAINGROUP::REF_6::REF_0",
+                "name" : "Components.swift",
+                "path" : "Components.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:disknotch::MAINGROUP::REF_6::REF_1",
+                "name" : "DiskNotchApp.swift",
+                "path" : "DiskNotchApp.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:disknotch::MAINGROUP::REF_6::REF_2",
+                "name" : "NotchPanelController.swift",
+                "path" : "NotchPanelController.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:disknotch::MAINGROUP::REF_6::REF_3",
+                "name" : "NotchView.swift",
+                "path" : "NotchView.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:disknotch::MAINGROUP::REF_6::REF_4",
+                "name" : "StorageModel.swift",
+                "path" : "StorageModel.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              }
+            ],
+            "guid" : "PACKAGE:disknotch::MAINGROUP::REF_6",
+            "name" : "/Users/alexccastelo/projetos-temp/DiskNotch/Sources/DiskNotch",
+            "path" : "/Users/alexccastelo/projetos-temp/DiskNotch/Sources/DiskNotch",
+            "sourceTree" : "<absolute>",
+            "type" : "group"
+          },
+          {
+            "children" : [
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:disknotch::MAINGROUP::REF_7::REF_0",
+                "name" : "main.swift",
+                "path" : "main.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              }
+            ],
+            "guid" : "PACKAGE:disknotch::MAINGROUP::REF_7",
+            "name" : "/Users/alexccastelo/projetos-temp/DiskNotch/Sources/disknotch-probe",
+            "path" : "/Users/alexccastelo/projetos-temp/DiskNotch/Sources/disknotch-probe",
+            "sourceTree" : "<absolute>",
+            "type" : "group"
+          }
+        ],
+        "guid" : "PACKAGE:disknotch::MAINGROUP",
+        "name" : "",
+        "path" : "",
+        "sourceTree" : "<group>",
+        "type" : "group"
+      },
+      "guid" : "PACKAGE:disknotch",
+      "path" : "/Users/alexccastelo/projetos-temp/DiskNotch/Package.swift",
+      "projectDirectory" : "/Users/alexccastelo/projetos-temp/DiskNotch",
+      "projectIsPackage" : "true",
+      "projectName" : "DiskNotch",
+      "targets" : [
+        "f9fcf50d26f8c38032700d9c17ddcab816934492f3660838ef9f2580b84bc8f3",
+        "734fddd53db1300a8ffc39bf06035bb4f3dcd42f079ba0f4e3c67ef434d444c6",
+        "daf65deab5acc1e4696a267389612f7cae1201ce2ff9cd2c44bc3afae01abb33",
+        "586c9d4b3fe73560e77b695aeb5523200fa4933275c85c49d789823771fc89cd",
+        "83b031730f3faaf6df45fd59afa446d34abae9bbe6eadf5904f3d52bedcc5058",
+        "75fdc2058a9e84de74590f5b0eedc7befa6ab12077029353628ac53068501be6",
+        "8460065bbd73d7bf824e4fd51f967c7c90599856f263ab8f9820ec15afa9b5e1",
+        "2a31277b5d0c192f1886324c57f4fd8ccb5bf9c24bfc00ca5147b0b1083f902a",
+        "c71a02c36dccbab5499112c8fbf2ce57a041cbad47989d8f0c705210a802be8c"
+      ]
+    },
+    "signature" : "46f3095207a48eb09eb1399194c3bc2499acb100b0414d83c5bcaa1c2e2d3a5b",
+    "type" : "project"
+  },
+  {
+    "contents" : {
+      "approvedByUser" : "true",
+      "buildConfigurations" : [
+        {
+          "buildSettings" : {
+            "EXECUTABLE_PREFIX" : "lib",
+            "EXECUTABLE_PREFIX[__platform_filter=windows-msvc]" : "",
+            "PRODUCT_NAME" : "StorageCore",
+            "SDKROOT" : "auto",
+            "SDK_VARIANT" : "auto",
+            "TARGET_NAME" : "StorageCore-product",
+            "TARGET_TEMP_DIR_SUFFIX" : "-p",
+            "USES_SWIFTPM_UNSAFE_FLAGS" : "NO"
+          },
+          "guid" : "PACKAGE-PRODUCT:disknotch_StorageCore.StorageCore::BUILDCONFIG_0",
+          "impartedBuildProperties" : {
+            "buildSettings" : {
+
+            }
+          },
+          "name" : "Debug"
+        },
+        {
+          "buildSettings" : {
+            "EXECUTABLE_PREFIX" : "lib",
+            "EXECUTABLE_PREFIX[__platform_filter=windows-msvc]" : "",
+            "PRODUCT_NAME" : "StorageCore",
+            "SDKROOT" : "auto",
+            "SDK_VARIANT" : "auto",
+            "TARGET_NAME" : "StorageCore-product",
+            "TARGET_TEMP_DIR_SUFFIX" : "-p",
+            "USES_SWIFTPM_UNSAFE_FLAGS" : "NO"
+          },
+          "guid" : "PACKAGE-PRODUCT:disknotch_StorageCore.StorageCore::BUILDCONFIG_1",
+          "impartedBuildProperties" : {
+            "buildSettings" : {
+
+            }
+          },
+          "name" : "Release"
+        }
+      ],
+      "buildPhases" : [
+        {
+          "buildFiles" : [
+            {
+              "guid" : "PACKAGE-PRODUCT:disknotch_StorageCore.StorageCore::BUILDPHASE_0::0",
+              "platformFilters" : [
+
+              ],
+              "targetReference" : "PACKAGE-TARGET:StorageCore"
+            }
+          ],
+          "guid" : "PACKAGE-PRODUCT:disknotch_StorageCore.StorageCore::BUILDPHASE_0",
+          "type" : "com.apple.buildphase.frameworks"
+        },
+        {
+          "buildFiles" : [
+
+          ],
+          "guid" : "PACKAGE-PRODUCT:disknotch_StorageCore.StorageCore::BUILDPHASE_1",
+          "type" : "com.apple.buildphase.sources"
+        }
+      ],
+      "buildRules" : [
+
+      ],
+      "customTasks" : [
+
+      ],
+      "dependencies" : [
+        {
+          "guid" : "PACKAGE-TARGET:StorageCore",
+          "platformFilters" : [
+
+          ]
+        }
+      ],
+      "dynamicTargetVariantGuid" : "PACKAGE-PRODUCT:disknotch_StorageCore.StorageCore-79D5483FBCFEA369-dynamic",
+      "guid" : "PACKAGE-PRODUCT:disknotch_StorageCore.StorageCore",
+      "name" : "StorageCore-product",
+      "productReference" : {
+        "guid" : "PRODUCTREF-PACKAGE-PRODUCT:disknotch_StorageCore.StorageCore",
+        "name" : "$(EXECUTABLE_NAME)",
+        "type" : "file"
+      },
+      "productTypeIdentifier" : "com.apple.product-type.library.static",
+      "type" : "standard"
+    },
+    "signature" : "f9fcf50d26f8c38032700d9c17ddcab816934492f3660838ef9f2580b84bc8f3",
+    "type" : "target"
+  },
+  {
+    "contents" : {
+      "approvedByUser" : "true",
+      "buildConfigurations" : [
+        {
+          "buildSettings" : {
+            "DOCC_EXTRACT_PROJECT_HEADERS_DOCUMENTATION" : "YES",
+            "DRIVERKIT_DEPLOYMENT_TARGET" : "21.0",
+            "GENERATE_EMBED_IN_CODE_ACCESSORS" : "NO",
+            "GENERATE_RESOURCE_ACCESSORS" : "YES",
+            "IPHONEOS_DEPLOYMENT_TARGET" : "15.0",
+            "IPHONEOS_DEPLOYMENT_TARGET[__platform_filter=ios-maccatalyst]" : "15.0",
+            "MACOSX_DEPLOYMENT_TARGET" : "15.0",
+            "OTHER_SWIFT_FLAGS" : [
+              "$(inherited)",
+              "$(OTHER_SWIFT_FLAGS_ENABLE_LIBFUZZER_$(ENABLE_LIBFUZZER))"
+            ],
+            "OTHER_SWIFT_FLAGS_ENABLE_LIBFUZZER_YES" : [
+              "-Xfrontend",
+              "-entry-point-function-name",
+              "-Xfrontend",
+              "DiskNotch_main"
+            ],
+            "PACKAGE_RESOURCE_TARGET_KIND" : "regular",
+            "PRODUCT_BUNDLE_IDENTIFIER" : "disknotch.DiskNotch",
+            "PRODUCT_MODULE_NAME" : "DiskNotch",
+            "PRODUCT_NAME" : "$(TARGET_NAME)",
+            "SDKROOT" : "auto",
+            "SDK_VARIANT" : "auto",
+            "SWIFT_DISABLE_PARSE_AS_LIBRARY" : "NO",
+            "SWIFT_ENABLE_BARE_SLASH_REGEX" : "NO",
+            "SWIFT_INSTALL_MODULE" : "NO",
+            "SWIFT_LIBRARIES_ONLY" : "YES",
+            "SWIFT_PACKAGE_NAME" : "disknotch",
+            "SWIFT_VERSION" : "6",
+            "SYMBOL_GRAPH_EXTRACTOR_OUTPUT_DIR" : "$(TARGET_BUILD_DIR)/$(CURRENT_ARCH)/DiskNotch.symbolgraphs",
+            "TAPI_EXTRACT_API_OUTPUT_DIR" : "$(TARGET_BUILD_DIR)/$(CURRENT_ARCH)/DiskNotch.symbolgraphs",
+            "TARGET_NAME" : "DiskNotch",
+            "TARGET_TEMP_DIR_SUFFIX" : "-p",
+            "TVOS_DEPLOYMENT_TARGET" : "15.0",
+            "WATCHOS_DEPLOYMENT_TARGET" : "9.0",
+            "XROS_DEPLOYMENT_TARGET" : "1.0"
+          },
+          "guid" : "PACKAGE-PRODUCT:disknotch_DiskNotch.DiskNotch::BUILDCONFIG_0",
+          "impartedBuildProperties" : {
+            "buildSettings" : {
+
+            }
+          },
+          "name" : "Debug"
+        },
+        {
+          "buildSettings" : {
+            "DOCC_EXTRACT_PROJECT_HEADERS_DOCUMENTATION" : "YES",
+            "DRIVERKIT_DEPLOYMENT_TARGET" : "21.0",
+            "GENERATE_EMBED_IN_CODE_ACCESSORS" : "NO",
+            "GENERATE_RESOURCE_ACCESSORS" : "YES",
+            "IPHONEOS_DEPLOYMENT_TARGET" : "15.0",
+            "IPHONEOS_DEPLOYMENT_TARGET[__platform_filter=ios-maccatalyst]" : "15.0",
+            "MACOSX_DEPLOYMENT_TARGET" : "15.0",
+            "OTHER_SWIFT_FLAGS" : [
+              "$(inherited)",
+              "$(OTHER_SWIFT_FLAGS_ENABLE_LIBFUZZER_$(ENABLE_LIBFUZZER))"
+            ],
+            "OTHER_SWIFT_FLAGS_ENABLE_LIBFUZZER_YES" : [
+              "-Xfrontend",
+              "-entry-point-function-name",
+              "-Xfrontend",
+              "DiskNotch_main"
+            ],
+            "PACKAGE_RESOURCE_TARGET_KIND" : "regular",
+            "PRODUCT_BUNDLE_IDENTIFIER" : "disknotch.DiskNotch",
+            "PRODUCT_MODULE_NAME" : "DiskNotch",
+            "PRODUCT_NAME" : "$(TARGET_NAME)",
+            "SDKROOT" : "auto",
+            "SDK_VARIANT" : "auto",
+            "SWIFT_DISABLE_PARSE_AS_LIBRARY" : "NO",
+            "SWIFT_ENABLE_BARE_SLASH_REGEX" : "NO",
+            "SWIFT_INSTALL_MODULE" : "NO",
+            "SWIFT_LIBRARIES_ONLY" : "YES",
+            "SWIFT_PACKAGE_NAME" : "disknotch",
+            "SWIFT_VERSION" : "6",
+            "SYMBOL_GRAPH_EXTRACTOR_OUTPUT_DIR" : "$(TARGET_BUILD_DIR)/$(CURRENT_ARCH)/DiskNotch.symbolgraphs",
+            "TAPI_EXTRACT_API_OUTPUT_DIR" : "$(TARGET_BUILD_DIR)/$(CURRENT_ARCH)/DiskNotch.symbolgraphs",
+            "TARGET_NAME" : "DiskNotch",
+            "TARGET_TEMP_DIR_SUFFIX" : "-p",
+            "TVOS_DEPLOYMENT_TARGET" : "15.0",
+            "WATCHOS_DEPLOYMENT_TARGET" : "9.0",
+            "XROS_DEPLOYMENT_TARGET" : "1.0"
+          },
+          "guid" : "PACKAGE-PRODUCT:disknotch_DiskNotch.DiskNotch::BUILDCONFIG_1",
+          "impartedBuildProperties" : {
+            "buildSettings" : {
+
+            }
+          },
+          "name" : "Release"
+        }
+      ],
+      "buildPhases" : [
+        {
+          "buildFiles" : [
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:disknotch::MAINGROUP::REF_2::REF_0",
+              "guid" : "PACKAGE-PRODUCT:disknotch_DiskNotch.DiskNotch::BUILDPHASE_0::0",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:disknotch::MAINGROUP::REF_2::REF_1",
+              "guid" : "PACKAGE-PRODUCT:disknotch_DiskNotch.DiskNotch::BUILDPHASE_0::1",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:disknotch::MAINGROUP::REF_2::REF_2",
+              "guid" : "PACKAGE-PRODUCT:disknotch_DiskNotch.DiskNotch::BUILDPHASE_0::2",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:disknotch::MAINGROUP::REF_2::REF_3",
+              "guid" : "PACKAGE-PRODUCT:disknotch_DiskNotch.DiskNotch::BUILDPHASE_0::3",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:disknotch::MAINGROUP::REF_2::REF_4",
+              "guid" : "PACKAGE-PRODUCT:disknotch_DiskNotch.DiskNotch::BUILDPHASE_0::4",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            }
+          ],
+          "guid" : "PACKAGE-PRODUCT:disknotch_DiskNotch.DiskNotch::BUILDPHASE_0",
+          "type" : "com.apple.buildphase.sources"
+        },
+        {
+          "buildFiles" : [
+            {
+              "guid" : "PACKAGE-PRODUCT:disknotch_DiskNotch.DiskNotch::BUILDPHASE_1::0",
+              "platformFilters" : [
+
+              ],
+              "targetReference" : "PACKAGE-TARGET:StorageCore"
+            }
+          ],
+          "guid" : "PACKAGE-PRODUCT:disknotch_DiskNotch.DiskNotch::BUILDPHASE_1",
+          "type" : "com.apple.buildphase.frameworks"
+        }
+      ],
+      "buildRules" : [
+
+      ],
+      "customTasks" : [
+
+      ],
+      "dependencies" : [
+        {
+          "guid" : "PACKAGE-TARGET:StorageCore",
+          "platformFilters" : [
+
+          ]
+        }
+      ],
+      "guid" : "PACKAGE-PRODUCT:disknotch_DiskNotch.DiskNotch",
+      "name" : "DiskNotch-product",
+      "productReference" : {
+        "guid" : "PRODUCTREF-PACKAGE-PRODUCT:disknotch_DiskNotch.DiskNotch",
+        "name" : "$(EXECUTABLE_NAME)",
+        "type" : "file"
+      },
+      "productTypeIdentifier" : "com.apple.product-type.tool",
+      "type" : "standard"
+    },
+    "signature" : "daf65deab5acc1e4696a267389612f7cae1201ce2ff9cd2c44bc3afae01abb33",
+    "type" : "target"
+  },
+  {
+    "contents" : {
+      "approvedByUser" : "true",
+      "buildConfigurations" : [
+        {
+          "buildSettings" : {
+            "DOCC_EXTRACT_PROJECT_HEADERS_DOCUMENTATION" : "YES",
+            "DRIVERKIT_DEPLOYMENT_TARGET" : "21.0",
+            "GENERATE_EMBED_IN_CODE_ACCESSORS" : "NO",
+            "GENERATE_RESOURCE_ACCESSORS" : "YES",
+            "IPHONEOS_DEPLOYMENT_TARGET" : "15.0",
+            "IPHONEOS_DEPLOYMENT_TARGET[__platform_filter=ios-maccatalyst]" : "15.0",
+            "MACOSX_DEPLOYMENT_TARGET" : "15.0",
+            "OTHER_SWIFT_FLAGS" : [
+              "$(inherited)",
+              "$(OTHER_SWIFT_FLAGS_ENABLE_LIBFUZZER_$(ENABLE_LIBFUZZER))"
+            ],
+            "OTHER_SWIFT_FLAGS_ENABLE_LIBFUZZER_YES" : [
+              "-Xfrontend",
+              "-entry-point-function-name",
+              "-Xfrontend",
+              "disknotch_probe_main"
+            ],
+            "PACKAGE_RESOURCE_TARGET_KIND" : "regular",
+            "PRODUCT_BUNDLE_IDENTIFIER" : "disknotch.disknotch-probe",
+            "PRODUCT_MODULE_NAME" : "disknotch_probe",
+            "PRODUCT_NAME" : "$(TARGET_NAME)",
+            "SDKROOT" : "auto",
+            "SDK_VARIANT" : "auto",
+            "SWIFT_DISABLE_PARSE_AS_LIBRARY" : "YES",
+            "SWIFT_ENABLE_BARE_SLASH_REGEX" : "NO",
+            "SWIFT_INSTALL_MODULE" : "NO",
+            "SWIFT_LIBRARIES_ONLY" : "NO",
+            "SWIFT_PACKAGE_NAME" : "disknotch",
+            "SWIFT_VERSION" : "6",
+            "SYMBOL_GRAPH_EXTRACTOR_OUTPUT_DIR" : "$(TARGET_BUILD_DIR)/$(CURRENT_ARCH)/disknotch-probe.symbolgraphs",
+            "TAPI_EXTRACT_API_OUTPUT_DIR" : "$(TARGET_BUILD_DIR)/$(CURRENT_ARCH)/disknotch-probe.symbolgraphs",
+            "TARGET_NAME" : "disknotch-probe",
+            "TARGET_TEMP_DIR_SUFFIX" : "-p",
+            "TVOS_DEPLOYMENT_TARGET" : "15.0",
+            "WATCHOS_DEPLOYMENT_TARGET" : "9.0",
+            "XROS_DEPLOYMENT_TARGET" : "1.0"
+          },
+          "guid" : "PACKAGE-PRODUCT:disknotch_disknotch-probe.disknotch-probe::BUILDCONFIG_0",
+          "impartedBuildProperties" : {
+            "buildSettings" : {
+
+            }
+          },
+          "name" : "Debug"
+        },
+        {
+          "buildSettings" : {
+            "DOCC_EXTRACT_PROJECT_HEADERS_DOCUMENTATION" : "YES",
+            "DRIVERKIT_DEPLOYMENT_TARGET" : "21.0",
+            "GENERATE_EMBED_IN_CODE_ACCESSORS" : "NO",
+            "GENERATE_RESOURCE_ACCESSORS" : "YES",
+            "IPHONEOS_DEPLOYMENT_TARGET" : "15.0",
+            "IPHONEOS_DEPLOYMENT_TARGET[__platform_filter=ios-maccatalyst]" : "15.0",
+            "MACOSX_DEPLOYMENT_TARGET" : "15.0",
+            "OTHER_SWIFT_FLAGS" : [
+              "$(inherited)",
+              "$(OTHER_SWIFT_FLAGS_ENABLE_LIBFUZZER_$(ENABLE_LIBFUZZER))"
+            ],
+            "OTHER_SWIFT_FLAGS_ENABLE_LIBFUZZER_YES" : [
+              "-Xfrontend",
+              "-entry-point-function-name",
+              "-Xfrontend",
+              "disknotch_probe_main"
+            ],
+            "PACKAGE_RESOURCE_TARGET_KIND" : "regular",
+            "PRODUCT_BUNDLE_IDENTIFIER" : "disknotch.disknotch-probe",
+            "PRODUCT_MODULE_NAME" : "disknotch_probe",
+            "PRODUCT_NAME" : "$(TARGET_NAME)",
+            "SDKROOT" : "auto",
+            "SDK_VARIANT" : "auto",
+            "SWIFT_DISABLE_PARSE_AS_LIBRARY" : "YES",
+            "SWIFT_ENABLE_BARE_SLASH_REGEX" : "NO",
+            "SWIFT_INSTALL_MODULE" : "NO",
+            "SWIFT_LIBRARIES_ONLY" : "NO",
+            "SWIFT_PACKAGE_NAME" : "disknotch",
+            "SWIFT_VERSION" : "6",
+            "SYMBOL_GRAPH_EXTRACTOR_OUTPUT_DIR" : "$(TARGET_BUILD_DIR)/$(CURRENT_ARCH)/disknotch-probe.symbolgraphs",
+            "TAPI_EXTRACT_API_OUTPUT_DIR" : "$(TARGET_BUILD_DIR)/$(CURRENT_ARCH)/disknotch-probe.symbolgraphs",
+            "TARGET_NAME" : "disknotch-probe",
+            "TARGET_TEMP_DIR_SUFFIX" : "-p",
+            "TVOS_DEPLOYMENT_TARGET" : "15.0",
+            "WATCHOS_DEPLOYMENT_TARGET" : "9.0",
+            "XROS_DEPLOYMENT_TARGET" : "1.0"
+          },
+          "guid" : "PACKAGE-PRODUCT:disknotch_disknotch-probe.disknotch-probe::BUILDCONFIG_1",
+          "impartedBuildProperties" : {
+            "buildSettings" : {
+
+            }
+          },
+          "name" : "Release"
+        }
+      ],
+      "buildPhases" : [
+        {
+          "buildFiles" : [
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:disknotch::MAINGROUP::REF_3::REF_0",
+              "guid" : "PACKAGE-PRODUCT:disknotch_disknotch-probe.disknotch-probe::BUILDPHASE_0::0",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            }
+          ],
+          "guid" : "PACKAGE-PRODUCT:disknotch_disknotch-probe.disknotch-probe::BUILDPHASE_0",
+          "type" : "com.apple.buildphase.sources"
+        },
+        {
+          "buildFiles" : [
+            {
+              "guid" : "PACKAGE-PRODUCT:disknotch_disknotch-probe.disknotch-probe::BUILDPHASE_1::0",
+              "platformFilters" : [
+
+              ],
+              "targetReference" : "PACKAGE-TARGET:StorageCore"
+            }
+          ],
+          "guid" : "PACKAGE-PRODUCT:disknotch_disknotch-probe.disknotch-probe::BUILDPHASE_1",
+          "type" : "com.apple.buildphase.frameworks"
+        }
+      ],
+      "buildRules" : [
+
+      ],
+      "customTasks" : [
+
+      ],
+      "dependencies" : [
+        {
+          "guid" : "PACKAGE-TARGET:StorageCore",
+          "platformFilters" : [
+
+          ]
+        }
+      ],
+      "guid" : "PACKAGE-PRODUCT:disknotch_disknotch-probe.disknotch-probe",
+      "name" : "disknotch-probe-product",
+      "productReference" : {
+        "guid" : "PRODUCTREF-PACKAGE-PRODUCT:disknotch_disknotch-probe.disknotch-probe",
+        "name" : "$(EXECUTABLE_NAME)",
+        "type" : "file"
+      },
+      "productTypeIdentifier" : "com.apple.product-type.tool",
+      "type" : "standard"
+    },
+    "signature" : "586c9d4b3fe73560e77b695aeb5523200fa4933275c85c49d789823771fc89cd",
+    "type" : "target"
+  },
+  {
+    "contents" : {
+      "approvedByUser" : "true",
+      "buildConfigurations" : [
+        {
+          "buildSettings" : {
+            "DEFINES_MODULE" : "YES",
+            "DOCC_EXTRACT_PROJECT_HEADERS_DOCUMENTATION" : "YES",
+            "GENERATE_PRELINK_OBJECT_FILE" : "NO",
+            "MODULEMAP_FILE_CONTENTS" : "module StorageCore {\nheader \"StorageCore-Swift.h\"\nexport *\n}",
+            "MODULEMAP_PATH" : "$(GENERATED_MODULEMAP_DIR)/StorageCore.modulemap",
+            "PACKAGE_RESOURCE_TARGET_KIND" : "regular",
+            "PRODUCT_BUNDLE_IDENTIFIER" : "disknotch.StorageCore",
+            "PRODUCT_MODULE_NAME" : "StorageCore",
+            "PRODUCT_NAME" : "$(TARGET_NAME)",
+            "SDKROOT" : "auto",
+            "SDK_VARIANT" : "auto",
+            "STRIP_INSTALLED_PRODUCT" : "NO",
+            "SUPPORTS_TEXT_BASED_API" : "NO",
+            "SWIFT_ACTIVE_COMPILATION_CONDITIONS" : [
+              "$(inherited)",
+              "SWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE"
+            ],
+            "SWIFT_DISABLE_COMPILATION_FOR_STATIC_LINKING_WHEN_ANY_TARGET_IS_PROMOTED_TO_DYNAMIC[__platform_filter=windows-msvc]" : [
+              "PACKAGE-PRODUCT:disknotch_StorageCore.StorageCore"
+            ],
+            "SWIFT_DISABLE_PARSE_AS_LIBRARY" : "NO",
+            "SWIFT_ENABLE_BARE_SLASH_REGEX" : "NO",
+            "SWIFT_LIBRARIES_ONLY" : "YES",
+            "SWIFT_OBJC_INTERFACE_HEADER_DIR" : "$(GENERATED_MODULEMAP_DIR)",
+            "SWIFT_OBJC_INTERFACE_HEADER_NAME" : "StorageCore-Swift.h",
+            "SWIFT_PACKAGE_NAME" : "disknotch",
+            "SWIFT_VERSION" : "6",
+            "SYMBOL_GRAPH_EXTRACTOR_OUTPUT_DIR" : "$(TARGET_BUILD_DIR)/$(CURRENT_ARCH)/StorageCore.symbolgraphs",
+            "TAPI_DYLIB_INSTALL_NAME" : "StorageCore",
+            "TAPI_EXTRACT_API_OUTPUT_DIR" : "$(TARGET_BUILD_DIR)/$(CURRENT_ARCH)/StorageCore.symbolgraphs",
+            "TARGET_NAME" : "StorageCore",
+            "TARGET_TEMP_DIR_SUFFIX" : "-t"
+          },
+          "guid" : "PACKAGE-TARGET:StorageCore::BUILDCONFIG_0",
+          "impartedBuildProperties" : {
+            "buildSettings" : {
+              "FRAMEWORK_SEARCH_PATHS" : [
+                "$(BUILT_PRODUCTS_DIR)/PackageFrameworks",
+                "$(inherited)"
+              ],
+              "LD_RUNPATH_SEARCH_PATHS" : [
+                "$(RPATH_ORIGIN)",
+                "$(BUILT_PRODUCTS_DIR)/PackageFrameworks",
+                "$(inherited)"
+              ],
+              "LD_WARN_DUPLICATE_LIBRARIES" : "NO",
+              "OTHER_CFLAGS" : [
+                "-fmodule-map-file=$(GENERATED_MODULEMAP_DIR)/StorageCore.modulemap",
+                "$(inherited)"
+              ]
+            }
+          },
+          "name" : "Debug"
+        },
+        {
+          "buildSettings" : {
+            "DEFINES_MODULE" : "YES",
+            "DOCC_EXTRACT_PROJECT_HEADERS_DOCUMENTATION" : "YES",
+            "GENERATE_PRELINK_OBJECT_FILE" : "NO",
+            "MODULEMAP_FILE_CONTENTS" : "module StorageCore {\nheader \"StorageCore-Swift.h\"\nexport *\n}",
+            "MODULEMAP_PATH" : "$(GENERATED_MODULEMAP_DIR)/StorageCore.modulemap",
+            "PACKAGE_RESOURCE_TARGET_KIND" : "regular",
+            "PRODUCT_BUNDLE_IDENTIFIER" : "disknotch.StorageCore",
+            "PRODUCT_MODULE_NAME" : "StorageCore",
+            "PRODUCT_NAME" : "$(TARGET_NAME)",
+            "SDKROOT" : "auto",
+            "SDK_VARIANT" : "auto",
+            "STRIP_INSTALLED_PRODUCT" : "NO",
+            "SUPPORTS_TEXT_BASED_API" : "NO",
+            "SWIFT_ACTIVE_COMPILATION_CONDITIONS" : [
+              "$(inherited)",
+              "SWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE"
+            ],
+            "SWIFT_DISABLE_COMPILATION_FOR_STATIC_LINKING_WHEN_ANY_TARGET_IS_PROMOTED_TO_DYNAMIC[__platform_filter=windows-msvc]" : [
+              "PACKAGE-PRODUCT:disknotch_StorageCore.StorageCore"
+            ],
+            "SWIFT_DISABLE_PARSE_AS_LIBRARY" : "NO",
+            "SWIFT_ENABLE_BARE_SLASH_REGEX" : "NO",
+            "SWIFT_LIBRARIES_ONLY" : "YES",
+            "SWIFT_OBJC_INTERFACE_HEADER_DIR" : "$(GENERATED_MODULEMAP_DIR)",
+            "SWIFT_OBJC_INTERFACE_HEADER_NAME" : "StorageCore-Swift.h",
+            "SWIFT_PACKAGE_NAME" : "disknotch",
+            "SWIFT_VERSION" : "6",
+            "SYMBOL_GRAPH_EXTRACTOR_OUTPUT_DIR" : "$(TARGET_BUILD_DIR)/$(CURRENT_ARCH)/StorageCore.symbolgraphs",
+            "TAPI_DYLIB_INSTALL_NAME" : "StorageCore",
+            "TAPI_EXTRACT_API_OUTPUT_DIR" : "$(TARGET_BUILD_DIR)/$(CURRENT_ARCH)/StorageCore.symbolgraphs",
+            "TARGET_NAME" : "StorageCore",
+            "TARGET_TEMP_DIR_SUFFIX" : "-t"
+          },
+          "guid" : "PACKAGE-TARGET:StorageCore::BUILDCONFIG_1",
+          "impartedBuildProperties" : {
+            "buildSettings" : {
+              "FRAMEWORK_SEARCH_PATHS" : [
+                "$(BUILT_PRODUCTS_DIR)/PackageFrameworks",
+                "$(inherited)"
+              ],
+              "LD_RUNPATH_SEARCH_PATHS" : [
+                "$(RPATH_ORIGIN)",
+                "$(inherited)"
+              ],
+              "LD_WARN_DUPLICATE_LIBRARIES" : "NO",
+              "OTHER_CFLAGS" : [
+                "-fmodule-map-file=$(GENERATED_MODULEMAP_DIR)/StorageCore.modulemap",
+                "$(inherited)"
+              ]
+            }
+          },
+          "name" : "Release"
+        }
+      ],
+      "buildPhases" : [
+        {
+          "buildFiles" : [
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:disknotch::MAINGROUP::REF_4::REF_0",
+              "guid" : "PACKAGE-TARGET:StorageCore::BUILDPHASE_0::0",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:disknotch::MAINGROUP::REF_4::REF_1",
+              "guid" : "PACKAGE-TARGET:StorageCore::BUILDPHASE_0::1",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            }
+          ],
+          "guid" : "PACKAGE-TARGET:StorageCore::BUILDPHASE_0",
+          "type" : "com.apple.buildphase.sources"
+        }
+      ],
+      "buildRules" : [
+
+      ],
+      "customTasks" : [
+
+      ],
+      "dependencies" : [
+
+      ],
+      "dynamicTargetVariantGuid" : "PACKAGE-TARGET:StorageCore-79D5483FBCFEA369-dynamic",
+      "guid" : "PACKAGE-TARGET:StorageCore",
+      "name" : "StorageCore",
+      "productReference" : {
+        "guid" : "PRODUCTREF-PACKAGE-TARGET:StorageCore",
+        "name" : "$(EXECUTABLE_NAME)",
+        "type" : "file"
+      },
+      "productTypeIdentifier" : "org.swift.product-type.library.static",
+      "type" : "standard"
+    },
+    "signature" : "83b031730f3faaf6df45fd59afa446d34abae9bbe6eadf5904f3d52bedcc5058",
+    "type" : "target"
+  },
+  {
+    "contents" : {
+      "approvedByUser" : "true",
+      "buildConfigurations" : [
+        {
+          "buildSettings" : {
+            "DEFINES_MODULE" : "YES",
+            "DOCC_EXTRACT_PROJECT_HEADERS_DOCUMENTATION" : "YES",
+            "GENERATE_EMBED_IN_CODE_ACCESSORS" : "YES",
+            "GENERATE_PRELINK_OBJECT_FILE" : "NO",
+            "GENERATE_RESOURCE_ACCESSORS" : "YES",
+            "MODULEMAP_FILE_CONTENTS" : "module DiskNotch {\nheader \"DiskNotch-Swift.h\"\nexport *\n}",
+            "MODULEMAP_PATH" : "$(GENERATED_MODULEMAP_DIR)/DiskNotch.modulemap",
+            "OTHER_SWIFT_FLAGS" : [
+              "$(inherited)",
+              "-Xfrontend",
+              "-entry-point-function-name",
+              "-Xfrontend",
+              "DiskNotch_main"
+            ],
+            "PACKAGE_RESOURCE_TARGET_KIND" : "regular",
+            "PRODUCT_BUNDLE_IDENTIFIER" : "disknotch.DiskNotch",
+            "PRODUCT_MODULE_NAME" : "DiskNotch",
+            "PRODUCT_NAME" : "$(TARGET_NAME)",
+            "SDKROOT" : "auto",
+            "SDK_VARIANT" : "auto",
+            "STRIP_INSTALLED_PRODUCT" : "NO",
+            "SUPPORTS_TEXT_BASED_API" : "NO",
+            "SWIFT_DISABLE_PARSE_AS_LIBRARY" : "NO",
+            "SWIFT_ENABLE_BARE_SLASH_REGEX" : "NO",
+            "SWIFT_LIBRARIES_ONLY" : "YES",
+            "SWIFT_OBJC_INTERFACE_HEADER_DIR" : "$(GENERATED_MODULEMAP_DIR)",
+            "SWIFT_OBJC_INTERFACE_HEADER_NAME" : "DiskNotch-Swift.h",
+            "SWIFT_PACKAGE_NAME" : "disknotch",
+            "SWIFT_VERSION" : "6",
+            "SYMBOL_GRAPH_EXTRACTOR_OUTPUT_DIR" : "$(TARGET_BUILD_DIR)/$(CURRENT_ARCH)/DiskNotch.symbolgraphs",
+            "TAPI_DYLIB_INSTALL_NAME" : "DiskNotch",
+            "TAPI_EXTRACT_API_OUTPUT_DIR" : "$(TARGET_BUILD_DIR)/$(CURRENT_ARCH)/DiskNotch.symbolgraphs",
+            "TARGET_BUILD_DIR" : "$(TARGET_BUILD_DIR)/ExecutableModules",
+            "TARGET_NAME" : "DiskNotch-58556954DDB80C90-testable",
+            "TARGET_TEMP_DIR_SUFFIX" : "-t"
+          },
+          "guid" : "PACKAGE-TARGET:DiskNotch-58556954DDB80C90-testable::BUILDCONFIG_0",
+          "impartedBuildProperties" : {
+            "buildSettings" : {
+              "FRAMEWORK_SEARCH_PATHS" : [
+                "$(BUILT_PRODUCTS_DIR)/PackageFrameworks",
+                "$(inherited)"
+              ],
+              "LD_RUNPATH_SEARCH_PATHS" : [
+                "$(RPATH_ORIGIN)",
+                "$(BUILT_PRODUCTS_DIR)/PackageFrameworks",
+                "$(inherited)"
+              ],
+              "LD_WARN_DUPLICATE_LIBRARIES" : "NO",
+              "LIBRARY_SEARCH_PATHS[__platform_filter=windows-msvc]" : [
+                "$(inherited)",
+                "$(TARGET_BUILD_DIR)/ExecutableModules"
+              ],
+              "OTHER_CFLAGS" : [
+                "-fmodule-map-file=$(GENERATED_MODULEMAP_DIR)/DiskNotch.modulemap",
+                "$(inherited)"
+              ]
+            }
+          },
+          "name" : "Debug"
+        },
+        {
+          "buildSettings" : {
+            "DEFINES_MODULE" : "YES",
+            "DOCC_EXTRACT_PROJECT_HEADERS_DOCUMENTATION" : "YES",
+            "GENERATE_EMBED_IN_CODE_ACCESSORS" : "YES",
+            "GENERATE_PRELINK_OBJECT_FILE" : "NO",
+            "GENERATE_RESOURCE_ACCESSORS" : "YES",
+            "MODULEMAP_FILE_CONTENTS" : "module DiskNotch {\nheader \"DiskNotch-Swift.h\"\nexport *\n}",
+            "MODULEMAP_PATH" : "$(GENERATED_MODULEMAP_DIR)/DiskNotch.modulemap",
+            "OTHER_SWIFT_FLAGS" : [
+              "$(inherited)",
+              "-Xfrontend",
+              "-entry-point-function-name",
+              "-Xfrontend",
+              "DiskNotch_main"
+            ],
+            "PACKAGE_RESOURCE_TARGET_KIND" : "regular",
+            "PRODUCT_BUNDLE_IDENTIFIER" : "disknotch.DiskNotch",
+            "PRODUCT_MODULE_NAME" : "DiskNotch",
+            "PRODUCT_NAME" : "$(TARGET_NAME)",
+            "SDKROOT" : "auto",
+            "SDK_VARIANT" : "auto",
+            "STRIP_INSTALLED_PRODUCT" : "NO",
+            "SUPPORTS_TEXT_BASED_API" : "NO",
+            "SWIFT_DISABLE_PARSE_AS_LIBRARY" : "NO",
+            "SWIFT_ENABLE_BARE_SLASH_REGEX" : "NO",
+            "SWIFT_LIBRARIES_ONLY" : "YES",
+            "SWIFT_OBJC_INTERFACE_HEADER_DIR" : "$(GENERATED_MODULEMAP_DIR)",
+            "SWIFT_OBJC_INTERFACE_HEADER_NAME" : "DiskNotch-Swift.h",
+            "SWIFT_PACKAGE_NAME" : "disknotch",
+            "SWIFT_VERSION" : "6",
+            "SYMBOL_GRAPH_EXTRACTOR_OUTPUT_DIR" : "$(TARGET_BUILD_DIR)/$(CURRENT_ARCH)/DiskNotch.symbolgraphs",
+            "TAPI_DYLIB_INSTALL_NAME" : "DiskNotch",
+            "TAPI_EXTRACT_API_OUTPUT_DIR" : "$(TARGET_BUILD_DIR)/$(CURRENT_ARCH)/DiskNotch.symbolgraphs",
+            "TARGET_BUILD_DIR" : "$(TARGET_BUILD_DIR)/ExecutableModules",
+            "TARGET_NAME" : "DiskNotch-58556954DDB80C90-testable",
+            "TARGET_TEMP_DIR_SUFFIX" : "-t"
+          },
+          "guid" : "PACKAGE-TARGET:DiskNotch-58556954DDB80C90-testable::BUILDCONFIG_1",
+          "impartedBuildProperties" : {
+            "buildSettings" : {
+              "FRAMEWORK_SEARCH_PATHS" : [
+                "$(BUILT_PRODUCTS_DIR)/PackageFrameworks",
+                "$(inherited)"
+              ],
+              "LD_RUNPATH_SEARCH_PATHS" : [
+                "$(RPATH_ORIGIN)",
+                "$(inherited)"
+              ],
+              "LD_WARN_DUPLICATE_LIBRARIES" : "NO",
+              "LIBRARY_SEARCH_PATHS[__platform_filter=windows-msvc]" : [
+                "$(inherited)",
+                "$(TARGET_BUILD_DIR)/ExecutableModules"
+              ],
+              "OTHER_CFLAGS" : [
+                "-fmodule-map-file=$(GENERATED_MODULEMAP_DIR)/DiskNotch.modulemap",
+                "$(inherited)"
+              ]
+            }
+          },
+          "name" : "Release"
+        }
+      ],
+      "buildPhases" : [
+        {
+          "buildFiles" : [
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:disknotch::MAINGROUP::REF_6::REF_0",
+              "guid" : "PACKAGE-TARGET:DiskNotch-58556954DDB80C90-testable::BUILDPHASE_0::0",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:disknotch::MAINGROUP::REF_6::REF_1",
+              "guid" : "PACKAGE-TARGET:DiskNotch-58556954DDB80C90-testable::BUILDPHASE_0::1",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:disknotch::MAINGROUP::REF_6::REF_2",
+              "guid" : "PACKAGE-TARGET:DiskNotch-58556954DDB80C90-testable::BUILDPHASE_0::2",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:disknotch::MAINGROUP::REF_6::REF_3",
+              "guid" : "PACKAGE-TARGET:DiskNotch-58556954DDB80C90-testable::BUILDPHASE_0::3",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:disknotch::MAINGROUP::REF_6::REF_4",
+              "guid" : "PACKAGE-TARGET:DiskNotch-58556954DDB80C90-testable::BUILDPHASE_0::4",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            }
+          ],
+          "guid" : "PACKAGE-TARGET:DiskNotch-58556954DDB80C90-testable::BUILDPHASE_0",
+          "type" : "com.apple.buildphase.sources"
+        }
+      ],
+      "buildRules" : [
+
+      ],
+      "customTasks" : [
+
+      ],
+      "dependencies" : [
+        {
+          "guid" : "PACKAGE-TARGET:StorageCore",
+          "platformFilters" : [
+
+          ]
+        }
+      ],
+      "guid" : "PACKAGE-TARGET:DiskNotch-58556954DDB80C90-testable",
+      "name" : "DiskNotch",
+      "productReference" : {
+        "guid" : "PRODUCTREF-PACKAGE-TARGET:DiskNotch-58556954DDB80C90-testable",
+        "name" : "$(EXECUTABLE_NAME)",
+        "type" : "file"
+      },
+      "productTypeIdentifier" : "org.swift.product-type.common.object",
+      "type" : "standard"
+    },
+    "signature" : "8460065bbd73d7bf824e4fd51f967c7c90599856f263ab8f9820ec15afa9b5e1",
+    "type" : "target"
+  },
+  {
+    "contents" : {
+      "approvedByUser" : "true",
+      "buildConfigurations" : [
+        {
+          "buildSettings" : {
+            "DEFINES_MODULE" : "YES",
+            "DOCC_EXTRACT_PROJECT_HEADERS_DOCUMENTATION" : "YES",
+            "GENERATE_EMBED_IN_CODE_ACCESSORS" : "YES",
+            "GENERATE_PRELINK_OBJECT_FILE" : "NO",
+            "GENERATE_RESOURCE_ACCESSORS" : "YES",
+            "MODULEMAP_FILE_CONTENTS" : "module disknotch_probe {\nheader \"disknotch-probe-Swift.h\"\nexport *\n}",
+            "MODULEMAP_PATH" : "$(GENERATED_MODULEMAP_DIR)/disknotch-probe.modulemap",
+            "OTHER_SWIFT_FLAGS" : [
+              "$(inherited)",
+              "-Xfrontend",
+              "-entry-point-function-name",
+              "-Xfrontend",
+              "disknotch_probe_main"
+            ],
+            "PACKAGE_RESOURCE_TARGET_KIND" : "regular",
+            "PRODUCT_BUNDLE_IDENTIFIER" : "disknotch.disknotch-probe",
+            "PRODUCT_MODULE_NAME" : "disknotch_probe",
+            "PRODUCT_NAME" : "$(TARGET_NAME)",
+            "SDKROOT" : "auto",
+            "SDK_VARIANT" : "auto",
+            "STRIP_INSTALLED_PRODUCT" : "NO",
+            "SUPPORTS_TEXT_BASED_API" : "NO",
+            "SWIFT_DISABLE_PARSE_AS_LIBRARY" : "YES",
+            "SWIFT_ENABLE_BARE_SLASH_REGEX" : "NO",
+            "SWIFT_LIBRARIES_ONLY" : "NO",
+            "SWIFT_OBJC_INTERFACE_HEADER_DIR" : "$(GENERATED_MODULEMAP_DIR)",
+            "SWIFT_OBJC_INTERFACE_HEADER_NAME" : "disknotch-probe-Swift.h",
+            "SWIFT_PACKAGE_NAME" : "disknotch",
+            "SWIFT_VERSION" : "6",
+            "SYMBOL_GRAPH_EXTRACTOR_OUTPUT_DIR" : "$(TARGET_BUILD_DIR)/$(CURRENT_ARCH)/disknotch-probe.symbolgraphs",
+            "TAPI_DYLIB_INSTALL_NAME" : "disknotch-probe",
+            "TAPI_EXTRACT_API_OUTPUT_DIR" : "$(TARGET_BUILD_DIR)/$(CURRENT_ARCH)/disknotch-probe.symbolgraphs",
+            "TARGET_BUILD_DIR" : "$(TARGET_BUILD_DIR)/ExecutableModules",
+            "TARGET_NAME" : "disknotch-probe-7BBCDEEF9D8D601B-testable",
+            "TARGET_TEMP_DIR_SUFFIX" : "-t"
+          },
+          "guid" : "PACKAGE-TARGET:disknotch-probe-7BBCDEEF9D8D601B-testable::BUILDCONFIG_0",
+          "impartedBuildProperties" : {
+            "buildSettings" : {
+              "FRAMEWORK_SEARCH_PATHS" : [
+                "$(BUILT_PRODUCTS_DIR)/PackageFrameworks",
+                "$(inherited)"
+              ],
+              "LD_RUNPATH_SEARCH_PATHS" : [
+                "$(RPATH_ORIGIN)",
+                "$(BUILT_PRODUCTS_DIR)/PackageFrameworks",
+                "$(inherited)"
+              ],
+              "LD_WARN_DUPLICATE_LIBRARIES" : "NO",
+              "LIBRARY_SEARCH_PATHS[__platform_filter=windows-msvc]" : [
+                "$(inherited)",
+                "$(TARGET_BUILD_DIR)/ExecutableModules"
+              ],
+              "OTHER_CFLAGS" : [
+                "-fmodule-map-file=$(GENERATED_MODULEMAP_DIR)/disknotch-probe.modulemap",
+                "$(inherited)"
+              ]
+            }
+          },
+          "name" : "Debug"
+        },
+        {
+          "buildSettings" : {
+            "DEFINES_MODULE" : "YES",
+            "DOCC_EXTRACT_PROJECT_HEADERS_DOCUMENTATION" : "YES",
+            "GENERATE_EMBED_IN_CODE_ACCESSORS" : "YES",
+            "GENERATE_PRELINK_OBJECT_FILE" : "NO",
+            "GENERATE_RESOURCE_ACCESSORS" : "YES",
+            "MODULEMAP_FILE_CONTENTS" : "module disknotch_probe {\nheader \"disknotch-probe-Swift.h\"\nexport *\n}",
+            "MODULEMAP_PATH" : "$(GENERATED_MODULEMAP_DIR)/disknotch-probe.modulemap",
+            "OTHER_SWIFT_FLAGS" : [
+              "$(inherited)",
+              "-Xfrontend",
+              "-entry-point-function-name",
+              "-Xfrontend",
+              "disknotch_probe_main"
+            ],
+            "PACKAGE_RESOURCE_TARGET_KIND" : "regular",
+            "PRODUCT_BUNDLE_IDENTIFIER" : "disknotch.disknotch-probe",
+            "PRODUCT_MODULE_NAME" : "disknotch_probe",
+            "PRODUCT_NAME" : "$(TARGET_NAME)",
+            "SDKROOT" : "auto",
+            "SDK_VARIANT" : "auto",
+            "STRIP_INSTALLED_PRODUCT" : "NO",
+            "SUPPORTS_TEXT_BASED_API" : "NO",
+            "SWIFT_DISABLE_PARSE_AS_LIBRARY" : "YES",
+            "SWIFT_ENABLE_BARE_SLASH_REGEX" : "NO",
+            "SWIFT_LIBRARIES_ONLY" : "NO",
+            "SWIFT_OBJC_INTERFACE_HEADER_DIR" : "$(GENERATED_MODULEMAP_DIR)",
+            "SWIFT_OBJC_INTERFACE_HEADER_NAME" : "disknotch-probe-Swift.h",
+            "SWIFT_PACKAGE_NAME" : "disknotch",
+            "SWIFT_VERSION" : "6",
+            "SYMBOL_GRAPH_EXTRACTOR_OUTPUT_DIR" : "$(TARGET_BUILD_DIR)/$(CURRENT_ARCH)/disknotch-probe.symbolgraphs",
+            "TAPI_DYLIB_INSTALL_NAME" : "disknotch-probe",
+            "TAPI_EXTRACT_API_OUTPUT_DIR" : "$(TARGET_BUILD_DIR)/$(CURRENT_ARCH)/disknotch-probe.symbolgraphs",
+            "TARGET_BUILD_DIR" : "$(TARGET_BUILD_DIR)/ExecutableModules",
+            "TARGET_NAME" : "disknotch-probe-7BBCDEEF9D8D601B-testable",
+            "TARGET_TEMP_DIR_SUFFIX" : "-t"
+          },
+          "guid" : "PACKAGE-TARGET:disknotch-probe-7BBCDEEF9D8D601B-testable::BUILDCONFIG_1",
+          "impartedBuildProperties" : {
+            "buildSettings" : {
+              "FRAMEWORK_SEARCH_PATHS" : [
+                "$(BUILT_PRODUCTS_DIR)/PackageFrameworks",
+                "$(inherited)"
+              ],
+              "LD_RUNPATH_SEARCH_PATHS" : [
+                "$(RPATH_ORIGIN)",
+                "$(inherited)"
+              ],
+              "LD_WARN_DUPLICATE_LIBRARIES" : "NO",
+              "LIBRARY_SEARCH_PATHS[__platform_filter=windows-msvc]" : [
+                "$(inherited)",
+                "$(TARGET_BUILD_DIR)/ExecutableModules"
+              ],
+              "OTHER_CFLAGS" : [
+                "-fmodule-map-file=$(GENERATED_MODULEMAP_DIR)/disknotch-probe.modulemap",
+                "$(inherited)"
+              ]
+            }
+          },
+          "name" : "Release"
+        }
+      ],
+      "buildPhases" : [
+        {
+          "buildFiles" : [
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:disknotch::MAINGROUP::REF_7::REF_0",
+              "guid" : "PACKAGE-TARGET:disknotch-probe-7BBCDEEF9D8D601B-testable::BUILDPHASE_0::0",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            }
+          ],
+          "guid" : "PACKAGE-TARGET:disknotch-probe-7BBCDEEF9D8D601B-testable::BUILDPHASE_0",
+          "type" : "com.apple.buildphase.sources"
+        }
+      ],
+      "buildRules" : [
+
+      ],
+      "customTasks" : [
+
+      ],
+      "dependencies" : [
+        {
+          "guid" : "PACKAGE-TARGET:StorageCore",
+          "platformFilters" : [
+
+          ]
+        }
+      ],
+      "guid" : "PACKAGE-TARGET:disknotch-probe-7BBCDEEF9D8D601B-testable",
+      "name" : "disknotch-probe",
+      "productReference" : {
+        "guid" : "PRODUCTREF-PACKAGE-TARGET:disknotch-probe-7BBCDEEF9D8D601B-testable",
+        "name" : "$(EXECUTABLE_NAME)",
+        "type" : "file"
+      },
+      "productTypeIdentifier" : "org.swift.product-type.common.object",
+      "type" : "standard"
+    },
+    "signature" : "2a31277b5d0c192f1886324c57f4fd8ccb5bf9c24bfc00ca5147b0b1083f902a",
+    "type" : "target"
+  },
+  {
+    "contents" : {
+      "buildConfigurations" : [
+        {
+          "buildSettings" : {
+
+          },
+          "guid" : "PACKAGE-PRODUCT:disknotch-DiskNotchPackageTests.DiskNotchPackageTests::BUILDCONFIG_0",
+          "impartedBuildProperties" : {
+            "buildSettings" : {
+
+            }
+          },
+          "name" : "Debug"
+        },
+        {
+          "buildSettings" : {
+
+          },
+          "guid" : "PACKAGE-PRODUCT:disknotch-DiskNotchPackageTests.DiskNotchPackageTests::BUILDCONFIG_1",
+          "impartedBuildProperties" : {
+            "buildSettings" : {
+
+            }
+          },
+          "name" : "Release"
+        }
+      ],
+      "buildPhases" : [
+
+      ],
+      "buildRules" : [
+
+      ],
+      "customTasks" : [
+
+      ],
+      "dependencies" : [
+
+      ],
+      "guid" : "PACKAGE-PRODUCT:disknotch-DiskNotchPackageTests.DiskNotchPackageTests",
+      "name" : "DiskNotchPackageTests-product",
+      "type" : "aggregate"
+    },
+    "signature" : "c71a02c36dccbab5499112c8fbf2ce57a041cbad47989d8f0c705210a802be8c",
+    "type" : "target"
+  },
+  {
+    "contents" : {
+      "approvedByUser" : "true",
+      "buildConfigurations" : [
+        {
+          "buildSettings" : {
+            "EXECUTABLE_PREFIX" : "lib",
+            "EXECUTABLE_PREFIX[__platform_filter=windows-msvc]" : "",
+            "PRODUCT_BUNDLE_IDENTIFIER" : "disknotch.StorageCore",
+            "PRODUCT_MODULE_NAME" : "StorageCore",
+            "PRODUCT_NAME" : "StorageCore",
+            "SDKROOT" : "auto",
+            "SDK_VARIANT" : "auto",
+            "SWIFT_PACKAGE_NAME" : "disknotch",
+            "TARGET_NAME" : "StorageCore-product",
+            "TARGET_TEMP_DIR_SUFFIX" : "-t",
+            "USES_SWIFTPM_UNSAFE_FLAGS" : "NO"
+          },
+          "guid" : "PACKAGE-PRODUCT:disknotch_StorageCore.StorageCore-79D5483FBCFEA369-dynamic::BUILDCONFIG_0",
+          "impartedBuildProperties" : {
+            "buildSettings" : {
+
+            }
+          },
+          "name" : "Debug"
+        },
+        {
+          "buildSettings" : {
+            "EXECUTABLE_PREFIX" : "lib",
+            "EXECUTABLE_PREFIX[__platform_filter=windows-msvc]" : "",
+            "PRODUCT_BUNDLE_IDENTIFIER" : "disknotch.StorageCore",
+            "PRODUCT_MODULE_NAME" : "StorageCore",
+            "PRODUCT_NAME" : "StorageCore",
+            "SDKROOT" : "auto",
+            "SDK_VARIANT" : "auto",
+            "SWIFT_PACKAGE_NAME" : "disknotch",
+            "TARGET_NAME" : "StorageCore-product",
+            "TARGET_TEMP_DIR_SUFFIX" : "-t",
+            "USES_SWIFTPM_UNSAFE_FLAGS" : "NO"
+          },
+          "guid" : "PACKAGE-PRODUCT:disknotch_StorageCore.StorageCore-79D5483FBCFEA369-dynamic::BUILDCONFIG_1",
+          "impartedBuildProperties" : {
+            "buildSettings" : {
+
+            }
+          },
+          "name" : "Release"
+        }
+      ],
+      "buildPhases" : [
+        {
+          "buildFiles" : [
+            {
+              "guid" : "PACKAGE-PRODUCT:disknotch_StorageCore.StorageCore-79D5483FBCFEA369-dynamic::BUILDPHASE_0::0",
+              "platformFilters" : [
+
+              ],
+              "targetReference" : "PACKAGE-TARGET:StorageCore"
+            }
+          ],
+          "guid" : "PACKAGE-PRODUCT:disknotch_StorageCore.StorageCore-79D5483FBCFEA369-dynamic::BUILDPHASE_0",
+          "type" : "com.apple.buildphase.frameworks"
+        },
+        {
+          "buildFiles" : [
+
+          ],
+          "guid" : "PACKAGE-PRODUCT:disknotch_StorageCore.StorageCore-79D5483FBCFEA369-dynamic::BUILDPHASE_1",
+          "type" : "com.apple.buildphase.sources"
+        }
+      ],
+      "buildRules" : [
+
+      ],
+      "customTasks" : [
+
+      ],
+      "dependencies" : [
+        {
+          "guid" : "PACKAGE-TARGET:StorageCore",
+          "platformFilters" : [
+
+          ]
+        }
+      ],
+      "guid" : "PACKAGE-PRODUCT:disknotch_StorageCore.StorageCore-79D5483FBCFEA369-dynamic",
+      "name" : "StorageCoredynamic-product",
+      "productReference" : {
+        "guid" : "PRODUCTREF-PACKAGE-PRODUCT:disknotch_StorageCore.StorageCore-79D5483FBCFEA369-dynamic",
+        "name" : "$(EXECUTABLE_NAME)",
+        "type" : "file"
+      },
+      "productTypeIdentifier" : "com.apple.product-type.library.dynamic",
+      "type" : "standard"
+    },
+    "signature" : "734fddd53db1300a8ffc39bf06035bb4f3dcd42f079ba0f4e3c67ef434d444c6",
+    "type" : "target"
+  },
+  {
+    "contents" : {
+      "approvedByUser" : "true",
+      "buildConfigurations" : [
+        {
+          "buildSettings" : {
+            "DEFINES_MODULE" : "YES",
+            "DOCC_EXTRACT_PROJECT_HEADERS_DOCUMENTATION" : "YES",
+            "EXECUTABLE_PREFIX" : "lib",
+            "EXECUTABLE_PREFIX[__platform_filter=windows-msvc]" : "",
+            "MODULEMAP_FILE_CONTENTS" : "module StorageCore {\nheader \"StorageCore-Swift.h\"\nexport *\n}",
+            "MODULEMAP_PATH" : "$(GENERATED_MODULEMAP_DIR)/StorageCore.modulemap",
+            "PACKAGE_RESOURCE_TARGET_KIND" : "regular",
+            "PRODUCT_BUNDLE_IDENTIFIER" : "disknotch.StorageCore",
+            "PRODUCT_MODULE_NAME" : "StorageCore",
+            "PRODUCT_NAME" : "StorageCore",
+            "SDKROOT" : "auto",
+            "SDK_VARIANT" : "auto",
+            "SUPPORTS_TEXT_BASED_API" : "NO",
+            "SWIFT_ACTIVE_COMPILATION_CONDITIONS" : [
+              "$(inherited)",
+              "SWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE"
+            ],
+            "SWIFT_DISABLE_PARSE_AS_LIBRARY" : "NO",
+            "SWIFT_ENABLE_BARE_SLASH_REGEX" : "NO",
+            "SWIFT_LIBRARIES_ONLY" : "YES",
+            "SWIFT_OBJC_INTERFACE_HEADER_DIR" : "$(GENERATED_MODULEMAP_DIR)",
+            "SWIFT_OBJC_INTERFACE_HEADER_NAME" : "StorageCore-Swift.h",
+            "SWIFT_PACKAGE_NAME" : "disknotch",
+            "SWIFT_VERSION" : "6",
+            "SYMBOL_GRAPH_EXTRACTOR_OUTPUT_DIR" : "$(TARGET_BUILD_DIR)/$(CURRENT_ARCH)/StorageCore.symbolgraphs",
+            "TAPI_EXTRACT_API_OUTPUT_DIR" : "$(TARGET_BUILD_DIR)/$(CURRENT_ARCH)/StorageCore.symbolgraphs",
+            "TARGET_NAME" : "StorageCore",
+            "TARGET_TEMP_DIR_SUFFIX" : "-t"
+          },
+          "guid" : "PACKAGE-TARGET:StorageCore-79D5483FBCFEA369-dynamic::BUILDCONFIG_0",
+          "impartedBuildProperties" : {
+            "buildSettings" : {
+              "FRAMEWORK_SEARCH_PATHS" : [
+                "$(BUILT_PRODUCTS_DIR)/PackageFrameworks",
+                "$(inherited)"
+              ],
+              "LD_RUNPATH_SEARCH_PATHS" : [
+                "$(RPATH_ORIGIN)",
+                "$(BUILT_PRODUCTS_DIR)/PackageFrameworks",
+                "$(inherited)"
+              ],
+              "LD_WARN_DUPLICATE_LIBRARIES" : "NO",
+              "OTHER_CFLAGS" : [
+                "-fmodule-map-file=$(GENERATED_MODULEMAP_DIR)/StorageCore.modulemap",
+                "$(inherited)"
+              ]
+            }
+          },
+          "name" : "Debug"
+        },
+        {
+          "buildSettings" : {
+            "DEFINES_MODULE" : "YES",
+            "DOCC_EXTRACT_PROJECT_HEADERS_DOCUMENTATION" : "YES",
+            "EXECUTABLE_PREFIX" : "lib",
+            "EXECUTABLE_PREFIX[__platform_filter=windows-msvc]" : "",
+            "MODULEMAP_FILE_CONTENTS" : "module StorageCore {\nheader \"StorageCore-Swift.h\"\nexport *\n}",
+            "MODULEMAP_PATH" : "$(GENERATED_MODULEMAP_DIR)/StorageCore.modulemap",
+            "PACKAGE_RESOURCE_TARGET_KIND" : "regular",
+            "PRODUCT_BUNDLE_IDENTIFIER" : "disknotch.StorageCore",
+            "PRODUCT_MODULE_NAME" : "StorageCore",
+            "PRODUCT_NAME" : "StorageCore",
+            "SDKROOT" : "auto",
+            "SDK_VARIANT" : "auto",
+            "SUPPORTS_TEXT_BASED_API" : "NO",
+            "SWIFT_ACTIVE_COMPILATION_CONDITIONS" : [
+              "$(inherited)",
+              "SWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE"
+            ],
+            "SWIFT_DISABLE_PARSE_AS_LIBRARY" : "NO",
+            "SWIFT_ENABLE_BARE_SLASH_REGEX" : "NO",
+            "SWIFT_LIBRARIES_ONLY" : "YES",
+            "SWIFT_OBJC_INTERFACE_HEADER_DIR" : "$(GENERATED_MODULEMAP_DIR)",
+            "SWIFT_OBJC_INTERFACE_HEADER_NAME" : "StorageCore-Swift.h",
+            "SWIFT_PACKAGE_NAME" : "disknotch",
+            "SWIFT_VERSION" : "6",
+            "SYMBOL_GRAPH_EXTRACTOR_OUTPUT_DIR" : "$(TARGET_BUILD_DIR)/$(CURRENT_ARCH)/StorageCore.symbolgraphs",
+            "TAPI_EXTRACT_API_OUTPUT_DIR" : "$(TARGET_BUILD_DIR)/$(CURRENT_ARCH)/StorageCore.symbolgraphs",
+            "TARGET_NAME" : "StorageCore",
+            "TARGET_TEMP_DIR_SUFFIX" : "-t"
+          },
+          "guid" : "PACKAGE-TARGET:StorageCore-79D5483FBCFEA369-dynamic::BUILDCONFIG_1",
+          "impartedBuildProperties" : {
+            "buildSettings" : {
+              "FRAMEWORK_SEARCH_PATHS" : [
+                "$(BUILT_PRODUCTS_DIR)/PackageFrameworks",
+                "$(inherited)"
+              ],
+              "LD_RUNPATH_SEARCH_PATHS" : [
+                "$(RPATH_ORIGIN)",
+                "$(inherited)"
+              ],
+              "LD_WARN_DUPLICATE_LIBRARIES" : "NO",
+              "OTHER_CFLAGS" : [
+                "-fmodule-map-file=$(GENERATED_MODULEMAP_DIR)/StorageCore.modulemap",
+                "$(inherited)"
+              ]
+            }
+          },
+          "name" : "Release"
+        }
+      ],
+      "buildPhases" : [
+        {
+          "buildFiles" : [
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:disknotch::MAINGROUP::REF_5::REF_0",
+              "guid" : "PACKAGE-TARGET:StorageCore-79D5483FBCFEA369-dynamic::BUILDPHASE_0::0",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:disknotch::MAINGROUP::REF_5::REF_1",
+              "guid" : "PACKAGE-TARGET:StorageCore-79D5483FBCFEA369-dynamic::BUILDPHASE_0::1",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            }
+          ],
+          "guid" : "PACKAGE-TARGET:StorageCore-79D5483FBCFEA369-dynamic::BUILDPHASE_0",
+          "type" : "com.apple.buildphase.sources"
+        }
+      ],
+      "buildRules" : [
+
+      ],
+      "customTasks" : [
+
+      ],
+      "dependencies" : [
+
+      ],
+      "guid" : "PACKAGE-TARGET:StorageCore-79D5483FBCFEA369-dynamic",
+      "name" : "StorageCore",
+      "productReference" : {
+        "guid" : "PRODUCTREF-PACKAGE-TARGET:StorageCore-79D5483FBCFEA369-dynamic",
+        "name" : "$(EXECUTABLE_NAME)",
+        "type" : "file"
+      },
+      "productTypeIdentifier" : "com.apple.product-type.library.dynamic",
+      "type" : "standard"
+    },
+    "signature" : "75fdc2058a9e84de74590f5b0eedc7befa6ab12077029353628ac53068501be6",
+    "type" : "target"
+  },
+  {
+    "contents" : {
+      "buildConfigurations" : [
+        {
+          "buildSettings" : {
+            "PRODUCT_NAME" : "$(TARGET_NAME)",
+            "SDKROOT" : "auto",
+            "SDK_VARIANT" : "auto",
+            "SKIP_INSTALL" : "YES",
+            "SUPPORTED_PLATFORMS" : [
+              "$(AVAILABLE_PLATFORMS)"
+            ]
+          },
+          "guid" : "AGGREGATE::BUILDCONFIG_0",
+          "impartedBuildProperties" : {
+            "buildSettings" : {
+
+            }
+          },
+          "name" : "Debug"
+        },
+        {
+          "buildSettings" : {
+            "PRODUCT_NAME" : "$(TARGET_NAME)",
+            "SDKROOT" : "auto",
+            "SDK_VARIANT" : "auto",
+            "SKIP_INSTALL" : "YES",
+            "SUPPORTED_PLATFORMS" : [
+              "$(AVAILABLE_PLATFORMS)"
+            ]
+          },
+          "guid" : "AGGREGATE::BUILDCONFIG_1",
+          "impartedBuildProperties" : {
+            "buildSettings" : {
+
+            }
+          },
+          "name" : "Release"
+        }
+      ],
+      "defaultConfigurationName" : "Release",
+      "developmentRegion" : "en",
+      "groupTree" : {
+        "children" : [
+
+        ],
+        "guid" : "AGGREGATE::MAINGROUP",
+        "name" : "",
+        "path" : "",
+        "sourceTree" : "<group>",
+        "type" : "group"
+      },
+      "guid" : "AGGREGATE",
+      "path" : "/Users/alexccastelo/projetos-temp/DiskNotch/Package.swift",
+      "projectDirectory" : "/Users/alexccastelo/projetos-temp/DiskNotch",
+      "projectIsPackage" : "true",
+      "projectName" : "Aggregate",
+      "targets" : [
+        "259fb2ca6504bc8e2d4414c456687ae0c024c135e81994985201554d5aaf5b4d",
+        "bbdb904d8bc3af90c6d4fd236b0862f007020eb1e8d8e7e34f7a18f3dee94537"
+      ]
+    },
+    "signature" : "d9e9c8e6d18ca7a7d4f97acc34ac5f23533e4858b5368183e6c16507011c2832",
+    "type" : "project"
+  },
+  {
+    "contents" : {
+      "buildConfigurations" : [
+        {
+          "buildSettings" : {
+
+          },
+          "guid" : "ALL-INCLUDING-TESTS::BUILDCONFIG_0",
+          "impartedBuildProperties" : {
+            "buildSettings" : {
+
+            }
+          },
+          "name" : "Debug"
+        },
+        {
+          "buildSettings" : {
+
+          },
+          "guid" : "ALL-INCLUDING-TESTS::BUILDCONFIG_1",
+          "impartedBuildProperties" : {
+            "buildSettings" : {
+
+            }
+          },
+          "name" : "Release"
+        }
+      ],
+      "buildPhases" : [
+
+      ],
+      "buildRules" : [
+
+      ],
+      "customTasks" : [
+
+      ],
+      "dependencies" : [
+        {
+          "guid" : "PACKAGE-PRODUCT:disknotch_StorageCore.StorageCore",
+          "platformFilters" : [
+
+          ]
+        },
+        {
+          "guid" : "PACKAGE-PRODUCT:disknotch_DiskNotch.DiskNotch",
+          "platformFilters" : [
+
+          ]
+        },
+        {
+          "guid" : "PACKAGE-PRODUCT:disknotch_disknotch-probe.disknotch-probe",
+          "platformFilters" : [
+
+          ]
+        },
+        {
+          "guid" : "PACKAGE-TARGET:StorageCore",
+          "platformFilters" : [
+
+          ]
+        }
+      ],
+      "guid" : "ALL-INCLUDING-TESTS",
+      "name" : "AllIncludingTests",
+      "type" : "aggregate"
+    },
+    "signature" : "259fb2ca6504bc8e2d4414c456687ae0c024c135e81994985201554d5aaf5b4d",
+    "type" : "target"
+  },
+  {
+    "contents" : {
+      "buildConfigurations" : [
+        {
+          "buildSettings" : {
+
+          },
+          "guid" : "ALL-EXCLUDING-TESTS::BUILDCONFIG_0",
+          "impartedBuildProperties" : {
+            "buildSettings" : {
+
+            }
+          },
+          "name" : "Debug"
+        },
+        {
+          "buildSettings" : {
+
+          },
+          "guid" : "ALL-EXCLUDING-TESTS::BUILDCONFIG_1",
+          "impartedBuildProperties" : {
+            "buildSettings" : {
+
+            }
+          },
+          "name" : "Release"
+        }
+      ],
+      "buildPhases" : [
+
+      ],
+      "buildRules" : [
+
+      ],
+      "customTasks" : [
+
+      ],
+      "dependencies" : [
+        {
+          "guid" : "PACKAGE-PRODUCT:disknotch_StorageCore.StorageCore",
+          "platformFilters" : [
+
+          ]
+        },
+        {
+          "guid" : "PACKAGE-PRODUCT:disknotch_DiskNotch.DiskNotch",
+          "platformFilters" : [
+
+          ]
+        },
+        {
+          "guid" : "PACKAGE-PRODUCT:disknotch_disknotch-probe.disknotch-probe",
+          "platformFilters" : [
+
+          ]
+        },
+        {
+          "guid" : "PACKAGE-TARGET:StorageCore",
+          "platformFilters" : [
+
+          ]
+        }
+      ],
+      "guid" : "ALL-EXCLUDING-TESTS",
+      "name" : "AllExcludingTests",
+      "type" : "aggregate"
+    },
+    "signature" : "bbdb904d8bc3af90c6d4fd236b0862f007020eb1e8d8e7e34f7a18f3dee94537",
+    "type" : "target"
+  }
+]

@@ -1,0 +1,11 @@
+{
+  "/Users/alexccastelo/projetos-temp/DiskNotch/Sources/DiskNotch/Components.swift" : {
+    "abi-baseline-json" : "/Users/alexccastelo/projetos-temp/DiskNotch/.build/out/Intermediates.noindex/DiskNotch.build/Release/DiskNotch-p.build/Objects-normal/arm64/DiskNotch.abi.json",
+    "const-values" : "/Users/alexccastelo/projetos-temp/DiskNotch/.build/out/Intermediates.noindex/DiskNotch.build/Release/DiskNotch-p.build/Objects-normal/arm64/DiskNotch-primary.swiftconstvalues",
+    "dependencies" : "/Users/alexccastelo/projetos-temp/DiskNotch/.build/out/Intermediates.noindex/DiskNotch.build/Release/DiskNotch-p.build/Objects-normal/arm64/DiskNotch-primary.d",
+    "diagnostics" : "/Users/alexccastelo/projetos-temp/DiskNotch/.build/out/Intermediates.noindex/DiskNotch.build/Release/DiskNotch-p.build/Objects-normal/arm64/DiskNotch-primary.dia",
+    "swiftdoc" : "/Users/alexccastelo/projetos-temp/DiskNotch/.build/out/Intermediates.noindex/DiskNotch.build/Release/DiskNotch-p.build/Objects-normal/arm64/DiskNotch.swiftdoc",
+    "swiftmodule" : "/Users/alexccastelo/projetos-temp/DiskNotch/.build/out/Intermediates.noindex/DiskNotch.build/Release/DiskNotch-p.build/Objects-normal/arm64/DiskNotch.swiftmodule",
+    "swiftsourceinfo" : "/Users/alexccastelo/projetos-temp/DiskNotch/.build/out/Intermediates.noindex/DiskNotch.build/Release/DiskNotch-p.build/Objects-normal/arm64/DiskNotch.swiftsourceinfo"
+  }
+}

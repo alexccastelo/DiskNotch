@@ -1,0 +1,4 @@
+Target dependency graph (2 targets)
+Target 'disknotch-probe-product' in project 'DiskNotch'
+➜ Explicit dependency on target 'StorageCore' in project 'DiskNotch'
+Target 'StorageCore' in project 'DiskNotch' (no dependencies)

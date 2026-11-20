@@ -1,0 +1,4 @@
+module StorageCore {
+header "StorageCore-Swift.h"
+export *
+}

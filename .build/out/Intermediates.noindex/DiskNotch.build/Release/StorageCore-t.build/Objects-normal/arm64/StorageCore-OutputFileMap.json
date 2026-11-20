@@ -1,0 +1,21 @@
+{
+  "" : {
+    "const-values" : "/Users/alexccastelo/projetos-temp/DiskNotch/.build/out/Intermediates.noindex/DiskNotch.build/Release/StorageCore-t.build/Objects-normal/arm64/StorageCore-primary.swiftconstvalues",
+    "dependencies" : "/Users/alexccastelo/projetos-temp/DiskNotch/.build/out/Intermediates.noindex/DiskNotch.build/Release/StorageCore-t.build/Objects-normal/arm64/StorageCore-primary.d",
+    "diagnostics" : "/Users/alexccastelo/projetos-temp/DiskNotch/.build/out/Intermediates.noindex/DiskNotch.build/Release/StorageCore-t.build/Objects-normal/arm64/StorageCore-primary.dia",
+    "emit-module-dependencies" : "/Users/alexccastelo/projetos-temp/DiskNotch/.build/out/Intermediates.noindex/DiskNotch.build/Release/StorageCore-t.build/Objects-normal/arm64/StorageCore-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/alexccastelo/projetos-temp/DiskNotch/.build/out/Intermediates.noindex/DiskNotch.build/Release/StorageCore-t.build/Objects-normal/arm64/StorageCore-primary-emit-module.dia",
+    "pch" : "/Users/alexccastelo/projetos-temp/DiskNotch/.build/out/Intermediates.noindex/DiskNotch.build/Release/StorageCore-t.build/Objects-normal/arm64/StorageCore-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/alexccastelo/projetos-temp/DiskNotch/.build/out/Intermediates.noindex/DiskNotch.build/Release/StorageCore-t.build/Objects-normal/arm64/StorageCore-primary.swiftdeps"
+  },
+  "/Users/alexccastelo/projetos-temp/DiskNotch/Sources/StorageCore/VolumeInfo.swift" : {
+    "index-unit-output-path" : "/DiskNotch.build/Release/StorageCore-t.build/Objects-normal/arm64/VolumeInfo.o",
+    "llvm-bc" : "/Users/alexccastelo/projetos-temp/DiskNotch/.build/out/Intermediates.noindex/DiskNotch.build/Release/StorageCore-t.build/Objects-normal/arm64/VolumeInfo.bc",
+    "object" : "/Users/alexccastelo/projetos-temp/DiskNotch/.build/out/Intermediates.noindex/DiskNotch.build/Release/StorageCore-t.build/Objects-normal/arm64/VolumeInfo.o"
+  },
+  "/Users/alexccastelo/projetos-temp/DiskNotch/Sources/StorageCore/VolumeService.swift" : {
+    "index-unit-output-path" : "/DiskNotch.build/Release/StorageCore-t.build/Objects-normal/arm64/VolumeService.o",
+    "llvm-bc" : "/Users/alexccastelo/projetos-temp/DiskNotch/.build/out/Intermediates.noindex/DiskNotch.build/Release/StorageCore-t.build/Objects-normal/arm64/VolumeService.bc",
+    "object" : "/Users/alexccastelo/projetos-temp/DiskNotch/.build/out/Intermediates.noindex/DiskNotch.build/Release/StorageCore-t.build/Objects-normal/arm64/VolumeService.o"
+  }
+}

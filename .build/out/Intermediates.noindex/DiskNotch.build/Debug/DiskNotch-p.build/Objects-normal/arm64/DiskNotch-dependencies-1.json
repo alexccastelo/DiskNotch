@@ -1,0 +1,684 @@
+[
+  {
+    "isFramework" : true,
+    "moduleName" : "Accessibility",
+    "modulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/Accessibility-36ZDB0BIHVJOS.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "AppKit",
+    "modulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/AppKit-36QQCQYL4BJ9L.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "ColorSync",
+    "modulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/ColorSync-26ZBU3B3XV3LX.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "Combine",
+    "modulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/Combine-1ROEB59SE71D6.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "CoreAudio",
+    "modulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/CoreAudio-1SRCGM5XMUIFK.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "CoreData",
+    "modulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/CoreData-2CDD531PTA1HT.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "CoreFoundation",
+    "modulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/CoreFoundation-3H5PPT3VAMH3Y.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "CoreGraphics",
+    "modulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/CoreGraphics-24WOS8OL4SOKS.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "CoreImage",
+    "modulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/CoreImage-2ZVWY3EZUWSS4.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "CoreMedia",
+    "modulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/CoreMedia-3QNK6245EI0YT.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "CoreText",
+    "modulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/CoreText-37FLQNUQ744WZ.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "CoreTransferable",
+    "modulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/CoreTransferable-2YX1HZOANFWQ0.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "CoreVideo",
+    "modulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/CoreVideo-2TK3MA492NNMQ.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "Darwin",
+    "modulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/Darwin-2Y9D6KZ4ZWEDC.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "DataDetection",
+    "modulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/DataDetection-2CUZ5FTV6VJD.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "DeveloperToolsSupport",
+    "modulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/DeveloperToolsSupport-2FPPRKXNS3HEF.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "Dispatch",
+    "modulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/Dispatch-3IS22DF33HO8C.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "Foundation",
+    "modulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/Foundation-1O8JJANO8AXZ4.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "IOKit",
+    "modulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/IOKit-2KU0OF2FCE31J.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "ImageIO",
+    "modulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/ImageIO-38XH6HQ9O6AXG.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "Metal",
+    "modulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/Metal-M0WF2AJZEOHE.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "OSLog",
+    "modulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/OSLog-1QQP0XAVBZW5Q.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "ObjectiveC",
+    "modulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/ObjectiveC-SR1FWEY9YOP2.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "Observation",
+    "modulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/Observation-3RVSB3WYTVR5E.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "QuartzCore",
+    "modulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/QuartzCore-205A7E7RZKV8C.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "Spatial",
+    "modulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/Spatial-361LU6BR45Z0J.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "StorageCore",
+    "modulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/Products\/Debug\/StorageCore.swiftmodule\/arm64-apple-macos.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "Swift",
+    "modulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/Swift-2AHFLEFOMGGD4.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "SwiftOnoneSupport",
+    "modulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/SwiftOnoneSupport-2PI4FC9D04FFF.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "SwiftUI",
+    "modulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/SwiftUI-1SRXC4JNHGLOC.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "SwiftUICore",
+    "modulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/SwiftUICore-35F4APLOWMXX5.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "Symbols",
+    "modulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/Symbols-DL5C86QDVILD.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "Synchronization",
+    "modulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/Synchronization-31DV5AZ4GWBEO.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "System",
+    "modulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/System-35QL91IVIFOBW.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "UniformTypeIdentifiers",
+    "modulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/UniformTypeIdentifiers-F1YI14DE2SI1.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "XPC",
+    "modulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/XPC-122QS21LYOSLJ.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "_Builtin_float",
+    "modulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/_Builtin_float-3M6R4YV30CV7E.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "_Concurrency",
+    "modulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/_Concurrency-40RE6MGWCOZH.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "_DarwinFoundation1",
+    "modulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/_DarwinFoundation1-386WCZYV4MBFV.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "_DarwinFoundation2",
+    "modulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/_DarwinFoundation2-3FIU8DKBY88NI.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "_DarwinFoundation3",
+    "modulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/_DarwinFoundation3-3P0P23P5G2P0U.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "_StringProcessing",
+    "modulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/_StringProcessing-2EU64IW6XIOSF.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "os",
+    "modulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/os-PT9WMX9WAAE0.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "simd",
+    "modulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/simd-25WK70UMJ026F.swiftmodule"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/Accessibility.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/Accessibility-BQUHYC0GUSJYM29ZQONKOJ9RV.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "Accessibility"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/AppKit.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/AppKit-DC80LP610YL8YIZ73LV6O3JJU.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "AppKit"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/ApplicationServices.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/ApplicationServices-5A2O4JZOZMEVCJ56IAFOW7BMD.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "ApplicationServices"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/CFNetwork.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/CFNetwork-EVPTEMTVGUNP64TU6NU4GXIAN.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CFNetwork"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/usr\/include\/cups.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/CUPS-8RQ40TCJFY3L12580HS8NPRVS.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CUPS"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/ColorSync.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/ColorSync-CEOZ6U3ED7UD1YE3KAUCZ83ZN.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "ColorSync"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/CoreAudio.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/CoreAudio-CZUPP5S3PMO2SSGVVIT43S9DL.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CoreAudio"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/CoreAudioTypes.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/CoreAudioTypes-2Q9A2PBWL83FQMXRURAP8UKBB.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CoreAudioTypes"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/CoreData.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/CoreData-9EPRQR8RNCT6DKH75C1HMDBAN.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CoreData"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/CoreFoundation.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/CoreFoundation-7ZRVFI4C5565CE4L9HI36IWBG.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CoreFoundation"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/CoreGraphics.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/CoreGraphics-2ZANYGW3WO5UEUIR6Q1XWWE55.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CoreGraphics"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/CoreImage.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/CoreImage-DOOEY9FJGGAZCXRCHSS59YK2S.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CoreImage"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/CoreMedia.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/CoreMedia-BAUO75LHLQS17G3R7E7N46GK5.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CoreMedia"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/CoreServices.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/CoreServices-198D9PAKO6J8HJTU7BEJIPB68.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CoreServices"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/CoreText.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/CoreText-BAPBO5HLHA4AEDUKJVM42GPMO.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CoreText"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/CoreTransferable.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/CoreTransferable-EW8HHGH2T1GEYMJBBCQY2SV4W.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CoreTransferable"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/CoreVideo.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/CoreVideo-60JCR0RKXZA1BNW7QSE8UMUM9.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CoreVideo"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/usr\/include\/Darwin.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/Darwin-4GF7XRGP2GWUZNKTYL2ZFR4D2.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "Darwin"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/DataDetection.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/DataDetection-8QNRG3THUBTEG05WVG0C4LXLO.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "DataDetection"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/DeveloperToolsSupport.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/DeveloperToolsSupport-6IR59GJ6R3GOFW3XDDHCEGGWQ.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "DeveloperToolsSupport"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/DiskArbitration.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/DiskArbitration-47ACWL9FS1J32ZUAKAL9BM5F.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "DiskArbitration"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/usr\/include\/dispatch.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/Dispatch-51AED9IDO7AW9IA7HVPZ7H8O7.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "Dispatch"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/Foundation.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/Foundation-8KIE053PVKJLWCFRCVU8DWG59.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "Foundation"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/IOKit.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/IOKit-7C2YU9UMR5BG65ZUG8MFEOZQC.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "IOKit"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/IOSurface.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/IOSurface-3YQ7CHWLLRH3Y1KYQGPKV66KA.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "IOSurface"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/ImageIO.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/ImageIO-7XUNYMFXA4V7TAD7VYV7W535.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "ImageIO"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/usr\/include\/DarwinBasic.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/MachO-AFELV0ED8T42K021H86HQVTGR.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "MachO"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/Metal.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/Metal-7CK52CFE1RZAI56JU5G5PBWPX.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "Metal"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/OSLog.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/OSLog-3WXFI7PBP256Z20B909VOKGJH.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "OSLog"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/usr\/include\/ObjectiveC.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/ObjectiveC-RE00USZHZ2S3HHM3RFTY76YW.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "ObjectiveC"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/OpenGL.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/OpenGL-4A18POOCNE54L0LA3JJT233D2.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "OpenGL"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/QuartzCore.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/QuartzCore-4TESTWGOECVQ0UF4AEEW3M0QI.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "QuartzCore"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/Security.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/Security-BBZPI38WVOW4966U3AKR4HYUA.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "Security"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/usr\/include\/Spatial\/module.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/Spatial-BB5D4KD58V5FR8OLJWLEAZ3Q9.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "Spatial"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/usr\/lib\/swift\/shims\/module.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/SwiftShims-7QA1GEA8MAHFS9J2T50H88DI3.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "SwiftShims"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/SwiftUI.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/SwiftUI-46Z7VQ97CTBREV6SYEAHMN8KM.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "SwiftUI"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/SwiftUICore.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/SwiftUICore-A3B34RO3BBY4ONS5FJKOU1U52.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "SwiftUICore"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/Symbols.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/Symbols-DSE0GWIDJML6J72GE87QKE7IM.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "Symbols"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/UniformTypeIdentifiers.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/UniformTypeIdentifiers-35PTUBIXH0FJGYV3BM4GK6MPZ.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "UniformTypeIdentifiers"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/usr\/include\/xpc.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/XPC-9YJF2A6IRPRKH8RHPQMOABV6U.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "XPC"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/usr\/include\/DarwinFoundation1.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/_AvailabilityInternal-EDIJGFSV2Y3QDEVQR3AJ1JX0H.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_AvailabilityInternal"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/usr\/lib\/clang\/21\/include\/module.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/_Builtin_float-F32X5U5LO1N0RMI518QEB5BFM.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_Builtin_float"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/usr\/lib\/clang\/21\/include\/module.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/_Builtin_intrinsics-KS1P84HPNIHXRO3NFQI5AOX4.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_Builtin_intrinsics"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/usr\/lib\/clang\/21\/include\/module.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/_Builtin_inttypes-CFQPCO2BWROJR2SWP1UROO829.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_Builtin_inttypes"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/usr\/lib\/clang\/21\/include\/module.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/_Builtin_limits-3J7U0B7WCNVXHEA09VGUGZZBZ.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_Builtin_limits"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/usr\/lib\/clang\/21\/include\/module.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/_Builtin_stdarg-1JYOEPIV6R1UMZWIMKKTOIWEQ.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_Builtin_stdarg"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/usr\/lib\/clang\/21\/include\/module.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/_Builtin_stdatomic-B6KIBQ3OHN4O0SMFKV191ZV5A.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_Builtin_stdatomic"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/usr\/lib\/clang\/21\/include\/module.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/_Builtin_stdbool-6YO2LP0XIDDNJHL31OWFBB2F4.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_Builtin_stdbool"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/usr\/lib\/clang\/21\/include\/module.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/_Builtin_stddef-8E7YLH323TR3C27684J2QX1Z7.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_Builtin_stddef"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/usr\/lib\/clang\/21\/include\/module.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/_Builtin_stdint-1PZ5POMZSFK5IA1BGZV68E11D.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_Builtin_stdint"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/usr\/lib\/clang\/21\/include\/module.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/_Builtin_tgmath-7F72WCYHUW2VTB2LJSLKO9UOI.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_Builtin_tgmath"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/usr\/include\/DarwinFoundation1.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/_DarwinFoundation1-2LRO5XUYGGVQJHQ4ELJ2BKBE2.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_DarwinFoundation1"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/usr\/include\/DarwinFoundation2.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/_DarwinFoundation2-7V3DE9ANJEAOYG4N0GWG6L0CB.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_DarwinFoundation2"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/usr\/include\/DarwinFoundation3.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/_DarwinFoundation3-196Z2BZIX8ORKWZ1T5WBVXCDE.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_DarwinFoundation3"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/usr\/lib\/swift\/shims\/module.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/_SwiftConcurrencyShims-52KEQP5JZAPIKNQ8CM38W3NDX.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_SwiftConcurrencyShims"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/usr\/include\/launch.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/launch-FPXRQ27TYUP7CHKXRY2CZ9PB.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "launch"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/usr\/include\/libDER\/module.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/libDER-72RZHU7U26LBZUV8PV36J24RJ.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "libDER"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/usr\/include\/libkern.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/libkern-CAH8YHG6ZA3EZ8ZT4Z3DP6OAR.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "libkern"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/usr\/include\/os.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/os-A5NVDOGN4LCQUHLVFXSY01GA8.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "os"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/usr\/include\/os.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/os_object-17V87B0GNXB7TWS38G5NBUJM2.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "os_object"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/usr\/include\/os.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/os_workgroup-4S28ZWEW6SUVLD5PL9723IJ4J.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "os_workgroup"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/usr\/lib\/clang\/21\/include\/module.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/ptrauth-1VNYI6Z0V0NQW6DKN3S4Q5BWN.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "ptrauth"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/usr\/lib\/clang\/21\/include\/module.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/ptrcheck-BW9OXQV80423T5L90HANU3F6M.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "ptrcheck"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/usr\/include\/simd\/module.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/simd-BE9TL2QSXXM5QBUJHACBFKSR1.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "simd"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/usr\/include\/c_standard_library.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/string_h-ECDLSNHCRL4F1T6MPLX8PMRRZ.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "string_h"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/usr\/include\/DarwinFoundation2.modulemap",
+    "clangModulePath" : "\/Users\/alexccastelo\/projetos-temp\/DiskNotch\/.build\/out\/SDKExplicitPrecompiledModules\/sys_types-5PN6XQVX4ZUMA1W1RADCAXIEN.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "sys_types"
+  }
+]

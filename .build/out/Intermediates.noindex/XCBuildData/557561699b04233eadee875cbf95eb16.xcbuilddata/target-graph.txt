@@ -1,0 +1,13 @@
+Target dependency graph (5 targets)
+Target 'AllExcludingTests' in project 'Aggregate'
+➜ Explicit dependency on target 'StorageCore-product' in project 'DiskNotch'
+➜ Explicit dependency on target 'DiskNotch-product' in project 'DiskNotch'
+➜ Explicit dependency on target 'disknotch-probe-product' in project 'DiskNotch'
+➜ Explicit dependency on target 'StorageCore' in project 'DiskNotch'
+Target 'disknotch-probe-product' in project 'DiskNotch'
+➜ Explicit dependency on target 'StorageCore' in project 'DiskNotch'
+Target 'DiskNotch-product' in project 'DiskNotch'
+➜ Explicit dependency on target 'StorageCore' in project 'DiskNotch'
+Target 'StorageCore-product' in project 'DiskNotch'
+➜ Explicit dependency on target 'StorageCore' in project 'DiskNotch'
+Target 'StorageCore' in project 'DiskNotch' (no dependencies)
