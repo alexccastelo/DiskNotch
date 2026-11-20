@@ -13,6 +13,10 @@ Monitor de armazenamento para o MacBook que mora no **notch**. Mostra quanto esp
   - atalhos para atualizar, abrir no Finder e abrir os Ajustes de Armazenamento.
 - **Não cobre os ícones da barra de menus.** A informação recolhida fica de um lado só do notch, e o lado pode ser escolhido.
 - **Ícone na barra de menus**, com os GB livres, a lista de volumes e as opções do painel. Ele também serve de alternativa em telas sem notch.
+- **Alertas de espaço baixo.** Uma notificação do macOS avisa quando um disco local entra em "atenção" ou fica "crítico". Os limites são ajustáveis no menu da barra (padrão: 20% e 10% livres) e definem também as cores do painel.
+  - Avisa só quando a situação piora; em nível crítico, lembra uma vez a cada 24 h.
+  - Uma folga de 1 ponto percentual evita avisos repetidos quando o uso oscila perto do limite.
+  - Clicar na notificação abre os Ajustes de Armazenamento.
 - **Atualização automática** a cada 60 segundos, ao montar ou ejetar discos e quando o Mac acorda.
 - **Abre sozinho no login** e reabre se travar.
 
@@ -46,6 +50,12 @@ Para conferir a leitura dos discos pelo terminal, sem interface:
 swift run disknotch-probe
 ```
 
+Para testar a regra de quando notificar (11 casos, incluindo a folga e o lembrete de 24 h):
+
+```bash
+swift run disknotch-probe --testar-alertas
+```
+
 ## Abrir no login
 
 ```bash
@@ -73,10 +83,12 @@ DiskNotch/
 ├── Sources/
 │   ├── StorageCore/              leitura dos volumes, sem interface
 │   │   ├── VolumeInfo.swift      modelo, níveis de alerta e formatação de bytes
-│   │   └── VolumeService.swift   capacidade e metadados de cada volume
+│   │   ├── VolumeService.swift   capacidade e metadados de cada volume
+│   │   └── AlertPolicy.swift     regra de quando notificar
 │   ├── DiskNotch/                o app
 │   │   ├── DiskNotchApp.swift    ponto de entrada, menu da barra e ajustes
 │   │   ├── StorageModel.swift    estado observável e atualização periódica
+│   │   ├── AlertCenter.swift     notificações e ajustes de limites
 │   │   ├── NotchPanelController.swift  janela do notch, posição e cliques
 │   │   ├── NotchView.swift       estados recolhido e expandido
 │   │   └── Components.swift      anel, barra de uso e formato do notch
@@ -100,8 +112,7 @@ DiskNotch/
 - **Widgets dependem do Xcode.** WidgetKit e Login Item nativo exigem Xcode e ficaram para quando ele estiver instalado.
 - **O notch não tem API oficial.** O posicionamento é manual e pode mudar entre versões do macOS.
 - **Ícones da barra de menus não são detectáveis no macOS 27.** Por isso a informação recolhida fica de um lado só, em vez de se ajustar ao espaço livre.
-- **Alertas por notificação** ainda não foram feitos. Hoje os limites de 20% e 10% só mudam a cor do painel.
 
 ## Próximos passos
 
-Alertas de espaço baixo, histórico com previsão de quando o disco enche e a categoria **Desenvolvimento** (caches do Xcode, `node_modules`, npm, pip, Homebrew, Docker e modelos de IA locais). Detalhes no [ROADMAP.md](ROADMAP.md).
+Histórico com previsão de quando o disco enche e a categoria **Desenvolvimento** (caches do Xcode, `node_modules`, npm, pip, Homebrew, Docker e modelos de IA locais). Detalhes no [ROADMAP.md](ROADMAP.md).

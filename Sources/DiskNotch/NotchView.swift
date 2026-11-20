@@ -104,13 +104,13 @@ private struct CollapsedContent: View {
 
     var body: some View {
         if let root = model.root {
-            let ring = UsageRing(fraction: root.usedFraction, level: root.level, lineWidth: 3)
+            let ring = UsageRing(fraction: root.usedFraction, level: model.level(of: root), lineWidth: 3)
                 .frame(width: 14, height: 14)
             let text = Text(ByteFormat.compact(root.freeBytes))
                 .font(.system(size: 11, weight: .semibold, design: .rounded))
                 .monospacedDigit()
                 .lineLimit(1)
-                .foregroundStyle(root.level == .ok ? .white : root.level.color)
+                .foregroundStyle(model.level(of: root) == .ok ? .white : model.level(of: root).color)
 
             HStack(spacing: 0) {
                 if geometry.side == .left {
@@ -143,7 +143,7 @@ private struct ExpandedContent: View {
             if let root = model.root {
                 HStack(alignment: .center, spacing: 18) {
                     ZStack {
-                        UsageRing(fraction: root.usedFraction, level: root.level, lineWidth: 8)
+                        UsageRing(fraction: root.usedFraction, level: model.level(of: root), lineWidth: 8)
                         VStack(spacing: 0) {
                             Text("\(Int((root.usedFraction * 100).rounded()))%")
                                 .font(.system(size: 20, weight: .bold, design: .rounded))
@@ -155,17 +155,17 @@ private struct ExpandedContent: View {
                     VStack(alignment: .leading, spacing: 6) {
                         HStack(spacing: 6) {
                             Text(root.name).font(.system(size: 13, weight: .semibold))
-                            Text(root.level.label)
+                            Text(model.level(of: root).label)
                                 .font(.system(size: 10, weight: .semibold))
                                 .padding(.horizontal, 6).padding(.vertical, 2)
-                                .background(root.level.color.opacity(0.2), in: Capsule())
-                                .foregroundStyle(root.level.color)
+                                .background(model.level(of: root).color.opacity(0.2), in: Capsule())
+                                .foregroundStyle(model.level(of: root).color)
                         }
-                        UsageBar(volume: root)
+                        UsageBar(volume: root, level: model.level(of: root))
                         Grid(alignment: .leading, horizontalSpacing: 14, verticalSpacing: 3) {
                             row("Livre", root.freeBytes, color: .white)
-                            row("Purgável", root.purgeableBytes, color: root.level.color.opacity(0.6))
-                            row("Usado", root.usedBytes, color: root.level.color)
+                            row("Purgável", root.purgeableBytes, color: model.level(of: root).color.opacity(0.6))
+                            row("Usado", root.usedBytes, color: model.level(of: root).color)
                             row("Total", root.totalBytes, color: .white.opacity(0.4))
                         }
                     }
@@ -180,7 +180,7 @@ private struct ExpandedContent: View {
                             Image(systemName: v.isLocal ? "externaldrive.fill" : "server.rack")
                                 .foregroundStyle(.secondary)
                             Text(v.name).font(.system(size: 12, weight: .medium)).lineLimit(1)
-                            UsageBar(volume: v).frame(width: 120)
+                            UsageBar(volume: v, level: model.level(of: v)).frame(width: 120)
                             Text("\(ByteFormat.compact(v.freeBytes)) livres")
                                 .font(.system(size: 11)).monospacedDigit().foregroundStyle(.secondary)
                             Spacer()

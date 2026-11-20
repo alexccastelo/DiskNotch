@@ -1,0 +1,44 @@
+{
+  "configurations": [
+    {
+      "type": "swift",
+      "request": "launch",
+      "args": [],
+      "cwd": "${workspaceFolder:DiskNotch}",
+      "name": "Debug DiskNotch",
+      "target": "DiskNotch",
+      "configuration": "debug",
+      "preLaunchTask": "swift: Build Debug DiskNotch"
+    },
+    {
+      "type": "swift",
+      "request": "launch",
+      "args": [],
+      "cwd": "${workspaceFolder:DiskNotch}",
+      "name": "Release DiskNotch",
+      "target": "DiskNotch",
+      "configuration": "release",
+      "preLaunchTask": "swift: Build Release DiskNotch"
+    },
+    {
+      "type": "swift",
+      "request": "launch",
+      "args": [],
+      "cwd": "${workspaceFolder:DiskNotch}",
+      "name": "Debug disknotch-probe",
+      "target": "disknotch-probe",
+      "configuration": "debug",
+      "preLaunchTask": "swift: Build Debug disknotch-probe"
+    },
+    {
+      "type": "swift",
+      "request": "launch",
+      "args": [],
+      "cwd": "${workspaceFolder:DiskNotch}",
+      "name": "Release disknotch-probe",
+      "target": "disknotch-probe",
+      "configuration": "release",
+      "preLaunchTask": "swift: Build Release disknotch-probe"
+    }
+  ]
+}

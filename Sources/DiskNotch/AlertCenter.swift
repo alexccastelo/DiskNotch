@@ -1,0 +1,145 @@
+import AppKit
+import Observation
+import StorageCore
+@preconcurrency import UserNotifications
+
+/// Ajustes de alerta, guardados no UserDefaults.
+@MainActor
+@Observable
+final class AlertSettings {
+    private let defaults = UserDefaults.standard
+
+    var enabled: Bool { didSet { defaults.set(enabled, forKey: "alertsEnabled") } }
+    /// Percentual livre abaixo do qual o volume fica em "atenção".
+    var warningPercent: Int {
+        didSet {
+            defaults.set(warningPercent, forKey: "alertWarningPercent")
+            if criticalPercent >= warningPercent { criticalPercent = max(1, warningPercent - 5) }
+        }
+    }
+    /// Percentual livre abaixo do qual o volume fica "crítico".
+    var criticalPercent: Int {
+        didSet {
+            defaults.set(criticalPercent, forKey: "alertCriticalPercent")
+            if warningPercent <= criticalPercent { warningPercent = criticalPercent + 5 }
+        }
+    }
+
+    static let warningOptions = [10, 15, 20, 25, 30]
+    static let criticalOptions = [3, 5, 10, 15]
+
+    init() {
+        enabled = defaults.object(forKey: "alertsEnabled") as? Bool ?? true
+        warningPercent = defaults.object(forKey: "alertWarningPercent") as? Int ?? 20
+        criticalPercent = defaults.object(forKey: "alertCriticalPercent") as? Int ?? 10
+    }
+
+    var thresholds: AlertThresholds {
+        AlertThresholds(warningBelow: Double(warningPercent) / 100,
+                        criticalBelow: Double(criticalPercent) / 100)
+    }
+}
+
+/// Envia notificações do macOS quando um volume entra em atenção ou em nível crítico.
+@MainActor
+final class AlertCenter: NSObject {
+    private let center = UNUserNotificationCenter.current()
+    private let recordsKey = "alertRecords"
+    private var records: [String: AlertRecord]
+    /// Só avalia depois da permissão; senão um alerta seria registrado como enviado sem aparecer.
+    private var isAuthorized = false
+    /// Chamado quando a permissão é concedida, para avaliar os volumes na hora.
+    var onAuthorized: (() -> Void)?
+
+    override init() {
+        if let data = UserDefaults.standard.data(forKey: recordsKey),
+           let saved = try? JSONDecoder().decode([String: AlertRecord].self, from: data) {
+            records = saved
+        } else {
+            records = [:]
+        }
+        super.init()
+        center.delegate = self
+        center.requestAuthorization(options: [.alert, .sound]) { [weak self] granted, error in
+            Self.log("permissão de notificação: \(granted ? "concedida" : "negada")\(error.map { " (\($0.localizedDescription))" } ?? "")")
+            Task { @MainActor [weak self] in
+                guard let self else { return }
+                self.isAuthorized = granted
+                if granted { self.onAuthorized?() }
+            }
+        }
+    }
+
+    /// Avalia todos os volumes locais e notifica o que for preciso.
+    func check(_ volumes: [VolumeInfo], settings: AlertSettings, now: Date = .now) {
+        guard settings.enabled, isAuthorized else { return }
+        var changed = false
+        for volume in volumes where volume.isLocal {
+            let decision = AlertPolicy.evaluate(freeFraction: volume.freeFraction,
+                                                thresholds: settings.thresholds,
+                                                previous: records[volume.id],
+                                                now: now)
+            if records[volume.id] != decision.record {
+                records[volume.id] = decision.record
+                changed = true
+            }
+            if let level = decision.notify {
+                send(level: level, volume: volume)
+            }
+        }
+        if changed, let data = try? JSONEncoder().encode(records) {
+            UserDefaults.standard.set(data, forKey: recordsKey)
+        }
+    }
+
+    /// Notificação de teste com os dados atuais do volume.
+    func sendTest(for volume: VolumeInfo, settings: AlertSettings) {
+        let level = StorageLevel(freeFraction: volume.freeFraction, thresholds: settings.thresholds)
+        send(level: level == .ok ? .warning : level, volume: volume, isTest: true)
+    }
+
+    private func send(level: StorageLevel, volume: VolumeInfo, isTest: Bool = false) {
+        let percent = Int((volume.freeFraction * 100).rounded())
+        let content = UNMutableNotificationContent()
+        content.title = level == .critical
+            ? "Espaço crítico em \(volume.name)"
+            : "Pouco espaço em \(volume.name)"
+        content.body = "Restam \(ByteFormat.string(volume.freeBytes)) livres (\(percent)%)."
+            + (volume.purgeableBytes > 1_000_000_000
+               ? " O macOS ainda pode liberar \(ByteFormat.string(volume.purgeableBytes)) sozinho."
+               : "")
+            + (isTest ? " (teste)" : "")
+        content.sound = level == .critical ? .defaultCritical : .default
+        content.threadIdentifier = volume.id
+
+        let request = UNNotificationRequest(identifier: "\(volume.id)-\(level)",
+                                            content: content, trigger: nil)
+        center.add(request) { error in
+            Self.log("notificação \(level) para \(volume.name): \(error.map { "erro: \($0.localizedDescription)" } ?? "enviada")")
+        }
+    }
+
+    /// Vai para o stderr, que o LaunchAgent grava em ~/Library/Logs/DiskNotch-start.log.
+    nonisolated static func log(_ message: String) {
+        FileHandle.standardError.write(Data("\(Date.now.formatted(date: .numeric, time: .standard)) [alertas] \(message)\n".utf8))
+    }
+}
+
+extension AlertCenter: UNUserNotificationCenterDelegate {
+    /// O app não tem janela ativa; mostra o banner mesmo assim.
+    nonisolated func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                            willPresent notification: UNNotification) async
+        -> UNNotificationPresentationOptions {
+        [.banner, .list, .sound]
+    }
+
+    /// Clique na notificação: abre os Ajustes de Armazenamento.
+    nonisolated func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                            didReceive response: UNNotificationResponse) async {
+        await MainActor.run {
+            if let url = URL(string: "x-apple.systempreferences:com.apple.settings.Storage") {
+                NSWorkspace.shared.open(url)
+            }
+        }
+    }
+}

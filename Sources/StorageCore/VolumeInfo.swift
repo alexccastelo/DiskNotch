@@ -48,8 +48,8 @@ public struct VolumeInfo: Identifiable, Hashable, Sendable {
     public var level: StorageLevel { StorageLevel(freeFraction: freeFraction) }
 }
 
-/// Faixa de alerta conforme a fração livre.
-public enum StorageLevel: Sendable {
+/// Faixa de alerta conforme a fração livre. A ordem segue a gravidade.
+public enum StorageLevel: Int, Codable, Comparable, Sendable {
     case ok, warning, critical
 
     public init(freeFraction: Double, warningBelow: Double = 0.20, criticalBelow: Double = 0.10) {
@@ -57,6 +57,14 @@ public enum StorageLevel: Sendable {
         else if freeFraction < warningBelow { self = .warning }
         else { self = .ok }
     }
+
+    public init(freeFraction: Double, thresholds: AlertThresholds) {
+        self.init(freeFraction: freeFraction,
+                  warningBelow: thresholds.warningBelow,
+                  criticalBelow: thresholds.criticalBelow)
+    }
+
+    public static func < (lhs: Self, rhs: Self) -> Bool { lhs.rawValue < rhs.rawValue }
 }
 
 public enum ByteFormat {

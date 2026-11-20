@@ -55,7 +55,7 @@ private struct MenuLabel: View {
     var body: some View {
         if let root = model.root {
             Label(ByteFormat.compact(root.freeBytes),
-                  systemImage: root.level == .ok ? "internaldrive" : "exclamationmark.triangle.fill")
+                  systemImage: model.level(of: root) == .ok ? "internaldrive" : "exclamationmark.triangle.fill")
         } else {
             Image(systemName: "internaldrive")
         }
@@ -74,9 +74,9 @@ private struct MenuContent: View {
                         Text(v.name).font(.headline)
                         Spacer()
                         Text("\(ByteFormat.string(v.freeBytes)) livres").monospacedDigit()
-                            .foregroundStyle(v.level == .ok ? Color.secondary : v.level.color)
+                            .foregroundStyle(model.level(of: v) == .ok ? Color.secondary : model.level(of: v).color)
                     }
-                    UsageBar(volume: v)
+                    UsageBar(volume: v, level: model.level(of: v))
                     Text("\(ByteFormat.string(v.usedBytes)) de \(ByteFormat.string(v.totalBytes)) usados · \(ByteFormat.string(v.purgeableBytes)) purgáveis")
                         .font(.caption).foregroundStyle(.secondary)
                 }
@@ -94,6 +94,9 @@ private struct MenuContent: View {
             }
             .pickerStyle(.segmented)
             .disabled(!notch.notchEnabled)
+            Divider()
+            AlertSettingsView(settings: model.alertSettings, sendTest: model.sendTestAlert)
+            Divider()
             HStack {
                 Button("Atualizar") { model.refresh() }
                 Spacer()
@@ -102,5 +105,48 @@ private struct MenuContent: View {
         }
         .padding(14)
         .frame(width: 300)
+    }
+}
+
+/// Liga e desliga os alertas e ajusta os limites. Os limites também definem as cores.
+private struct AlertSettingsView: View {
+    @Bindable var settings: AlertSettings
+    var sendTest: () -> Void
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Toggle("Avisar quando houver pouco espaço", isOn: $settings.enabled)
+            Grid(alignment: .leading, horizontalSpacing: 8, verticalSpacing: 6) {
+                GridRow {
+                    Label("Atenção abaixo de", systemImage: "circle.fill")
+                        .foregroundStyle(StorageLevel.warning.color)
+                    Picker("", selection: $settings.warningPercent) {
+                        ForEach(AlertSettings.warningOptions, id: \.self) { Text("\($0)% livre").tag($0) }
+                    }
+                    .labelsHidden()
+                }
+                GridRow {
+                    Label("Crítico abaixo de", systemImage: "circle.fill")
+                        .foregroundStyle(StorageLevel.critical.color)
+                    Picker("", selection: $settings.criticalPercent) {
+                        ForEach(AlertSettings.criticalOptions, id: \.self) { Text("\($0)% livre").tag($0) }
+                    }
+                    .labelsHidden()
+                }
+            }
+            .labelStyle(DotLabelStyle())
+            .font(.callout)
+            Button("Enviar notificação de teste", action: sendTest)
+                .disabled(!settings.enabled)
+        }
+    }
+}
+
+private struct DotLabelStyle: LabelStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        HStack(spacing: 6) {
+            configuration.icon.font(.system(size: 7))
+            configuration.title.foregroundStyle(.primary)
+        }
     }
 }

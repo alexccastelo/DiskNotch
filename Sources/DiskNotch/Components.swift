@@ -40,6 +40,7 @@ struct UsageRing: View {
 /// Barra horizontal empilhada: usado | purgável | livre.
 struct UsageBar: View {
     var volume: VolumeInfo
+    var level: StorageLevel
 
     var body: some View {
         GeometryReader { geo in
@@ -47,8 +48,8 @@ struct UsageBar: View {
             let usedW = geo.size.width * Double(volume.usedBytes) / total
             let purgeW = geo.size.width * Double(volume.purgeableBytes) / total
             HStack(spacing: 0) {
-                Rectangle().fill(volume.level.color).frame(width: usedW)
-                Rectangle().fill(volume.level.color.opacity(0.35)).frame(width: purgeW)
+                Rectangle().fill(level.color).frame(width: usedW)
+                Rectangle().fill(level.color.opacity(0.35)).frame(width: purgeW)
                 Rectangle().fill(.white.opacity(0.12))
             }
             .clipShape(Capsule())
