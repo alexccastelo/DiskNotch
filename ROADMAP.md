@@ -2,7 +2,7 @@
 projeto: DiskNotch
 slug: disknotch
 descricao: Monitor de armazenamento do Mac no notch, na barra de menus e em widgets, com histórico, análise e limpeza assistida.
-atualizado: 2026-11-21 09:27
+atualizado: 2026-11-21 10:02
 ---
 
 # Roadmap · DiskNotch
@@ -49,7 +49,7 @@ _20 nov 2026_ — Ver o espaço do disco a qualquer momento, sem abrir nenhuma j
   - Já implementado; em espera até haver um disco externo para testar
 
 ## Fase 2 · Histórico e widgets
-_21 nov 2026_ — Acompanhar a ocupação ao longo do tempo e ver o disco sem abrir nada. Os widgets aguardam o Xcode.
+_21 nov 2026_ — Acompanhar a ocupação ao longo do tempo e ver o disco sem abrir nada.
 
 - [entregue] **Histórico de ocupação** · Histórico · sugestão
   Gráficos de 24 horas, 7 dias, 30 dias e 1 ano, com amostras a cada 5 minutos.
@@ -60,9 +60,10 @@ _21 nov 2026_ — Acompanhar a ocupação ao longo do tempo e ver o disco sem ab
   Estima, pelo ritmo das últimas semanas, em quantos dias o disco fica cheio.
   - Usa as últimas 2 semanas e precisa de pelo menos 6 h de dados
   > local: 2026-11-21 · github: 204ddb6
-- [planejado] **Widgets para a mesa e a Central de Notificações** · Widgets · pedido
-  Tamanhos pequeno, médio e grande, com botão para atualizar.
-  - Depende do Xcode instalado
+- [entregue] **Widgets para a mesa e a Central de Notificações** · Widgets · pedido
+  Tamanhos pequeno, médio e grande, com espaço livre, gráfico das últimas 24 h e previsão. Clicar abre o histórico.
+  - Montados sem Xcode; o app os atualiza a cada 15 min ou quando o nível muda
+  > local: 2026-11-21
 
 ## Fase 3 · Análise do disco
 _a definir_ — Descobrir o que ocupa o disco e onde está o crescimento.
@@ -106,10 +107,11 @@ _sem data_ — Possibilidades levantadas no caminho.
 - **Início pelo launchd** — Dois LaunchAgents substituem o Login Item do plano, que exigiria Xcode, e abrem o app na hora mesmo com o Mac carregado após o boot.
 - **Informação recolhida de um lado só** — No macOS 27 não dá para saber onde ficam os ícones da barra de menus, então o painel não passa da borda do notch do lado dos ícones.
 - **Histórico em SQLite** — O SwiftData depende de macros que não existem sem o Xcode; o SQLite já vem no macOS e não precisa de dependências.
+- **Widgets sem Xcode** — A extensão é compilada pelo Swift Package Manager e ligada com a entrada `_NSExtensionMain`, como o Xcode faz; o `build-app.sh` grava as chaves de plataforma e SDK no `Info.plist`.
 
 ## Pontos de atenção
 
-- **Widgets dependem do Xcode** — Sem o Xcode instalado, a Fase 2 avança só no histórico e na previsão.
+- **Sem botão interativo no widget** — Botões em widgets dependem de App Intents, cujos metadados só o Xcode gera; o app atualiza os widgets por conta própria.
 - **Notch sem API oficial** — O posicionamento é manual e pode mudar entre versões do macOS; o ícone na barra de menus fica sempre como alternativa.
 - **Testes só da lógica** — Alertas, histórico e previsão têm testes automáticos no `disknotch-probe`; a interface ainda é verificada à mão.
 - **Histórico começa na instalação** — O macOS não guarda histórico de espaço livre, então os gráficos se preenchem com o tempo e ficam com lacunas quando o Mac está desligado.
