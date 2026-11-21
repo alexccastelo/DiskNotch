@@ -2,7 +2,7 @@
 
 Monitor de armazenamento para o MacBook que mora no **notch**. Mostra quanto espaço livre o Mac tem, o que pode ser liberado e quando o disco está ficando cheio, sem abrir nenhuma janela.
 
-> **Status:** em desenvolvimento, fase 1 de 5. Veja o [ROADMAP.md](ROADMAP.md).
+> **Status:** em desenvolvimento, fase 2 de 5. Veja o [ROADMAP.md](ROADMAP.md).
 
 ## O que ele faz hoje
 
@@ -17,6 +17,22 @@ Monitor de armazenamento para o MacBook que mora no **notch**. Mostra quanto esp
   - Avisa só quando a situação piora; em nível crítico, lembra uma vez a cada 24 h.
   - Uma folga de 1 ponto percentual evita avisos repetidos quando o uso oscila perto do limite.
   - Clicar na notificação abre os Ajustes de Armazenamento.
+- **Histórico e previsão.** O app grava a ocupação de cada disco local a cada 5 minutos e estima quando o disco enche no ritmo atual.
+  - No notch: mini gráfico do espaço livre nas últimas 24 h, variação no período e previsão. Clique para abrir o histórico.
+  - Janela **Histórico** (no notch ou em "Ver histórico…" no menu): gráficos de 24 h, 7 dias, 30 dias e 1 ano, linhas dos limites de atenção e crítico, e a tendência tracejada.
+  - A previsão usa uma regressão linear das últimas 2 semanas e precisa de pelo menos 6 h de dados.
+
+### Onde fica o histórico
+
+Em `~/Library/Application Support/DiskNotch/history.sqlite`. Para não crescer sem limite, as amostras são compactadas a cada 6 h:
+
+| Idade | Guardado como |
+|---|---|
+| Até 48 h | Uma amostra a cada 5 min |
+| De 48 h a 60 dias | Média por hora |
+| Mais de 60 dias | Média por dia |
+
+Um ano de histórico ocupa poucas centenas de KB.
 - **Atualização automática** a cada 60 segundos, ao montar ou ejetar discos e quando o Mac acorda.
 - **Abre sozinho no login** e reabre se travar.
 
@@ -56,6 +72,16 @@ Para testar a regra de quando notificar (11 casos, incluindo a folga e o lembret
 swift run disknotch-probe --testar-alertas
 ```
 
+Para testar o histórico e a previsão (banco temporário com 70 dias simulados) e para ver o resumo do histórico real:
+
+```bash
+swift run disknotch-probe --testar-historico
+```
+
+```bash
+swift run disknotch-probe --historico
+```
+
 ## Abrir no login
 
 ```bash
@@ -84,11 +110,14 @@ DiskNotch/
 │   ├── StorageCore/              leitura dos volumes, sem interface
 │   │   ├── VolumeInfo.swift      modelo, níveis de alerta e formatação de bytes
 │   │   ├── VolumeService.swift   capacidade e metadados de cada volume
-│   │   └── AlertPolicy.swift     regra de quando notificar
+│   │   ├── AlertPolicy.swift     regra de quando notificar
+│   │   ├── HistoryStore.swift    histórico em SQLite e compactação
+│   │   └── Forecast.swift        tendência e previsão de disco cheio
 │   ├── DiskNotch/                o app
 │   │   ├── DiskNotchApp.swift    ponto de entrada, menu da barra e ajustes
 │   │   ├── StorageModel.swift    estado observável e atualização periódica
 │   │   ├── AlertCenter.swift     notificações e ajustes de limites
+│   │   ├── HistoryViews.swift    cartão do notch e janela de histórico
 │   │   ├── NotchPanelController.swift  janela do notch, posição e cliques
 │   │   ├── NotchView.swift       estados recolhido e expandido
 │   │   └── Components.swift      anel, barra de uso e formato do notch
@@ -115,4 +144,4 @@ DiskNotch/
 
 ## Próximos passos
 
-Histórico com previsão de quando o disco enche e a categoria **Desenvolvimento** (caches do Xcode, `node_modules`, npm, pip, Homebrew, Docker e modelos de IA locais). Detalhes no [ROADMAP.md](ROADMAP.md).
+Widgets (quando houver Xcode) e a categoria **Desenvolvimento** (caches do Xcode, `node_modules`, npm, pip, Homebrew, Docker e modelos de IA locais). Detalhes no [ROADMAP.md](ROADMAP.md).

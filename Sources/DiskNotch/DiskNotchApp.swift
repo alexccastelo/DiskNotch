@@ -97,8 +97,14 @@ private struct MenuContent: View {
             Divider()
             AlertSettingsView(settings: model.alertSettings, sendTest: model.sendTestAlert)
             Divider()
+            if let forecast = model.rootForecast {
+                Label(forecast.summary(), systemImage: "chart.line.downtrend.xyaxis")
+                    .font(.callout)
+                    .foregroundStyle(.secondary)
+            }
             HStack {
                 Button("Atualizar") { model.refresh() }
+                Button("Ver histórico…") { HistoryWindowController.shared.show(model: model) }
                 Spacer()
                 Button("Sair") { NSApp.terminate(nil) }
             }

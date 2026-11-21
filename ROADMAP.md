@@ -2,7 +2,7 @@
 projeto: DiskNotch
 slug: disknotch
 descricao: Monitor de armazenamento do Mac no notch, na barra de menus e em widgets, com histórico, análise e limpeza assistida.
-atualizado: 2026-11-20 09:39
+atualizado: 2026-11-20 10:00
 ---
 
 # Roadmap · DiskNotch
@@ -39,8 +39,11 @@ _20 nov 2026_ — Ver o espaço do disco a qualquer momento, sem abrir nenhuma j
   - Dois LaunchAgents: um abre o app direto, outro recompila em baixa prioridade
   - Validado com reinício real do Mac
   > local: 2026-11-20 · github: 17ebb1d
-- [proximo] **Alertas de espaço baixo** · Alertas · pedido
+- [entregue] **Alertas de espaço baixo** · Alertas · pedido
   Notificação do macOS quando o espaço livre cai abaixo de um limite, com limites ajustáveis no menu.
+  - Avisa só quando piora; em nível crítico, lembra a cada 24 h
+  - Os limites também definem as cores do painel
+  > local: 2026-11-20
 - [proximo] **Discos externos com botão de ejetar** · Armazenamento · sugestão
   Discos externos e de rede aparecem no painel com uso e botão de ejetar.
   - Já implementado; falta testar com um disco externo conectado
