@@ -2,7 +2,7 @@
 projeto: DiskNotch
 slug: disknotch
 descricao: Monitor de armazenamento do Mac no notch, na barra de menus e em widgets, com histórico, análise e limpeza assistida.
-atualizado: 2026-11-20 10:00
+atualizado: 2026-11-21 09:27
 ---
 
 # Roadmap · DiskNotch
@@ -43,18 +43,23 @@ _20 nov 2026_ — Ver o espaço do disco a qualquer momento, sem abrir nenhuma j
   Notificação do macOS quando o espaço livre cai abaixo de um limite, com limites ajustáveis no menu.
   - Avisa só quando piora; em nível crítico, lembra a cada 24 h
   - Os limites também definem as cores do painel
-  > local: 2026-11-20
-- [proximo] **Discos externos com botão de ejetar** · Armazenamento · sugestão
+  > local: 2026-11-20 · github: f4a23c1
+- [planejado] **Discos externos com botão de ejetar** · Armazenamento · sugestão
   Discos externos e de rede aparecem no painel com uso e botão de ejetar.
-  - Já implementado; falta testar com um disco externo conectado
+  - Já implementado; em espera até haver um disco externo para testar
 
 ## Fase 2 · Histórico e widgets
-_a seguir_ — Acompanhar a ocupação ao longo do tempo e ver o disco sem abrir nada.
+_21 nov 2026_ — Acompanhar a ocupação ao longo do tempo e ver o disco sem abrir nada. Os widgets aguardam o Xcode.
 
-- [planejado] **Histórico de ocupação** · Histórico · sugestão
+- [entregue] **Histórico de ocupação** · Histórico · sugestão
   Gráficos de 24 horas, 7 dias, 30 dias e 1 ano, com amostras a cada 5 minutos.
-- [planejado] **Previsão de quando o disco enche** · Histórico · sugestão
+  - Gravado em SQLite e compactado em médias por hora e por dia
+  - Mini gráfico das últimas 24 h no notch; janela própria com os gráficos completos
+  > local: 2026-11-21 · github: 204ddb6
+- [entregue] **Previsão de quando o disco enche** · Histórico · sugestão
   Estima, pelo ritmo das últimas semanas, em quantos dias o disco fica cheio.
+  - Usa as últimas 2 semanas e precisa de pelo menos 6 h de dados
+  > local: 2026-11-21 · github: 204ddb6
 - [planejado] **Widgets para a mesa e a Central de Notificações** · Widgets · pedido
   Tamanhos pequeno, médio e grande, com botão para atualizar.
   - Depende do Xcode instalado
@@ -100,9 +105,11 @@ _sem data_ — Possibilidades levantadas no caminho.
 - **Compilação sem Xcode** — Por enquanto o app é compilado só com o Swift Package Manager, sem os recursos que exigem Xcode.
 - **Início pelo launchd** — Dois LaunchAgents substituem o Login Item do plano, que exigiria Xcode, e abrem o app na hora mesmo com o Mac carregado após o boot.
 - **Informação recolhida de um lado só** — No macOS 27 não dá para saber onde ficam os ícones da barra de menus, então o painel não passa da borda do notch do lado dos ícones.
+- **Histórico em SQLite** — O SwiftData depende de macros que não existem sem o Xcode; o SQLite já vem no macOS e não precisa de dependências.
 
 ## Pontos de atenção
 
 - **Widgets dependem do Xcode** — Sem o Xcode instalado, a Fase 2 avança só no histórico e na previsão.
 - **Notch sem API oficial** — O posicionamento é manual e pode mudar entre versões do macOS; o ícone na barra de menus fica sempre como alternativa.
-- **Sem testes automatizados** — Cada mudança é verificada à mão.
+- **Testes só da lógica** — Alertas, histórico e previsão têm testes automáticos no `disknotch-probe`; a interface ainda é verificada à mão.
+- **Histórico começa na instalação** — O macOS não guarda histórico de espaço livre, então os gráficos se preenchem com o tempo e ficam com lacunas quando o Mac está desligado.
