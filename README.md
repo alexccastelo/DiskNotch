@@ -122,11 +122,19 @@ Widgets pequeno, médio e grande para a mesa e a Central de Notificações, com 
 anel, os GB livres, o gráfico das últimas 24 h e a previsão. Clicar em um widget
 abre o histórico.
 
-> **Em validação.** A extensão é montada sem Xcode: compilada pelo Swift Package
-> Manager, empacotada pelo `build-app.sh` em
-> `DiskNotch.app/Contents/PlugIns/DiskNotchWidget.appex` e assinada localmente
-> com sandbox. O macOS já a reconhece (`pluginkit -m -p com.apple.widgetkit-extension`);
-> falta confirmar na galeria de widgets.
+Para adicionar: clique com o botão direito na mesa, escolha **Editar Widgets** e
+procure "DiskNotch".
+
+A extensão é montada sem Xcode: compilada pelo Swift Package Manager, empacotada
+pelo `build-app.sh` em `DiskNotch.app/Contents/PlugIns/DiskNotchWidget.appex` e
+assinada localmente com sandbox. Dois detalhes que o Xcode resolve sozinho e aqui
+são feitos à mão:
+
+- **Ponto de entrada `_NSExtensionMain`.** Sem ele, a extensão cai ao iniciar, antes
+  de registrar o tipo, e o widget nunca chega à galeria
+  ([`Package.swift`](Package.swift)).
+- **Chaves de plataforma e SDK no `Info.plist`** (`CFBundleSupportedPlatforms`,
+  `DTSDKName` e outras), gravadas pelo `build-app.sh` com a versão do SDK instalado.
 
 A extensão roda em sandbox, como o WidgetKit exige. Ela lê o disco por conta
 própria e lê o histórico e os limites de alerta do app por duas exceções
