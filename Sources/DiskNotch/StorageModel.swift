@@ -1,6 +1,8 @@
 import AppKit
 import Observation
 import StorageCore
+import DiskNotchUI
+import WidgetKit
 
 /// Estado observável compartilhado pelo notch e pela barra de menus.
 @MainActor
@@ -31,7 +33,18 @@ final class StorageModel {
     /// Intervalo entre amostras gravadas no histórico.
     static let sampleInterval: TimeInterval = 5 * 60
 
-    init(interval: TimeInterval = 60) {
+    /// Modo demonstração: dados fixos, sem ler o disco nem gravar histórico.
+    /// Ligado por `DISKNOTCH_DEMO=1` e usado para gerar as imagens do README.
+    @ObservationIgnored private(set) var isDemo = false
+    @ObservationIgnored private var demoSeries: [String: [StorageSample]] = [:]
+
+    static var demoRequested: Bool { ProcessInfo.processInfo.environment["DISKNOTCH_DEMO"] == "1" }
+
+    init(interval: TimeInterval = 60, demo: Bool = false) {
+        if demo {
+            loadDemoData()
+            return
+        }
         refresh()
         alerts.onAuthorized = { [weak self] in self?.refresh() }
         timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { [weak self] _ in
@@ -49,6 +62,7 @@ final class StorageModel {
     }
 
     func refresh() {
+        guard !isDemo else { lastUpdated = .now; return }
         volumes = VolumeService.mountedVolumes()
         root = volumes.first(where: \.isRoot) ?? VolumeService.rootVolume()
         lastUpdated = .now
@@ -75,6 +89,24 @@ final class StorageModel {
             AlertCenter.log("erro ao gravar histórico: \(error)")
         }
         reloadRootHistory(now: now)
+        reloadWidgetsIfDue(now: now)
+    }
+
+    // MARK: Widgets
+
+    @ObservationIgnored private var lastWidgetReload: Date?
+    @ObservationIgnored private var lastWidgetLevel: StorageLevel?
+
+    /// Pede aos widgets que se atualizem a cada 15 min ou quando o nível muda,
+    /// para não gastar o limite diário de atualizações do WidgetKit.
+    private func reloadWidgetsIfDue(now: Date) {
+        guard let root else { return }
+        let level = level(of: root)
+        let due = lastWidgetReload.map { now.timeIntervalSince($0) >= 15 * 60 } ?? true
+        guard due || level != lastWidgetLevel else { return }
+        lastWidgetReload = now
+        lastWidgetLevel = level
+        WidgetCenter.shared.reloadAllTimelines()
     }
 
     private func reloadRootHistory(now: Date = .now) {
@@ -85,7 +117,45 @@ final class StorageModel {
     }
 
     func samples(for volume: VolumeInfo, since: Date) -> [StorageSample] {
-        (try? history?.samples(volumeID: volume.id, since: since)) ?? []
+        if isDemo { return (demoSeries[volume.id] ?? []).filter { $0.date >= since } }
+        return (try? history?.samples(volumeID: volume.id, since: since)) ?? []
+    }
+
+    // MARK: Demonstração
+
+    private func loadDemoData(now: Date = .now) {
+        isDemo = true
+        let gb: Int64 = 1_000_000_000
+        let mac = VolumeInfo(id: "demo-mac", name: "Macintosh HD", url: URL(fileURLWithPath: "/"),
+                             totalBytes: 494 * gb, availableBytes: 71 * gb, availableImportantBytes: 76 * gb,
+                             isRoot: true, isInternal: true, isEjectable: false, isLocal: true)
+        let backup = VolumeInfo(id: "demo-backup", name: "Backup", url: URL(fileURLWithPath: "/Volumes/Backup"),
+                                totalBytes: 1_000 * gb, availableBytes: 412 * gb, availableImportantBytes: 412 * gb,
+                                isRoot: false, isInternal: false, isEjectable: true, isLocal: true)
+        volumes = [mac, backup]
+        root = mac
+        lastUpdated = now
+
+        // 30 dias: médias por hora até 48 h atrás e amostras a cada 5 min depois.
+        // O livre cai ~1,6 GB por dia, com oscilações de downloads e limpezas.
+        func series(for volume: VolumeInfo, dailyLoss: Double) -> [StorageSample] {
+            var samples: [StorageSample] = []
+            var t = now.addingTimeInterval(-30 * 86_400)
+            while t <= now {
+                let daysAgo = now.timeIntervalSince(t) / 86_400
+                let wave = sin(daysAgo * 2.1) * 1.4 + sin(daysAgo * 9.7) * 0.5
+                let free = Double(volume.freeBytes) + (daysAgo * dailyLoss + wave) * 1e9
+                samples.append(StorageSample(date: t, totalBytes: volume.totalBytes,
+                                             freeBytes: Int64(free), purgeableBytes: volume.purgeableBytes))
+                t = t.addingTimeInterval(daysAgo > 2 ? 3600 : 300)
+            }
+            return samples
+        }
+        demoSeries = [mac.id: series(for: mac, dailyLoss: 1.6), backup.id: series(for: backup, dailyLoss: 0.4)]
+
+        let recent = samples(for: mac, since: now.addingTimeInterval(-Forecast.window))
+        rootForecast = Forecast.compute(samples: recent, now: now)
+        rootLast24h = recent.filter { $0.date >= now.addingTimeInterval(-86_400) }
     }
 
     var localVolumes: [VolumeInfo] { volumes.filter(\.isLocal) }

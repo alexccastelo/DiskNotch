@@ -2,7 +2,7 @@ import SwiftUI
 import StorageCore
 
 extension StorageLevel {
-    var color: Color {
+    public var color: Color {
         switch self {
         case .ok: Color(red: 0.30, green: 0.85, blue: 0.48)
         case .warning: Color(red: 1.00, green: 0.72, blue: 0.20)
@@ -10,7 +10,7 @@ extension StorageLevel {
         }
     }
 
-    var label: String {
+    public var label: String {
         switch self {
         case .ok: "Tudo certo"
         case .warning: "Espaço baixo"
@@ -20,12 +20,18 @@ extension StorageLevel {
 }
 
 /// Anel de ocupação do disco.
-struct UsageRing: View {
-    var fraction: Double
-    var level: StorageLevel
-    var lineWidth: CGFloat = 3
+public struct UsageRing: View {
+    public var fraction: Double
+    public var level: StorageLevel
+    public var lineWidth: CGFloat = 3
 
-    var body: some View {
+    public init(fraction: Double, level: StorageLevel, lineWidth: CGFloat = 3) {
+        self.fraction = fraction
+        self.level = level
+        self.lineWidth = lineWidth
+    }
+
+    public var body: some View {
         ZStack {
             Circle().stroke(.white.opacity(0.15), lineWidth: lineWidth)
             Circle()
@@ -38,11 +44,16 @@ struct UsageRing: View {
 }
 
 /// Barra horizontal empilhada: usado | purgável | livre.
-struct UsageBar: View {
-    var volume: VolumeInfo
-    var level: StorageLevel
+public struct UsageBar: View {
+    public var volume: VolumeInfo
+    public var level: StorageLevel
 
-    var body: some View {
+    public init(volume: VolumeInfo, level: StorageLevel) {
+        self.volume = volume
+        self.level = level
+    }
+
+    public var body: some View {
         GeometryReader { geo in
             let total = max(1, Double(volume.totalBytes))
             let usedW = geo.size.width * Double(volume.usedBytes) / total
@@ -60,16 +71,21 @@ struct UsageBar: View {
 
 /// Formato do notch: topo reto, cantos inferiores arredondados
 /// e "orelhas" côncavas no topo para fundir com a moldura da tela.
-struct NotchShape: Shape {
-    var bottomRadius: CGFloat
-    var topRadius: CGFloat = 6
+public struct NotchShape: Shape {
+    public var bottomRadius: CGFloat
+    public var topRadius: CGFloat = 6
 
-    var animatableData: AnimatablePair<CGFloat, CGFloat> {
+    public init(bottomRadius: CGFloat, topRadius: CGFloat = 6) {
+        self.bottomRadius = bottomRadius
+        self.topRadius = topRadius
+    }
+
+    public var animatableData: AnimatablePair<CGFloat, CGFloat> {
         get { .init(bottomRadius, topRadius) }
         set { bottomRadius = newValue.first; topRadius = newValue.second }
     }
 
-    func path(in rect: CGRect) -> Path {
+    public func path(in rect: CGRect) -> Path {
         var p = Path()
         let t = topRadius
         let b = min(bottomRadius, rect.height / 2, (rect.width - 2 * t) / 2)

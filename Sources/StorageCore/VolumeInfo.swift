@@ -76,12 +76,13 @@ public enum ByteFormat {
         return formatter.string(fromByteCount: bytes)
     }
 
-    /// Versão compacta para o notch: "142 GB" sem casas decimais acima de 100.
+    /// Versão compacta para o notch: "8,8 GB", "76 GB", "1,2 TB" (no máximo 6 caracteres,
+    /// para caber ao lado do notch). Usa o separador decimal do sistema.
     public static func compact(_ bytes: Int64) -> String {
         let gb = Double(bytes) / 1_000_000_000
-        if gb >= 1000 { return String(format: "%.1f TB", gb / 1000) }
-        if gb >= 100 { return String(format: "%.0f GB", gb) }
-        if gb >= 1 { return String(format: "%.1f GB", gb) }
-        return String(format: "%.0f MB", gb * 1000)
+        if gb >= 1000 { return String(format: "%.1f TB", locale: .current, gb / 1000) }
+        if gb >= 10 { return String(format: "%.0f GB", locale: .current, gb) }
+        if gb >= 1 { return String(format: "%.1f GB", locale: .current, gb) }
+        return String(format: "%.0f MB", locale: .current, gb * 1000)
     }
 }

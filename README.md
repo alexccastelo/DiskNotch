@@ -1,30 +1,107 @@
-# DiskNotch
+<div align="center">
 
-Monitor de armazenamento para o MacBook que mora no **notch**. Mostra quanto espaço livre o Mac tem, o que pode ser liberado e quando o disco está ficando cheio, sem abrir nenhuma janela.
+![DiskNotch](docs/design/disknotch-banner.png)
+
+[![CI](https://github.com/alexccastelo/DiskNotch/actions/workflows/ci.yml/badge.svg)](https://github.com/alexccastelo/DiskNotch/actions/workflows/ci.yml)
+![Platform](https://img.shields.io/badge/platform-macOS%2015%2B-black)
+![Swift](https://img.shields.io/badge/swift-6-orange)
+![License](https://img.shields.io/badge/license-MIT-green)
+
+**Um app para macOS que mostra no notch do MacBook quanto espaço livre o disco
+tem, o que o próprio sistema ainda consegue liberar e quando, no ritmo atual,
+o disco vai encher.**
+
+![Notch expandido com o disco, o gráfico das últimas 24 h e a previsão](docs/design/notch-expandido.png)
+
+</div>
+
+Passe o mouse sob o notch para ver o disco de inicialização em detalhe, os
+discos externos e a tendência das últimas 24 horas. Recolhido, ele ocupa só um
+lado do notch e não cobre os ícones da barra de menus.
 
 > **Status:** em desenvolvimento, fase 2 de 5. Veja o [ROADMAP.md](ROADMAP.md).
 
-## O que ele faz hoje
+## Instalação
 
-- **Painel no notch.** Recolhido, mostra um anel de ocupação e os GB livres ao lado do notch. Ao passar o mouse, abre com:
-  - espaço livre, purgável, usado e total do disco de inicialização;
-  - barra de uso e nível de alerta (verde, âmbar abaixo de 20% livre, vermelho abaixo de 10%);
-  - discos externos e de rede, com botão de ejetar;
-  - atalhos para atualizar, abrir no Finder e abrir os Ajustes de Armazenamento.
-- **Não cobre os ícones da barra de menus.** A informação recolhida fica de um lado só do notch, e o lado pode ser escolhido.
-- **Ícone na barra de menus**, com os GB livres, a lista de volumes e as opções do painel. Ele também serve de alternativa em telas sem notch.
-- **Alertas de espaço baixo.** Uma notificação do macOS avisa quando um disco local entra em "atenção" ou fica "crítico". Os limites são ajustáveis no menu da barra (padrão: 20% e 10% livres) e definem também as cores do painel.
-  - Avisa só quando a situação piora; em nível crítico, lembra uma vez a cada 24 h.
-  - Uma folga de 1 ponto percentual evita avisos repetidos quando o uso oscila perto do limite.
-  - Clicar na notificação abre os Ajustes de Armazenamento.
-- **Histórico e previsão.** O app grava a ocupação de cada disco local a cada 5 minutos e estima quando o disco enche no ritmo atual.
-  - No notch: mini gráfico do espaço livre nas últimas 24 h, variação no período e previsão. Clique para abrir o histórico.
-  - Janela **Histórico** (no notch ou em "Ver histórico…" no menu): gráficos de 24 h, 7 dias, 30 dias e 1 ano, linhas dos limites de atenção e crítico, e a tendência tracejada.
-  - A previsão usa uma regressão linear das últimas 2 semanas e precisa de pelo menos 6 h de dados.
+Ainda não há versão publicada para baixar. Por enquanto o DiskNotch é compilado
+na própria máquina, **sem precisar do Xcode**: bastam as Command Line Tools da
+Apple, com Swift 6.
 
-### Onde fica o histórico
+```sh
+xcode-select --install          # uma vez, se ainda não tiver
+./build-app.sh                  # gera build/DiskNotch.app
+./inicio-automatico.sh          # abre agora e a cada login
+```
 
-Em `~/Library/Application Support/DiskNotch/history.sqlite`. Para não crescer sem limite, as amostras são compactadas a cada 6 h:
+O app é assinado localmente (ad hoc) e não passa pelo Gatekeeper, porque não
+sai da sua máquina. Ele precisa de macOS 15 ou mais novo e foi desenvolvido e
+testado no macOS 27 "Golden Gate", num MacBook com notch. Em telas sem notch,
+vira uma pílula no topo da tela.
+
+## O que ele mostra
+
+![Notch recolhido: anel de ocupação e GB livres ao lado do notch](docs/design/notch-recolhido.png)
+
+**Recolhido**, o notch ganha um anel de ocupação e os GB livres, sempre de um
+lado só. No macOS 27 os ícones da barra de menus não aparecem como janelas, então
+não há como medir o espaço livre ao redor deles. Por isso, em vez de se ajustar,
+o painel simplesmente nunca passa da borda do notch do lado dos ícones. O lado
+pode ser trocado no menu da barra.
+
+**Expandido** (ao passar o mouse ou clicar), mostra:
+
+- espaço livre, purgável, usado e total do disco de inicialização;
+- uma barra de uso e o nível: verde, âmbar ("espaço baixo") ou vermelho ("espaço crítico");
+- o espaço livre nas últimas 24 h, a variação no período e a previsão;
+- discos externos e de rede, com botão de ejetar;
+- atalhos para Atualizar, Histórico, Finder e Ajustes de Armazenamento.
+
+A janela do painel é maior que a forma desenhada, para a animação de abrir ter
+espaço. Fora da forma visível, ela ignora o mouse, então os cliques passam
+para as janelas logo abaixo do notch.
+
+Os números são atualizados a cada 60 segundos, na hora ao montar ou ejetar um
+disco, e quando o Mac acorda.
+
+### Livre e purgável
+
+O DiskNotch mostra o espaço livre do mesmo jeito que o Finder: já conta o que o
+macOS consegue apagar sozinho quando precisa (caches, arquivos do iCloud
+otimizados, snapshots locais do Time Machine). Essa parte aparece separada como
+**purgável**. Por isso o número costuma ser maior que o "Avail" do `df`, que só
+conta o que está livre agora.
+
+## Alertas
+
+Quando um disco local entra em **atenção** ou fica **crítico**, chega uma
+notificação do macOS com o espaço que sobra e quanto ainda é purgável. Clicar
+nela abre os Ajustes de Armazenamento.
+
+- **Avisa uma vez por piora.** Continuar no mesmo nível não gera outro aviso; em
+  nível crítico, há um lembrete por dia.
+- **Folga de 1 ponto percentual.** O alerta só é "esquecido" quando o espaço
+  sobe além do limite com folga, para não avisar várias vezes quando o uso
+  oscila em torno dele.
+- **Limites ajustáveis** no menu da barra (padrão: 20% e 10% livres). Os mesmos
+  limites definem as cores do notch, do menu e dos widgets.
+- **Permissão.** O macOS pede para permitir as notificações na primeira vez. Até
+  você responder, nenhum alerta é dado como enviado.
+
+## Histórico e previsão
+
+![Janela de histórico com 30 dias, limites de alerta e tendência](docs/design/historico.png)
+
+O app grava a ocupação de cada disco local a cada 5 minutos. A janela
+**Histórico** (no notch ou em "Ver histórico…" no menu) mostra 24 h, 7 dias,
+30 dias ou 1 ano, com as linhas dos limites de atenção e crítico e a tendência
+tracejada.
+
+A **previsão** é uma regressão linear do espaço livre nas últimas 2 semanas. Ela
+precisa de pelo menos 6 h de dados e trata como estável uma perda menor que
+100 MB por dia.
+
+O histórico fica em `~/Library/Application Support/DiskNotch/history.sqlite` e é
+compactado a cada 6 h, para não crescer sem limite:
 
 | Idade | Guardado como |
 |---|---|
@@ -33,115 +110,124 @@ Em `~/Library/Application Support/DiskNotch/history.sqlite`. Para não crescer s
 | Mais de 60 dias | Média por dia |
 
 Um ano de histórico ocupa poucas centenas de KB.
-- **Atualização automática** a cada 60 segundos, ao montar ou ejetar discos e quando o Mac acorda.
-- **Abre sozinho no login** e reabre se travar.
 
-### "Livre" e "purgável"
+O macOS não guarda um histórico do espaço livre, então os gráficos começam no
+dia em que o app foi instalado. Também ficam lacunas nos períodos em que o Mac
+esteve desligado: o gráfico liga os pontos, e a previsão leva em conta o horário
+de cada amostra.
 
-O DiskNotch mostra o espaço livre do mesmo jeito que o Finder: já conta o que o macOS consegue liberar sozinho (caches, arquivos do iCloud otimizados, snapshots locais). Essa parte aparece separada como **purgável**. Por isso o número pode ser maior que o "Avail" do `df`.
+## Widgets
 
-## Requisitos
+Widgets pequeno, médio e grande para a mesa e a Central de Notificações, com o
+anel, os GB livres, o gráfico das últimas 24 h e a previsão. Clicar em um widget
+abre o histórico.
 
-- Mac com Apple Silicon e macOS 15 ou mais novo (desenvolvido e testado no macOS 27 "Golden Gate")
-- Command Line Tools da Apple, com Swift 6 (`xcode-select --install`)
-- **O Xcode não é necessário.** O projeto compila só com o Swift Package Manager.
+> **Em validação.** A extensão é montada sem Xcode: compilada pelo Swift Package
+> Manager, empacotada pelo `build-app.sh` em
+> `DiskNotch.app/Contents/PlugIns/DiskNotchWidget.appex` e assinada localmente
+> com sandbox. O macOS já a reconhece (`pluginkit -m -p com.apple.widgetkit-extension`);
+> falta confirmar na galeria de widgets.
 
-## Como compilar e abrir
-
-Compila em modo release e gera `build/DiskNotch.app` com assinatura local (ad hoc):
-
-```bash
-./build-app.sh
-```
-
-```bash
-open build/DiskNotch.app
-```
-
-Ou, com duplo clique no Finder, `iniciar-disknotch.command`: ele recompila só se o código mudou e abre o app.
-
-Para conferir a leitura dos discos pelo terminal, sem interface:
-
-```bash
-swift run disknotch-probe
-```
-
-Para testar a regra de quando notificar (11 casos, incluindo a folga e o lembrete de 24 h):
-
-```bash
-swift run disknotch-probe --testar-alertas
-```
-
-Para testar o histórico e a previsão (banco temporário com 70 dias simulados) e para ver o resumo do histórico real:
-
-```bash
-swift run disknotch-probe --testar-historico
-```
-
-```bash
-swift run disknotch-probe --historico
-```
+A extensão roda em sandbox, como o WidgetKit exige. Ela lê o disco por conta
+própria e lê o histórico e os limites de alerta do app por duas exceções
+temporárias de sandbox, só de leitura dos dados do DiskNotch
+([`Support/Widget.entitlements`](Support/Widget.entitlements)). O app pede uma
+atualização a cada 15 min ou quando o nível muda, para não gastar o limite diário
+de atualizações do WidgetKit.
 
 ## Abrir no login
 
-```bash
-./inicio-automatico.sh
+```sh
+./inicio-automatico.sh            # liga
+./inicio-automatico.sh --remover  # desliga
 ```
 
-O script instala dois LaunchAgents em `~/Library/LaunchAgents`:
+São dois LaunchAgents em `~/Library/LaunchAgents`:
 
 | Agente | O que faz |
 |---|---|
 | `id.nexum.disknotch` | Abre o app direto no login, sem passar pelo shell, e o reabre se ele travar. Sair pelo menu não reabre. |
 | `id.nexum.disknotch.rebuild` | Em baixa prioridade, recompila se algum arquivo do código mudou e reinicia o app. |
 
-O registro fica em `~/Library/Logs/DiskNotch-start.log`. Para desligar:
+O app é aberto direto, e não por um script, porque logo após o boot o Mac fica
+tão carregado que cada comando de shell leva dezenas de segundos. A primeira
+versão, feita só com um script, demorava uns 5 minutos para mostrar o notch.
 
-```bash
-./inicio-automatico.sh --remover
+## Compilação
+
+```sh
+./build-app.sh                                  # compila em release e empacota o .app com o widget
+open build/DiskNotch.app
+swift run disknotch-probe                        # lê os discos pelo terminal, sem interface
+swift run disknotch-probe --testar-alertas       # 11 casos da regra de alertas
+swift run disknotch-probe --testar-historico     # 11 casos de histórico e previsão (70 dias simulados)
+swift run disknotch-probe --historico            # resumo do histórico real gravado pelo app
 ```
 
-## Estrutura
+Com um duplo clique, [`iniciar-disknotch.command`](iniciar-disknotch.command) faz
+o mesmo que o agente de login: recompila só se o código mudou e abre o app.
 
-```
-DiskNotch/
-├── Package.swift                 pacote Swift (3 alvos)
-├── Sources/
-│   ├── StorageCore/              leitura dos volumes, sem interface
-│   │   ├── VolumeInfo.swift      modelo, níveis de alerta e formatação de bytes
-│   │   ├── VolumeService.swift   capacidade e metadados de cada volume
-│   │   ├── AlertPolicy.swift     regra de quando notificar
-│   │   ├── HistoryStore.swift    histórico em SQLite e compactação
-│   │   └── Forecast.swift        tendência e previsão de disco cheio
-│   ├── DiskNotch/                o app
-│   │   ├── DiskNotchApp.swift    ponto de entrada, menu da barra e ajustes
-│   │   ├── StorageModel.swift    estado observável e atualização periódica
-│   │   ├── AlertCenter.swift     notificações e ajustes de limites
-│   │   ├── HistoryViews.swift    cartão do notch e janela de histórico
-│   │   ├── NotchPanelController.swift  janela do notch, posição e cliques
-│   │   ├── NotchView.swift       estados recolhido e expandido
-│   │   └── Components.swift      anel, barra de uso e formato do notch
-│   └── disknotch-probe/          ferramenta de linha de comando para testes
-├── Support/Info.plist            Info.plist do .app (sem ícone no Dock)
-├── build-app.sh                  compila e empacota o .app
-├── iniciar-disknotch.command     recompila se preciso e abre
-├── inicio-automatico.sh          liga e desliga a abertura no login
-└── ROADMAP.md                    fases, entregas e decisões
+O app precisa rodar de dentro do `.app`: as notificações do macOS não funcionam
+num executável solto, então `swift run DiskNotch` encerra com erro.
+
+Rode com `DISKNOTCH_DEMO=1` para ver dados fixos de demonstração em vez do seu
+disco. As imagens deste README são geradas a partir das telas reais do app, com
+esses dados:
+
+```sh
+build/DiskNotch.app/Contents/MacOS/DiskNotch --render-readme-images "$PWD/docs/design"
 ```
 
-## Como funciona
+## Arquitetura
 
-- **Leitura do disco:** `URL.resourceValues` com as chaves de capacidade do volume. O espaço "livre para uso importante" (`volumeAvailableCapacityForImportantUsage`) inclui o purgável; a diferença para o livre estrito vira o número "purgável".
-- **Painel no notch:** um `NSPanel` sem borda e que não rouba o foco, acima da barra de menus e presente em todos os espaços, inclusive em tela cheia. A posição vem de `NSScreen.auxiliaryTopLeftArea` e `auxiliaryTopRightArea`.
-- **Cliques:** a janela do painel é maior que a forma desenhada. Monitores de mouse ligam `ignoresMouseEvents` sempre que o cursor está fora da forma, para não bloquear as janelas de baixo.
+```
+Sources/
+├── StorageCore/        sem interface: volumes, alertas, histórico e previsão
+│   ├── VolumeService   capacidade e metadados de cada volume
+│   ├── AlertPolicy     quando notificar (sem repetir à toa)
+│   ├── HistoryStore    histórico em SQLite e compactação
+│   └── Forecast        tendência e previsão de disco cheio
+├── DiskNotchUI/        cores, anel, barra de uso e formato do notch
+├── DiskNotch/          o app: notch, barra de menus, alertas, histórico e modo demonstração
+├── DiskNotchWidget/    a extensão de widgets
+└── disknotch-probe/    ferramenta de linha de comando e testes
+```
 
-## Limitações conhecidas
+- **Leitura do disco:** `URL.resourceValues` com as chaves de capacidade do
+  volume. O livre "para uso importante"
+  (`volumeAvailableCapacityForImportantUsage`) inclui o purgável; a diferença
+  para o livre estrito é o número "purgável".
+- **Painel do notch:** um `NSPanel` sem borda, que não rouba o foco, acima da
+  barra de menus e presente em todos os espaços, inclusive em tela cheia. A
+  posição vem de `NSScreen.auxiliaryTopLeftArea` e `auxiliaryTopRightArea`.
+- **Histórico em SQLite**, direto pela biblioteca do sistema, sem dependências.
 
-- **Sem macros do SwiftUI.** As Command Line Tools não trazem o plugin de macros do SwiftUI, então `@State`, `@Entry` e `#Preview` não compilam. O estado das views fica em classes `@Observable`, que funcionam.
-- **Widgets dependem do Xcode.** WidgetKit e Login Item nativo exigem Xcode e ficaram para quando ele estiver instalado.
-- **O notch não tem API oficial.** O posicionamento é manual e pode mudar entre versões do macOS.
-- **Ícones da barra de menus não são detectáveis no macOS 27.** Por isso a informação recolhida fica de um lado só, em vez de se ajustar ao espaço livre.
+Planejamento e decisões: [ROADMAP.md](ROADMAP.md).
 
-## Próximos passos
+## Ressalvas
 
-Widgets (quando houver Xcode) e a categoria **Desenvolvimento** (caches do Xcode, `node_modules`, npm, pip, Homebrew, Docker e modelos de IA locais). Detalhes no [ROADMAP.md](ROADMAP.md).
+- **O notch não tem API oficial.** A posição é calculada à mão a partir das áreas
+  que o sistema informa ao redor dele e pode mudar entre versões do macOS. O ícone
+  na barra de menus fica sempre como alternativa.
+- **O "purgável" é uma estimativa do macOS.** O sistema não diz exatamente o que
+  vai apagar, nem quando. O número pode diferir um pouco dos Ajustes do Sistema,
+  por isso o app mostra os dois valores.
+- **Sem Xcode, sem macros do SwiftUI.** As Command Line Tools não trazem o plugin
+  de macros do SwiftUI e do SwiftData: `@State`, `@Entry`, `#Preview` e `@Model`
+  não compilam. O estado das views fica em classes `@Observable`, e o histórico
+  usa SQLite.
+- **Sem botão "Atualizar" no widget.** Botões interativos dependem de App Intents,
+  cujos metadados só o Xcode gera. O app atualiza os widgets por conta própria.
+- **Testes só da lógica.** Alertas, histórico e previsão têm testes automáticos no
+  `disknotch-probe`, que o CI roda a cada push; a interface ainda é verificada à mão.
+
+**Logs:** o app não tem janela principal, então o que importa para diagnóstico
+vai para um arquivo:
+
+```sh
+tail -f ~/Library/Logs/DiskNotch-start.log
+```
+
+## Licença
+
+[MIT](LICENSE) © 2026 alexccastelo

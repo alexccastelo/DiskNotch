@@ -2,6 +2,7 @@ import AppKit
 import Charts
 import Observation
 import StorageCore
+import DiskNotchUI
 import SwiftUI
 
 // MARK: - Cartão do notch
@@ -35,6 +36,7 @@ struct HistoryCard: View {
                 .chartXAxis(.hidden)
                 .chartYAxis(.hidden)
                 .chartYScale(domain: yDomain)
+                .chartPlotStyle { $0.clipped() }
                 .frame(height: 44)
             } else {
                 RoundedRectangle(cornerRadius: 4)
@@ -127,9 +129,45 @@ final class HistoryViewState {
 
 struct HistoryView: View {
     @Bindable var state: HistoryViewState
+    /// Troca os controles do AppKit por texto, que o `ImageRenderer` consegue desenhar (imagens do README).
+    var forSnapshot = false
 
     var body: some View {
         VStack(alignment: .leading, spacing: 14) {
+            if forSnapshot { snapshotHeader } else { controls }
+
+            if let volume = state.volume {
+                stats(volume)
+                chart(volume)
+            }
+
+            Text("Amostras a cada 5 min nas últimas 48 h, médias por hora até 60 dias e por dia depois disso. A previsão usa as últimas 2 semanas.")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+        }
+        .padding(20)
+        .frame(minWidth: 640, minHeight: 440)
+    }
+
+    private var snapshotHeader: some View {
+        HStack {
+            Text(state.volume?.name ?? "").font(.title3.weight(.semibold))
+            Spacer()
+            HStack(spacing: 2) {
+                ForEach(HistoryRange.allCases) { range in
+                    Text(range.label)
+                        .font(.callout)
+                        .padding(.horizontal, 12).padding(.vertical, 4)
+                        .background(range == state.range ? Color.white.opacity(0.18) : .clear,
+                                    in: RoundedRectangle(cornerRadius: 6))
+                }
+            }
+            .padding(2)
+            .background(.white.opacity(0.06), in: RoundedRectangle(cornerRadius: 8))
+        }
+    }
+
+    private var controls: some View {
             HStack {
                 if state.model.localVolumes.count > 1 {
                     Picker("Volume", selection: $state.volumeID) {
@@ -149,18 +187,6 @@ struct HistoryView: View {
                 Button { state.reload() } label: { Image(systemName: "arrow.clockwise") }
                     .help("Atualizar")
             }
-
-            if let volume = state.volume {
-                stats(volume)
-                chart(volume)
-            }
-
-            Text("Amostras a cada 5 min nas últimas 48 h, médias por hora até 60 dias e por dia depois disso. A previsão usa as últimas 2 semanas.")
-                .font(.caption)
-                .foregroundStyle(.secondary)
-        }
-        .padding(20)
-        .frame(minWidth: 640, minHeight: 440)
     }
 
     @ViewBuilder
@@ -218,7 +244,7 @@ struct HistoryView: View {
                 }
                 ForEach(projection, id: \.date) { p in
                     LineMark(x: .value("Data", p.date), y: .value("Livre (GB)", p.gb), series: .value("Série", "previsão"))
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(Color.white.opacity(0.55))
                         .lineStyle(StrokeStyle(lineWidth: 1.5, dash: [4, 4]))
                 }
                 RuleMark(y: .value("Atenção", totalGB * thresholds.warningBelow))

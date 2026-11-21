@@ -1,5 +1,6 @@
 import SwiftUI
 import StorageCore
+import DiskNotchUI
 
 @main
 struct DiskNotchApp: App {
@@ -17,16 +18,29 @@ struct DiskNotchApp: App {
 
 @MainActor
 final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
-    let model = StorageModel()
+    let model = StorageModel(demo: StorageModel.demoRequested)
     private(set) lazy var notch = NotchPanelController(model: model, openSettings: { [weak self] in
         self?.openSettings()
     })
     @Published var notchEnabled = UserDefaults.standard.object(forKey: "notchEnabled") as? Bool ?? true
 
     func applicationDidFinishLaunching(_ notification: Notification) {
+        // --render-readme-images <pasta>: gera as imagens do README e sai.
+        let args = CommandLine.arguments
+        if let i = args.firstIndex(of: "--render-readme-images") {
+            let path = i + 1 < args.count ? args[i + 1] : "docs/design"
+            exit(ReadmeRenderer.run(outputDirectory: URL(fileURLWithPath: path)) ? 0 : 1)
+        }
         // Sem ícone no Dock mesmo quando rodado fora de um .app.
         NSApp.setActivationPolicy(.accessory)
         if notchEnabled { notch.show() }
+    }
+
+    /// Links disknotch://historico, usados pelos widgets.
+    func application(_ application: NSApplication, open urls: [URL]) {
+        for url in urls where url.scheme == "disknotch" {
+            if url.host == "historico" { HistoryWindowController.shared.show(model: model) }
+        }
     }
 
     func setNotchEnabled(_ enabled: Bool) {

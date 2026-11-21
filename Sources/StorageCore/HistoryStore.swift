@@ -49,7 +49,22 @@ public final class HistoryStore: @unchecked Sendable {
         return base.appendingPathComponent("DiskNotch/history.sqlite")
     }
 
-    public init(url: URL = HistoryStore.defaultURL) throws {
+    /// Caminho no home real do usuário, mesmo dentro de uma sandbox (usado pelo widget,
+    /// cujo `applicationSupportDirectory` aponta para o próprio contêiner).
+    public static var sharedURL: URL {
+        let home = getpwuid(getuid()).map { String(cString: $0.pointee.pw_dir) } ?? NSHomeDirectory()
+        return URL(fileURLWithPath: home)
+            .appendingPathComponent("Library/Application Support/DiskNotch/history.sqlite")
+    }
+
+    /// - Parameter readOnly: abre sem criar o arquivo nem as tabelas (para o widget).
+    public init(url: URL = HistoryStore.defaultURL, readOnly: Bool = false) throws {
+        if readOnly {
+            guard sqlite3_open_v2(url.path, &db, SQLITE_OPEN_READONLY, nil) == SQLITE_OK else {
+                throw StoreError.sqlite("não abriu \(url.path) para leitura")
+            }
+            return
+        }
         try FileManager.default.createDirectory(at: url.deletingLastPathComponent(),
                                                 withIntermediateDirectories: true)
         guard sqlite3_open(url.path, &db) == SQLITE_OK else {

@@ -1,6 +1,8 @@
 import AppKit
 import Observation
 import StorageCore
+import DiskNotchUI
+import WidgetKit
 @preconcurrency import UserNotifications
 
 /// Ajustes de alerta, guardados no UserDefaults.
@@ -14,6 +16,7 @@ final class AlertSettings {
     var warningPercent: Int {
         didSet {
             defaults.set(warningPercent, forKey: "alertWarningPercent")
+            WidgetCenter.shared.reloadAllTimelines()
             if criticalPercent >= warningPercent { criticalPercent = max(1, warningPercent - 5) }
         }
     }
@@ -21,6 +24,7 @@ final class AlertSettings {
     var criticalPercent: Int {
         didSet {
             defaults.set(criticalPercent, forKey: "alertCriticalPercent")
+            WidgetCenter.shared.reloadAllTimelines()
             if warningPercent <= criticalPercent { warningPercent = criticalPercent + 5 }
         }
     }

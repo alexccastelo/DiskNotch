@@ -39,6 +39,26 @@
       "target": "disknotch-probe",
       "configuration": "release",
       "preLaunchTask": "swift: Build Release disknotch-probe"
+    },
+    {
+      "type": "swift",
+      "request": "launch",
+      "args": [],
+      "cwd": "${workspaceFolder:DiskNotch}",
+      "name": "Debug DiskNotchWidget",
+      "target": "DiskNotchWidget",
+      "configuration": "debug",
+      "preLaunchTask": "swift: Build Debug DiskNotchWidget"
+    },
+    {
+      "type": "swift",
+      "request": "launch",
+      "args": [],
+      "cwd": "${workspaceFolder:DiskNotch}",
+      "name": "Release DiskNotchWidget",
+      "target": "DiskNotchWidget",
+      "configuration": "release",
+      "preLaunchTask": "swift: Build Release DiskNotchWidget"
     }
   ]
 }

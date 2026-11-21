@@ -1,5 +1,6 @@
 import SwiftUI
 import StorageCore
+import DiskNotchUI
 
 /// Lado do notch onde fica a informação no estado recolhido.
 enum NotchSide: String, CaseIterable {
