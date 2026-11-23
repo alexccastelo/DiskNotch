@@ -19,7 +19,7 @@ Passe o mouse sob o notch para ver o disco de inicialização em detalhe, os
 discos externos e a tendência das últimas 24 horas. Recolhido, ele ocupa só um
 lado do notch e não cobre os ícones da barra de menus.
 
-> **Status:** em desenvolvimento, fase 2 de 5. Veja o [ROADMAP.md](ROADMAP.md).
+> **Status:** em desenvolvimento, fase 3 de 5. Veja o [ROADMAP.md](ROADMAP.md).
 
 ## Instalação
 
@@ -54,7 +54,7 @@ pode ser trocado no menu da barra.
 - uma barra de uso e o nível: verde, âmbar ("espaço baixo") ou vermelho ("espaço crítico");
 - o espaço livre nas últimas 24 h, a variação no período e a previsão;
 - discos externos e de rede, com botão de ejetar;
-- atalhos para Atualizar, Histórico, Finder e Ajustes de Armazenamento.
+- atalhos para Atualizar, Painel, Finder e Ajustes de Armazenamento.
 
 A janela do painel é maior que a forma desenhada, para a animação de abrir ter
 espaço. Fora da forma visível, ela ignora o mouse, então os cliques passam
@@ -91,8 +91,8 @@ nela abre os Ajustes de Armazenamento.
 
 ![Janela de histórico com 30 dias, limites de alerta e tendência](docs/design/historico.png)
 
-O app grava a ocupação de cada disco local a cada 5 minutos. A janela
-**Histórico** (no notch ou em "Ver histórico…" no menu) mostra 24 h, 7 dias,
+O app grava a ocupação de cada disco local a cada 5 minutos. A seção
+**Histórico** do painel (clique no gráfico do notch) mostra 24 h, 7 dias,
 30 dias ou 1 ano, com as linhas dos limites de atenção e crítico e a tendência
 tracejada.
 
@@ -116,11 +116,81 @@ dia em que o app foi instalado. Também ficam lacunas nos períodos em que o Mac
 esteve desligado: o gráfico liga os pontos, e a previsão leva em conta o horário
 de cada amostra.
 
+## Análise do disco
+
+![Painel: visão geral com o disco e o mapa das categorias](docs/design/painel-visao-geral.png)
+
+O **painel** (botão Painel no notch, ou "Abrir painel…" no menu da barra) descobre
+o que ocupa o disco. A análise roda sob demanda, em segundo plano, e percorre a
+pasta pessoal, os Aplicativos e o Homebrew numa passada só: cerca de 20 segundos
+para 1 milhão de arquivos. O resultado fica salvo em
+`~/Library/Application Support/DiskNotch/analysis.json`, então o painel abre com a
+última análise.
+
+| Seção | O que mostra |
+|---|---|
+| **Visão geral** | O disco, a previsão e um mapa em que cada categoria tem área proporcional ao espaço que ocupa. |
+| **Desenvolvimento** | Caches de ferramentas e pastas de projeto, com o comando oficial de limpeza de cada uma. |
+| **Categorias** | Aplicativos, Documentos, Fotos, Mail, Caches, Lixo e outras, em lista. |
+| **Pastas e arquivos** | Mapa navegável das pastas grandes (clique para entrar) e os maiores arquivos. |
+| **Histórico** | Os gráficos de 24 h a 1 ano. |
+| **Volumes** | Todos os discos montados, com botão de ejetar. |
+
+**Cada byte entra numa categoria só.** O cache do pip fica dentro de
+`~/Library/Caches`, mas conta só em Desenvolvimento; um `node_modules` dentro de
+Documentos também. Assim as categorias somam exatamente o espaço medido, e o que
+sobra do espaço usado vira **Sistema e outros**: o próprio macOS, apps do sistema,
+memória virtual e arquivos de outros usuários.
+
+### Desenvolvimento
+
+![Painel: categoria Desenvolvimento com caches e comandos de limpeza](docs/design/painel-desenvolvimento.png)
+
+Um catálogo de lugares conhecidos ([`DevCatalog.swift`](Sources/StorageCore/DevCatalog.swift)):
+
+- **Xcode e Swift:** DerivedData, Archives, suporte a dispositivos, simuladores, SwiftPM, CocoaPods.
+- **JavaScript:** npm, pnpm, Yarn, Bun, Playwright.
+- **Python:** pip, uv, Conda.
+- **Outras linguagens:** Gradle, Maven, Cargo, Go.
+- **Gerenciadores de pacotes:** Homebrew (downloads e pacotes instalados).
+- **Contêineres:** Docker Desktop, OrbStack.
+- **Modelos de IA locais:** Ollama, LM Studio, Hugging Face.
+
+Cada item diz quão seguro é liberar o espaço: **cache, recriado sozinho**;
+**recriável**, com novo download ou build; ou **revisar antes de apagar**, quando
+há dados seus, como simuladores, imagens do Docker e modelos de IA. O painel não
+apaga nada: mostra o comando oficial de cada ferramenta, com um botão para copiar.
+
+**Pastas de projeto** são `node_modules` (ao lado de um `package.json`), `.venv`
+(com `pyvenv.cfg`), `.build` (ao lado de um `Package.swift`) e `target` (ao lado de
+um `Cargo.toml`). Elas só são procuradas na pasta pessoal, fora da Biblioteca e de
+pastas ocultas como `~/.npm`: ali, um `node_modules` é cache de ferramenta, não
+projeto seu.
+
+### Acesso Total ao Disco
+
+Sem essa permissão, o macOS não deixa ler Mail, Mensagens, a Lixeira e os dados de
+outros apps, e essas partes aparecem como **parciais**. O DiskNotch só lê tamanhos;
+nunca abre o conteúdo dos arquivos.
+
+A permissão fica presa à assinatura do app. Com a assinatura ad hoc, ela muda a
+cada build e a permissão se perde. Por isso, crie uma vez um certificado local, só
+seu (não precisa de conta de desenvolvedor da Apple), e recompile:
+
+```sh
+Scripts/criar-certificado-local.sh   # cria "DiskNotch Local Signing" no chaveiro de login
+./build-app.sh                       # passa a assinar com ele
+```
+
+Depois, em **Ajustes do Sistema › Privacidade e Segurança › Acesso Total ao Disco**,
+ligue o DiskNotch (ou use **+** e escolha `build/DiskNotch.app`). O painel tem um
+botão que abre esse lugar direto.
+
 ## Widgets
 
 Widgets pequeno, médio e grande para a mesa e a Central de Notificações, com o
 anel, os GB livres, o gráfico das últimas 24 h e a previsão. Clicar em um widget
-abre o histórico.
+abre o painel.
 
 Para adicionar: clique com o botão direito na mesa, escolha **Editar Widgets** e
 procure "DiskNotch".
@@ -170,6 +240,8 @@ swift run disknotch-probe                        # lê os discos pelo terminal, 
 swift run disknotch-probe --testar-alertas       # 11 casos da regra de alertas
 swift run disknotch-probe --testar-historico     # 11 casos de histórico e previsão (70 dias simulados)
 swift run disknotch-probe --historico            # resumo do histórico real gravado pelo app
+swift run disknotch-probe --testar-analise       # 20 casos de varredura, categorias e treemap (pasta pessoal falsa)
+swift run disknotch-probe --analisar             # análise real, com tempo, categorias e pastas de projeto
 ```
 
 Com um duplo clique, [`iniciar-disknotch.command`](iniciar-disknotch.command) faz
@@ -190,15 +262,21 @@ build/DiskNotch.app/Contents/MacOS/DiskNotch --render-readme-images "$PWD/docs/d
 
 ```
 Sources/
-├── StorageCore/        sem interface: volumes, alertas, histórico e previsão
-│   ├── VolumeService   capacidade e metadados de cada volume
-│   ├── AlertPolicy     quando notificar (sem repetir à toa)
-│   ├── HistoryStore    histórico em SQLite e compactação
-│   └── Forecast        tendência e previsão de disco cheio
-├── DiskNotchUI/        cores, anel, barra de uso e formato do notch
-├── DiskNotch/          o app: notch, barra de menus, alertas, histórico e modo demonstração
-├── DiskNotchWidget/    a extensão de widgets
-└── disknotch-probe/    ferramenta de linha de comando e testes
+├── StorageCore/          sem interface: volumes, alertas, histórico, previsão e análise
+│   ├── VolumeService     capacidade e metadados de cada volume
+│   ├── AlertPolicy       quando notificar (sem repetir à toa)
+│   ├── HistoryStore      histórico em SQLite e compactação
+│   ├── Forecast          tendência e previsão de disco cheio
+│   ├── DiskScanner       varredura paralela: tamanhos, árvore, maiores arquivos, pastas de projeto
+│   ├── DevCatalog        caches e dados de ferramentas de desenvolvimento
+│   ├── StorageCategories categorias, sem contar nada duas vezes
+│   ├── Treemap           layout "squarified" do mapa
+│   └── FullDiskAccess    detecção do Acesso Total ao Disco
+├── DiskNotchUI/          cores, anel, barra de uso, formato do notch e mapa
+├── DiskNotch/            o app: notch, barra de menus, alertas, painel e modo demonstração
+├── DiskNotchWidget/      a extensão de widgets
+└── disknotch-probe/      ferramenta de linha de comando e testes
+Scripts/                  certificado local de assinatura
 ```
 
 - **Leitura do disco:** `URL.resourceValues` com as chaves de capacidade do
@@ -209,6 +287,12 @@ Sources/
   barra de menus e presente em todos os espaços, inclusive em tela cheia. A
   posição vem de `NSScreen.auxiliaryTopLeftArea` e `auxiliaryTopRightArea`.
 - **Histórico em SQLite**, direto pela biblioteca do sistema, sem dependências.
+- **Varredura:** soma o espaço alocado de cada arquivo (como o Finder), sem seguir
+  links simbólicos nem entrar em outros volumes, com as pastas de primeiro nível em
+  paralelo. Pastas acima de 100 MB guardam a lista de filhos, para o mapa navegar
+  sem varrer de novo.
+- **Uma cópia só:** se o macOS abrir uma segunda cópia do app (por um link de
+  widget, por exemplo), ela repassa o link para a que já está aberta e fecha.
 
 Planejamento e decisões: [ROADMAP.md](ROADMAP.md).
 
@@ -226,8 +310,15 @@ Planejamento e decisões: [ROADMAP.md](ROADMAP.md).
   usa SQLite.
 - **Sem botão "Atualizar" no widget.** Botões interativos dependem de App Intents,
   cujos metadados só o Xcode gera. O app atualiza os widgets por conta própria.
-- **Testes só da lógica.** Alertas, histórico e previsão têm testes automáticos no
-  `disknotch-probe`, que o CI roda a cada push; a interface ainda é verificada à mão.
+- **Pastas de nuvem não são analisadas.** Google Drive, Dropbox, OneDrive e afins
+  (`~/Library/CloudStorage`), e qualquer pasta sem cópia local, ficam de fora:
+  percorrê-las obrigaria o serviço a baixar cada listagem da internet, o que é lento
+  e pode travar. O painel lista o que foi pulado.
+- **"Sistema e outros" é o que sobra.** Não há como medir o próprio macOS sem
+  permissões de administrador, então ele é o espaço usado menos tudo o que foi medido.
+- **Testes só da lógica.** Alertas, histórico, previsão e análise têm testes
+  automáticos no `disknotch-probe`, que o CI roda a cada push; a interface ainda é
+  verificada à mão.
 
 **Logs:** o app não tem janela principal, então o que importa para diagnóstico
 vai para um arquivo:

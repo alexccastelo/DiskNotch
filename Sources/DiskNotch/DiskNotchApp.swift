@@ -24,6 +24,17 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     })
     @Published var notchEnabled = UserDefaults.standard.object(forKey: "notchEnabled") as? Bool ?? true
 
+    /// Outra cópia do DiskNotch já estava aberta quando esta iniciou.
+    private var isDuplicate = false
+    private static let openURLNotification = Notification.Name("id.nexum.disknotch.open-url")
+
+    func applicationWillFinishLaunching(_ notification: Notification) {
+        guard !CommandLine.arguments.contains("--render-readme-images") else { return }
+        let others = NSRunningApplication.runningApplications(withBundleIdentifier: Bundle.main.bundleIdentifier ?? "")
+            .filter { $0.processIdentifier != ProcessInfo.processInfo.processIdentifier }
+        isDuplicate = !others.isEmpty
+    }
+
     func applicationDidFinishLaunching(_ notification: Notification) {
         // --render-readme-images <pasta>: gera as imagens do README e sai.
         let args = CommandLine.arguments
@@ -31,15 +42,38 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
             let path = i + 1 < args.count ? args[i + 1] : "docs/design"
             exit(ReadmeRenderer.run(outputDirectory: URL(fileURLWithPath: path)) ? 0 : 1)
         }
+        // Uma cópia só: esta repassa os links (abaixo) e fecha. Sair com código 0 não faz
+        // o launchd reabrir (KeepAlive só reabre depois de travamento).
+        if isDuplicate {
+            AlertCenter.log("outra cópia já está aberta; esta fecha")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) { exit(0) }
+            return
+        }
+        DistributedNotificationCenter.default().addObserver(forName: Self.openURLNotification, object: nil, queue: .main) { [weak self] note in
+            guard let string = note.object as? String, let url = URL(string: string) else { return }
+            MainActor.assumeIsolated { self?.handle(url) }
+        }
         // Sem ícone no Dock mesmo quando rodado fora de um .app.
         NSApp.setActivationPolicy(.accessory)
         if notchEnabled { notch.show() }
     }
 
-    /// Links disknotch://historico, usados pelos widgets.
+    /// Links disknotch://painel e disknotch://historico, usados pelos widgets.
     func application(_ application: NSApplication, open urls: [URL]) {
         for url in urls where url.scheme == "disknotch" {
-            if url.host == "historico" { HistoryWindowController.shared.show(model: model) }
+            if isDuplicate {
+                DistributedNotificationCenter.default().postNotificationName(
+                    Self.openURLNotification, object: url.absoluteString, userInfo: nil, deliverImmediately: true)
+            } else {
+                handle(url)
+            }
+        }
+    }
+
+    private func handle(_ url: URL) {
+        switch url.host {
+        case "historico": DashboardWindowController.shared.show(model: model, section: .history)
+        default: DashboardWindowController.shared.show(model: model)
         }
     }
 
@@ -118,7 +152,7 @@ private struct MenuContent: View {
             }
             HStack {
                 Button("Atualizar") { model.refresh() }
-                Button("Ver histórico…") { HistoryWindowController.shared.show(model: model) }
+                Button("Abrir painel…") { DashboardWindowController.shared.show(model: model) }
                 Spacer()
                 Button("Sair") { NSApp.terminate(nil) }
             }

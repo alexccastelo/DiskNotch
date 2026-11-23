@@ -282,33 +282,3 @@ struct HistoryView: View {
     }
 }
 
-/// Janela comum (não é painel), aberta pelo notch ou pelo menu.
-@MainActor
-final class HistoryWindowController {
-    static let shared = HistoryWindowController()
-    private var window: NSWindow?
-    private var state: HistoryViewState?
-
-    func show(model: StorageModel) {
-        if let window, let state {
-            state.reload()
-            window.makeKeyAndOrderFront(nil)
-            NSApp.activate()
-            return
-        }
-        let state = HistoryViewState(model: model)
-        let window = NSWindow(
-            contentRect: NSRect(x: 0, y: 0, width: 720, height: 480),
-            styleMask: [.titled, .closable, .miniaturizable, .resizable],
-            backing: .buffered, defer: false)
-        window.title = "Histórico de armazenamento"
-        window.isReleasedWhenClosed = false
-        window.contentView = NSHostingView(rootView: HistoryView(state: state))
-        window.center()
-        window.setFrameAutosaveName("DiskNotchHistory")
-        self.window = window
-        self.state = state
-        window.makeKeyAndOrderFront(nil)
-        NSApp.activate()
-    }
-}

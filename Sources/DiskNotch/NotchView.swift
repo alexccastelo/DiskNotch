@@ -174,7 +174,7 @@ private struct ExpandedContent: View {
                     HistoryCard(samples: model.rootLast24h, forecast: model.rootForecast,
                                 level: model.level(of: root))
                         .frame(width: 176)
-                        .onTapGesture { HistoryWindowController.shared.show(model: model) }
+                        .onTapGesture { DashboardWindowController.shared.show(model: model, section: .history) }
                         .help("Abrir o histórico")
                 }
             }
@@ -209,8 +209,8 @@ private struct ExpandedContent: View {
                 }
                 Spacer()
                 Button { model.refresh() } label: { Label("Atualizar", systemImage: "arrow.clockwise") }
-                Button { HistoryWindowController.shared.show(model: model) } label: {
-                    Label("Histórico", systemImage: "chart.xyaxis.line")
+                Button { DashboardWindowController.shared.show(model: model) } label: {
+                    Label("Painel", systemImage: "rectangle.grid.2x2")
                 }
                 Button { if let r = model.root { model.revealInFinder(r) } } label: {
                     Label("Finder", systemImage: "folder")

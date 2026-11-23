@@ -2,7 +2,7 @@
 projeto: DiskNotch
 slug: disknotch
 descricao: Monitor de armazenamento do Mac no notch, na barra de menus e em widgets, com histórico, análise e limpeza assistida.
-atualizado: 2026-11-21 10:14
+atualizado: 2026-11-23 08:53
 ---
 
 # Roadmap · DiskNotch
@@ -66,16 +66,25 @@ _21 nov 2026_ — Acompanhar a ocupação ao longo do tempo e ver o disco sem ab
   > local: 2026-11-21 · github: e4c4d77
 
 ## Fase 3 · Análise do disco
-_a definir_ — Descobrir o que ocupa o disco e onde está o crescimento.
+_23 nov 2026_ — Descobrir o que ocupa o disco e onde está o crescimento.
 
-- [planejado] **Categoria Desenvolvimento** · Análise · sugestão
+- [entregue] **Categoria Desenvolvimento** · Análise · sugestão
   Mede caches de programação: Xcode, node_modules, npm, pnpm, pip, uv, Homebrew, Docker e modelos de IA locais.
-- [planejado] **Categorias e maiores pastas** · Análise · sugestão
-  Apps, Documentos, Downloads, Mídia, Sistema e snapshots, com as maiores pastas e arquivos.
-- [planejado] **Permissão de Acesso Total ao Disco** · Permissões · sugestão
+  - Comando oficial de limpeza de cada ferramenta, com botão para copiar; o painel não apaga nada
+  - Pastas de projeto (node_modules, .venv, .build, target) só na pasta pessoal
+  > local: 2026-11-23
+- [entregue] **Categorias e maiores pastas** · Análise · sugestão
+  Apps, Documentos, Downloads, Mídia, Caches, Sistema e outras, com as maiores pastas e arquivos.
+  - Cada byte numa categoria só; o que sobra do espaço usado vira "Sistema e outros"
+  - Mapa navegável das pastas grandes
+  > local: 2026-11-23
+- [entregue] **Permissão de Acesso Total ao Disco** · Permissões · sugestão
   Explica por que a permissão é necessária e leva direto ao lugar certo nos Ajustes do Sistema.
-- [planejado] **Janela de painel completo** · Produto · sugestão
-  Visão geral, categorias, histórico, volumes e ajustes numa janela própria, com mapa visual do disco.
+  - Certificado local para a permissão sobreviver aos builds
+  > local: 2026-11-23
+- [entregue] **Janela de painel completo** · Produto · sugestão
+  Visão geral, desenvolvimento, categorias, pastas, histórico e volumes numa janela própria, com mapa visual do disco.
+  > local: 2026-11-23
 
 ## Fase 4 · Limpeza assistida
 _a definir_ — Liberar espaço com segurança.
@@ -99,6 +108,8 @@ _sem data_ — Possibilidades levantadas no caminho.
   Avisar quando o disco cresce muito em pouco tempo e apontar a pasta responsável.
 - [ideia] **Versão para a App Store** · Distribuição · sugestão
   Versão limitada às pastas escolhidas pelo usuário, por causa das regras da loja.
+- [ideia] **Snapshots locais do Time Machine** · Análise · sugestão
+  Mostrar quantos snapshots locais existem e quanto espaço ocupam.
 
 ## Decisões
 
@@ -108,6 +119,9 @@ _sem data_ — Possibilidades levantadas no caminho.
 - **Informação recolhida de um lado só** — No macOS 27 não dá para saber onde ficam os ícones da barra de menus, então o painel não passa da borda do notch do lado dos ícones.
 - **Histórico em SQLite** — O SwiftData depende de macros que não existem sem o Xcode; o SQLite já vem no macOS e não precisa de dependências.
 - **Widgets sem Xcode** — A extensão é compilada pelo Swift Package Manager e ligada com a entrada `_NSExtensionMain`, como o Xcode faz; o `build-app.sh` grava as chaves de plataforma e SDK no `Info.plist`.
+- **Análise sob demanda numa passada só** — A pasta pessoal, os Aplicativos e o Homebrew são percorridos juntos, em cerca de 20 s para 1 milhão de arquivos; o resultado fica salvo.
+- **Pastas de nuvem fora da análise** — Abrir ~/Library/CloudStorage e pastas sem cópia local força o serviço a baixar listagens e trava a varredura.
+- **Certificado local de assinatura** — O Acesso Total ao Disco fica preso à assinatura; a assinatura ad hoc muda a cada build e a permissão se perderia.
 
 ## Pontos de atenção
 
@@ -115,3 +129,5 @@ _sem data_ — Possibilidades levantadas no caminho.
 - **Notch sem API oficial** — O posicionamento é manual e pode mudar entre versões do macOS; o ícone na barra de menus fica sempre como alternativa.
 - **Testes só da lógica** — Alertas, histórico e previsão têm testes automáticos no `disknotch-probe`; a interface ainda é verificada à mão.
 - **Histórico começa na instalação** — O macOS não guarda histórico de espaço livre, então os gráficos se preenchem com o tempo e ficam com lacunas quando o Mac está desligado.
+- **"Sistema e outros" é estimado** — É o espaço usado menos tudo o que foi medido; não há como medir o próprio macOS sem permissões de administrador.
+- **Pastas de nuvem não são medidas** — O espaço local usado pelo Google Drive, Dropbox e afins fica de fora da análise.

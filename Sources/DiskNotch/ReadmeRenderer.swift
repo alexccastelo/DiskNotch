@@ -30,6 +30,22 @@ enum ReadmeRenderer {
                     .background(Color(nsColor: .windowBackgroundColor))
                     .environment(\.colorScheme, .dark),
                    named: "historico.png", in: outputDirectory) && ok
+
+        // Páginas do painel completo.
+        let dashboard = DashboardState(model: model)
+        for (section, name, height) in [(DashboardSection.overview, "painel-visao-geral.png", 640.0),
+                                        (.development, "painel-desenvolvimento.png", 900.0)] {
+            dashboard.section = section
+            ok = write(DashboardDetail(model: model, state: dashboard)
+                        .environment(\.isSnapshot, true)
+                        .frame(width: 860)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .frame(width: 860, height: height, alignment: .top)
+                        .clipped()
+                        .background(Color(nsColor: .windowBackgroundColor))
+                        .environment(\.colorScheme, .dark),
+                       named: name, in: outputDirectory) && ok
+        }
         return ok
     }
 

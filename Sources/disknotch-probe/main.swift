@@ -10,6 +10,13 @@ if CommandLine.arguments.contains("--testar-alertas") {
 if CommandLine.arguments.contains("--testar-historico") {
     exit(HistorySelfTest.run() ? 0 : 1)
 }
+if CommandLine.arguments.contains("--testar-analise") {
+    exit(await AnalysisSelfTest.run() ? 0 : 1)
+}
+if CommandLine.arguments.contains("--analisar") {
+    await RealAnalysis.run()
+    exit(0)
+}
 if CommandLine.arguments.contains("--historico") {
     // Resumo do histórico real gravado pelo app.
     let store = try HistoryStore()

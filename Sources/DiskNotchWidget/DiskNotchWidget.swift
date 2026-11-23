@@ -81,7 +81,7 @@ struct DiskWidgetView: View {
         .foregroundStyle(.white)
         .environment(\.colorScheme, .dark)
         .containerBackground(for: .widget) { Color.black }
-        .widgetURL(URL(string: "disknotch://historico"))
+        .widgetURL(URL(string: "disknotch://painel"))
     }
 
     // Pequeno: anel, GB livres e situação.

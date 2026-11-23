@@ -31,9 +31,22 @@ for PLIST in "$APP/Contents/Info.plist" "$APPEX/Contents/Info.plist"; do
     plutil -replace DTSDKBuild -string "$SDK_BUILD" "$PLIST"
 done
 
+# Assinatura: com o certificado local fixo (Scripts/criar-certificado-local.sh), o macOS
+# mantém o Acesso Total ao Disco entre builds. Sem ele, a assinatura é ad hoc e muda a
+# cada build, e a permissão precisa ser dada de novo.
+IDENTITY="DiskNotch Local Signing"
+KEYCHAIN_ARGS=()
+if [[ -n "${DISKNOTCH_KEYCHAIN:-}" ]]; then KEYCHAIN_ARGS=(--keychain "$DISKNOTCH_KEYCHAIN"); fi
+if security find-certificate -c "$IDENTITY" ${DISKNOTCH_KEYCHAIN:-} >/dev/null 2>&1; then
+    SIGN="$IDENTITY"
+else
+    SIGN="-"
+    echo "Aviso: sem o certificado local, assinatura ad hoc (o Acesso Total ao Disco não sobrevive a novos builds)."
+fi
+
 # A extensão é assinada antes do app, com a sandbox exigida pelo WidgetKit.
-codesign --force --sign - --entitlements Support/Widget.entitlements "$APPEX"
-codesign --force --sign - "$APP"
+codesign --force --sign "$SIGN" "${KEYCHAIN_ARGS[@]}" --entitlements Support/Widget.entitlements "$APPEX"
+codesign --force --sign "$SIGN" "${KEYCHAIN_ARGS[@]}" "$APP"
 
 # Registra o app e a extensão no sistema, para o widget aparecer na galeria.
 LSREGISTER=/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister

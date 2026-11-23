@@ -19,3 +19,5 @@ jobs:
         run: swift run disknotch-probe --testar-alertas
       - name: Testar histórico e previsão
         run: swift run disknotch-probe --testar-historico
+      - name: Testar análise do disco
+        run: swift run disknotch-probe --testar-analise

@@ -12,6 +12,8 @@ final class StorageModel {
     private(set) var volumes: [VolumeInfo] = []
     private(set) var lastUpdated: Date?
     let alertSettings = AlertSettings()
+    /// Análise do disco (categorias, desenvolvimento, pastas).
+    @ObservationIgnored let analysis: AnalysisModel
 
     /// Amostras das últimas 24 h do volume de inicialização (para o gráfico do notch).
     private(set) var rootLast24h: [StorageSample] = []
@@ -41,6 +43,7 @@ final class StorageModel {
     static var demoRequested: Bool { ProcessInfo.processInfo.environment["DISKNOTCH_DEMO"] == "1" }
 
     init(interval: TimeInterval = 60, demo: Bool = false) {
+        analysis = AnalysisModel(demo: demo)
         if demo {
             loadDemoData()
             return
