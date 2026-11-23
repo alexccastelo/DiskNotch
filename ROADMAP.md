@@ -2,7 +2,7 @@
 projeto: DiskNotch
 slug: disknotch
 descricao: Monitor de armazenamento do Mac no notch, na barra de menus e em widgets, com histórico, análise e limpeza assistida.
-atualizado: 2026-11-23 09:53
+atualizado: 2026-11-23 09:56
 ---
 
 # Roadmap · DiskNotch
@@ -117,12 +117,12 @@ _a definir_ — Deixar o app pronto para outras pessoas usarem.
   - DMG com nome fixo no GitHub Releases
   - Atualização automática pelo Sparkle
   - Abertura no login pelo SMAppService
+- [proximo] **Aviso de picos de ocupação** · Alertas · sugestão
+  Avisar quando o disco cresce muito em pouco tempo e apontar a pasta responsável.
 
 ## Ideias
 _sem data_ — Possibilidades levantadas no caminho.
 
-- [ideia] **Aviso de picos de ocupação** · Alertas · sugestão
-  Avisar quando o disco cresce muito em pouco tempo e apontar a pasta responsável.
 - [ideia] **Versão para a App Store** · Distribuição · sugestão
   Versão limitada às pastas escolhidas pelo usuário, por causa das regras da loja.
 - [ideia] **Snapshots locais do Time Machine** · Análise · sugestão
