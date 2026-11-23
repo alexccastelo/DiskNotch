@@ -2,13 +2,8 @@ import SwiftUI
 import StorageCore
 
 extension StorageLevel {
-    public var color: Color {
-        switch self {
-        case .ok: Color(red: 0.30, green: 0.85, blue: 0.48)
-        case .warning: Color(red: 1.00, green: 0.72, blue: 0.20)
-        case .critical: Color(red: 1.00, green: 0.32, blue: 0.30)
-        }
-    }
+    /// Cor do nível, escolhida pelo usuário nos ajustes (ver `LevelAppearance`).
+    public var color: Color { LevelAppearance.shared.color(for: self) }
 
     public var label: String {
         switch self {

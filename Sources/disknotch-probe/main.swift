@@ -5,7 +5,9 @@ import StorageCore
 // e, com --testar-alertas, a regra de quando notificar.
 
 if CommandLine.arguments.contains("--testar-alertas") {
-    exit(AlertPolicySelfTest.run() ? 0 : 1)
+    let alerts = AlertPolicySelfTest.run()
+    let ranges = ThresholdSelfTest.run()
+    exit(alerts && ranges ? 0 : 1)
 }
 if CommandLine.arguments.contains("--testar-historico") {
     exit(HistorySelfTest.run() ? 0 : 1)

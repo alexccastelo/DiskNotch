@@ -168,13 +168,14 @@ final class StorageModel {
 
     /// Nível do volume segundo os limites escolhidos pelo usuário.
     func level(of volume: VolumeInfo) -> StorageLevel {
-        StorageLevel(freeFraction: volume.freeFraction, thresholds: alertSettings.thresholds)
+        StorageLevel(volume: volume, thresholds: alertSettings.thresholds)
     }
 
     var externalVolumes: [VolumeInfo] { volumes.filter { !$0.isRoot } }
 
     func sendTestAlert() {
-        if let root { alerts.sendTest(for: root, settings: alertSettings) }
+        guard let root else { return }
+        Task { alertSettings.testMessage = await alerts.sendTest(for: root, settings: alertSettings) }
     }
 
     func eject(_ volume: VolumeInfo) {

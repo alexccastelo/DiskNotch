@@ -54,7 +54,7 @@ pode ser trocado no menu da barra.
 - uma barra de uso e o nível: verde, âmbar ("espaço baixo") ou vermelho ("espaço crítico");
 - o espaço livre nas últimas 24 h, a variação no período e a previsão;
 - discos externos e de rede, com botão de ejetar;
-- atalhos para Atualizar, Painel, Finder e Ajustes de Armazenamento.
+- atalhos para Atualizar, Painel, Finder e Ajustes (faixas, cores e alertas).
 
 A janela do painel é maior que a forma desenhada, para a animação de abrir ter
 espaço. Fora da forma visível, ela ignora o mouse, então os cliques passam
@@ -82,10 +82,30 @@ nela abre os Ajustes de Armazenamento.
 - **Folga de 1 ponto percentual.** O alerta só é "esquecido" quando o espaço
   sobe além do limite com folga, para não avisar várias vezes quando o uso
   oscila em torno dele.
-- **Limites ajustáveis** no menu da barra (padrão: 20% e 10% livres). Os mesmos
-  limites definem as cores do notch, do menu e dos widgets.
+- **Faixas ajustáveis** na seção Ajustes do painel (veja abaixo). As mesmas faixas
+  definem as cores do notch, do menu, do painel e dos widgets.
 - **Permissão.** O macOS pede para permitir as notificações na primeira vez. Até
   você responder, nenhum alerta é dado como enviado.
+
+### Faixas e cores
+
+Na seção **Ajustes** do painel (botão Ajustes no notch, ou "Faixas, cores e alertas…"
+no menu da barra), você escolhe quando um disco passa a **espaço baixo** e a **espaço
+crítico**:
+
+| Definir por | Exemplo | Bom para |
+|---|---|---|
+| **Porcentagem livre** (padrão) | atenção abaixo de 20%, crítico abaixo de 10% | discos de tamanhos parecidos |
+| **Espaço livre (GB)** | atenção abaixo de 50 GB, crítico abaixo de 20 GB | quando o que importa é o espaço que sobra |
+| **Os dois** | o que disparar primeiro | discos de tamanhos muito diferentes |
+
+Uma prévia mostra, para cada disco, onde ficam os limites e em que nível ele está
+agora. "Crítico" fica sempre abaixo de "atenção": ao mudar um, o outro se ajusta.
+
+As **cores** de cada nível (tudo certo, espaço baixo, espaço crítico) também podem
+ser trocadas, com prévia do anel. Valem no notch, no menu, no painel e nos widgets,
+e há um botão para voltar às cores padrão. Faixas e cores ficam nas preferências do
+app (`id.nexum.disknotch`), que o widget lê.
 
 ## Histórico e previsão
 
@@ -136,6 +156,7 @@ para 1 milhão de arquivos. O resultado fica salvo em
 | **Pastas e arquivos** | Mapa navegável das pastas grandes (clique para entrar) e os maiores arquivos. |
 | **Histórico** | Os gráficos de 24 h a 1 ano. |
 | **Volumes** | Todos os discos montados, com botão de ejetar. |
+| **Ajustes** | Faixas de ocupação (porcentagem, GB ou os dois), cores de cada nível e alertas. |
 
 **Cada byte entra numa categoria só.** O cache do pip fica dentro de
 `~/Library/Caches`, mas conta só em Desenvolvimento; um `node_modules` dentro de
@@ -273,7 +294,7 @@ versão, feita só com um script, demorava uns 5 minutos para mostrar o notch.
 ./build-app.sh                                  # compila em release e empacota o .app com o widget
 open build/DiskNotch.app
 swift run disknotch-probe                        # lê os discos pelo terminal, sem interface
-swift run disknotch-probe --testar-alertas       # 11 casos da regra de alertas
+swift run disknotch-probe --testar-alertas       # 25 casos: regra de alertas e faixas por %, GB ou os dois
 swift run disknotch-probe --testar-historico     # 11 casos de histórico e previsão (70 dias simulados)
 swift run disknotch-probe --historico            # resumo do histórico real gravado pelo app
 swift run disknotch-probe --testar-analise       # 20 casos de varredura, categorias e treemap (pasta pessoal falsa)
@@ -286,6 +307,17 @@ o mesmo que o agente de login: recompila só se o código mudou e abre o app.
 
 O app precisa rodar de dentro do `.app`: as notificações do macOS não funcionam
 num executável solto, então `swift run DiskNotch` encerra com erro.
+
+O ícone do app ([`Support/AppIcon.icns`](Support/AppIcon.icns)) é desenhado pelo próprio app, com o
+mesmo anel do banner. Para gerá-lo de novo depois de mudar o desenho:
+
+```sh
+Scripts/gerar-icone.sh
+```
+
+Ele sai como um quadrado opaco de ponta a ponta, em 8 bits por canal e sem transparência,
+porque é assim que o macOS 26+ aplica o formato arredondado e o acabamento de vidro. Um
+ícone já arredondado, com margem transparente ou com 16 bits, vai para uma moldura cinza.
 
 Rode com `DISKNOTCH_DEMO=1` para ver dados fixos de demonstração em vez do seu
 disco. As imagens deste README são geradas a partir das telas reais do app, com
@@ -314,7 +346,7 @@ Sources/
 ├── DiskNotch/            o app: notch, barra de menus, alertas, painel e modo demonstração
 ├── DiskNotchWidget/      a extensão de widgets
 └── disknotch-probe/      ferramenta de linha de comando e testes
-Scripts/                  certificado local de assinatura
+Scripts/                  certificado local de assinatura e geração do ícone
 ```
 
 - **Leitura do disco:** `URL.resourceValues` com as chaves de capacidade do

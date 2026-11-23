@@ -5,42 +5,81 @@ import DiskNotchUI
 import WidgetKit
 @preconcurrency import UserNotifications
 
-/// Ajustes de alerta, guardados no UserDefaults.
+/// Ajustes de alerta e faixas de ocupação, guardados no UserDefaults (o widget lê as mesmas chaves).
 @MainActor
 @Observable
 final class AlertSettings {
     private let defaults = UserDefaults.standard
+    private typealias Keys = ThresholdPreferences
 
     var enabled: Bool { didSet { defaults.set(enabled, forKey: "alertsEnabled") } }
-    /// Percentual livre abaixo do qual o volume fica em "atenção".
+
+    /// Resultado do último teste de notificação (mostrado nos Ajustes).
+    var testMessage: String?
+
+    /// Como as faixas são definidas: porcentagem, espaço livre em GB ou os dois.
+    var mode: AlertThresholds.Mode { didSet { save(mode.rawValue, Keys.modeKey) } }
+
+    /// Porcentagem livre abaixo da qual o volume fica em "atenção" e "crítico".
+    /// "Crítico" sempre fica abaixo de "atenção" (os ajustes empurram um ao mudar o outro).
     var warningPercent: Int {
         didSet {
-            defaults.set(warningPercent, forKey: "alertWarningPercent")
-            WidgetCenter.shared.reloadAllTimelines()
-            if criticalPercent >= warningPercent { criticalPercent = max(1, warningPercent - 5) }
+            save(warningPercent, Keys.warningPercentKey)
+            if criticalPercent >= warningPercent { criticalPercent = max(1, warningPercent - 1) }
         }
     }
-    /// Percentual livre abaixo do qual o volume fica "crítico".
     var criticalPercent: Int {
         didSet {
-            defaults.set(criticalPercent, forKey: "alertCriticalPercent")
-            WidgetCenter.shared.reloadAllTimelines()
-            if warningPercent <= criticalPercent { warningPercent = criticalPercent + 5 }
+            save(criticalPercent, Keys.criticalPercentKey)
+            if warningPercent <= criticalPercent { warningPercent = criticalPercent + 1 }
         }
     }
 
-    static let warningOptions = [10, 15, 20, 25, 30]
-    static let criticalOptions = [3, 5, 10, 15]
+    /// Espaço livre, em GB, abaixo do qual o volume fica em "atenção" e "crítico".
+    var warningGB: Int {
+        didSet {
+            save(warningGB, Keys.warningGBKey)
+            if criticalGB >= warningGB { criticalGB = max(1, warningGB - 1) }
+        }
+    }
+    var criticalGB: Int {
+        didSet {
+            save(criticalGB, Keys.criticalGBKey)
+            if warningGB <= criticalGB { warningGB = criticalGB + 1 }
+        }
+    }
+
+    static let percentRange = 1...90
+    static let gbRange = 1...2000
 
     init() {
         enabled = defaults.object(forKey: "alertsEnabled") as? Bool ?? true
-        warningPercent = defaults.object(forKey: "alertWarningPercent") as? Int ?? 20
-        criticalPercent = defaults.object(forKey: "alertCriticalPercent") as? Int ?? 10
+        let saved = ThresholdPreferences.thresholds(from: defaults)
+        mode = saved.mode
+        warningPercent = Int((saved.warningFraction * 100).rounded())
+        criticalPercent = Int((saved.criticalFraction * 100).rounded())
+        warningGB = Int(saved.warningBytes / 1_000_000_000)
+        criticalGB = Int(saved.criticalBytes / 1_000_000_000)
     }
 
+    /// Calculado das propriedades observáveis: as telas se redesenham quando uma faixa muda.
     var thresholds: AlertThresholds {
-        AlertThresholds(warningBelow: Double(warningPercent) / 100,
-                        criticalBelow: Double(criticalPercent) / 100)
+        AlertThresholds(mode: mode,
+                        warningFraction: Double(warningPercent) / 100, criticalFraction: Double(criticalPercent) / 100,
+                        warningBytes: Int64(warningGB) * 1_000_000_000, criticalBytes: Int64(criticalGB) * 1_000_000_000)
+    }
+
+    func resetToDefaults() {
+        mode = .percent
+        warningPercent = Keys.defaultWarningPercent
+        criticalPercent = Keys.defaultCriticalPercent
+        warningGB = Keys.defaultWarningGB
+        criticalGB = Keys.defaultCriticalGB
+    }
+
+    private func save(_ value: Any, _ key: String) {
+        defaults.set(value, forKey: key)
+        WidgetCenter.shared.reloadAllTimelines()
     }
 }
 
@@ -79,7 +118,7 @@ final class AlertCenter: NSObject {
         guard settings.enabled, isAuthorized else { return }
         var changed = false
         for volume in volumes where volume.isLocal {
-            let decision = AlertPolicy.evaluate(freeFraction: volume.freeFraction,
+            let decision = AlertPolicy.evaluate(freeBytes: volume.freeBytes, totalBytes: volume.totalBytes,
                                                 thresholds: settings.thresholds,
                                                 previous: records[volume.id],
                                                 now: now)
@@ -96,10 +135,20 @@ final class AlertCenter: NSObject {
         }
     }
 
-    /// Notificação de teste com os dados atuais do volume.
-    func sendTest(for volume: VolumeInfo, settings: AlertSettings) {
-        let level = StorageLevel(freeFraction: volume.freeFraction, thresholds: settings.thresholds)
+    /// Notificação de teste com os dados atuais do volume. Devolve o que aconteceu, para o painel mostrar.
+    func sendTest(for volume: VolumeInfo, settings: AlertSettings) async -> String {
+        let current = await center.notificationSettings()
+        switch current.authorizationStatus {
+        case .denied, .notDetermined:
+            return "O macOS não está deixando o DiskNotch notificar. Libere em Ajustes do Sistema › Notificações › DiskNotch."
+        default: break
+        }
+        if current.alertStyle == .none {
+            return "As notificações do DiskNotch estão sem banner. Em Ajustes do Sistema › Notificações › DiskNotch, escolha o estilo \"Faixas\" ou \"Alertas\"."
+        }
+        let level = StorageLevel(volume: volume, thresholds: settings.thresholds)
         send(level: level == .ok ? .warning : level, volume: volume, isTest: true)
+        return "Enviada às \(Date.now.formatted(date: .omitted, time: .shortened)). Se o banner não apareceu, um Foco (como Não Perturbe) deve estar ativo: com ele, o macOS manda a notificação direto para a Central de Notificações (clique na data e hora da barra de menus). Para os alertas passarem pelo Foco, inclua o DiskNotch nos apps permitidos do Foco."
     }
 
     private func send(level: StorageLevel, volume: VolumeInfo, isTest: Bool = false) {
@@ -116,7 +165,9 @@ final class AlertCenter: NSObject {
         content.sound = level == .critical ? .defaultCritical : .default
         content.threadIdentifier = volume.id
 
-        let request = UNNotificationRequest(identifier: "\(volume.id)-\(level)",
+        // O teste tem identificador próprio, para não substituir um alerta real na Central de Notificações.
+        let identifier = isTest ? "teste-\(UUID().uuidString)" : "\(volume.id)-\(level)"
+        let request = UNNotificationRequest(identifier: identifier,
                                             content: content, trigger: nil)
         center.add(request) { error in
             Self.log("notificação \(level) para \(volume.name): \(error.map { "erro: \($0.localizedDescription)" } ?? "enviada")")

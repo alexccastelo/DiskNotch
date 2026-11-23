@@ -38,7 +38,7 @@ struct DiskProvider: TimelineProvider {
     static func currentEntry(now: Date = .now) -> DiskEntry {
         let volume = VolumeService.rootVolume()
         let thresholds = Self.thresholds()
-        let level = volume.map { StorageLevel(freeFraction: $0.freeFraction, thresholds: thresholds) } ?? .ok
+        let level = volume.map { StorageLevel(volume: $0, thresholds: thresholds) } ?? .ok
 
         var last24h: [StorageSample] = []
         var forecast: Forecast?
@@ -52,11 +52,11 @@ struct DiskProvider: TimelineProvider {
     }
 
     /// Lê os limites escolhidos no app (permissão de leitura das preferências do app).
+    /// Faixas e cores escolhidas no app (permissão de leitura das preferências do app).
     static func thresholds() -> AlertThresholds {
-        let prefs = UserDefaults(suiteName: "id.nexum.disknotch")
-        let warning = prefs?.object(forKey: "alertWarningPercent") as? Int ?? 20
-        let critical = prefs?.object(forKey: "alertCriticalPercent") as? Int ?? 10
-        return AlertThresholds(warningBelow: Double(warning) / 100, criticalBelow: Double(critical) / 100)
+        let prefs = UserDefaults(suiteName: ThresholdPreferences.suite)
+        if let prefs { LevelAppearance.shared.reload(from: prefs) }
+        return ThresholdPreferences.thresholds(from: prefs)
     }
 }
 

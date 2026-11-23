@@ -226,7 +226,6 @@ struct HistoryView: View {
     private func chart(_ volume: VolumeInfo) -> some View {
         let level = state.model.level(of: volume)
         let thresholds = state.model.alertSettings.thresholds
-        let totalGB = Double(volume.totalBytes) / 1e9
 
         if state.samples.count < 2 {
             ContentUnavailableView("Ainda sem histórico suficiente",
@@ -247,13 +246,13 @@ struct HistoryView: View {
                         .foregroundStyle(Color.white.opacity(0.55))
                         .lineStyle(StrokeStyle(lineWidth: 1.5, dash: [4, 4]))
                 }
-                RuleMark(y: .value("Atenção", totalGB * thresholds.warningBelow))
+                RuleMark(y: .value("Atenção", Double(thresholds.limit(.warning, totalBytes: volume.totalBytes)) / 1e9))
                     .foregroundStyle(StorageLevel.warning.color.opacity(0.7))
                     .lineStyle(StrokeStyle(lineWidth: 1, dash: [2, 3]))
                     .annotation(position: .top, alignment: .leading) {
                         Text("atenção").font(.caption2).foregroundStyle(StorageLevel.warning.color)
                     }
-                RuleMark(y: .value("Crítico", totalGB * thresholds.criticalBelow))
+                RuleMark(y: .value("Crítico", Double(thresholds.limit(.critical, totalBytes: volume.totalBytes)) / 1e9))
                     .foregroundStyle(StorageLevel.critical.color.opacity(0.7))
                     .lineStyle(StrokeStyle(lineWidth: 1, dash: [2, 3]))
                     .annotation(position: .top, alignment: .leading) {
@@ -261,7 +260,7 @@ struct HistoryView: View {
                     }
             }
             .chartYAxisLabel("GB livres")
-            .chartYScale(domain: 0...yMax(totalGB: totalGB, warning: thresholds.warningBelow))
+            .chartYScale(domain: 0...yMax(warningGB: Double(thresholds.limit(.warning, totalBytes: volume.totalBytes)) / 1e9))
             .frame(maxHeight: .infinity)
         }
     }
@@ -276,9 +275,9 @@ struct HistoryView: View {
         return [(last.date, Double(last.freeBytes) / 1e9), (end, endGB)]
     }
 
-    private func yMax(totalGB: Double, warning: Double) -> Double {
+    private func yMax(warningGB: Double) -> Double {
         let dataMax = state.samples.map { Double($0.freeBytes) / 1e9 }.max() ?? 0
-        return max(dataMax, totalGB * warning) * 1.15
+        return max(dataMax, warningGB) * 1.15
     }
 }
 

@@ -2,7 +2,7 @@
 projeto: DiskNotch
 slug: disknotch
 descricao: Monitor de armazenamento do Mac no notch, na barra de menus e em widgets, com histórico, análise e limpeza assistida.
-atualizado: 2026-11-23 09:20
+atualizado: 2026-11-23 09:53
 ---
 
 # Roadmap · DiskNotch
@@ -95,15 +95,28 @@ _23 nov 2026_ — Liberar espaço com segurança.
   - Lixo para caches sem comando e para pastas de projeto paradas há mais de 30 dias
   - Barreira que recusa pastas protegidas, links simbólicos e caminhos fora da pasta pessoal
   - Registro do quanto foi liberado
-  > local: 2026-11-23
+  > local: 2026-11-23 · github: 8406a5a
 
 ## Fase 5 · Acabamento e distribuição
 _a definir_ — Deixar o app pronto para outras pessoas usarem.
 
 - [planejado] **Acessibilidade e idiomas** · Produto · sugestão
   Suporte ao VoiceOver e textos em português e inglês.
-- [planejado] **Instalação assinada com atualizações automáticas** · Distribuição · sugestão
+- [entregue] **Faixas e cores configuráveis** · Ajustes · pedido
+  Escolher quando o disco passa a "espaço baixo" e "espaço crítico", e as cores de cada nível.
+  - Por porcentagem livre, por GB livres ou pelos dois (vale o que disparar primeiro), com prévia nos seus discos
+  - Cores aplicadas no notch, no menu, no painel e nos widgets
+  - Seção Ajustes no painel; o teste de notificação explica quando um Foco segura o aviso
+  > local: 2026-11-23
+- [entregue] **Ícone do app** · Produto · pedido
+  O mesmo anel do banner, no formato que o macOS 26+ exige.
+  > local: 2026-11-23
+- [proximo] **Instalação assinada com atualizações automáticas** · Distribuição · sugestão
   App assinado e notarizado pela Apple, que se atualiza sozinho.
+  - Developer ID, runtime endurecido e notarização
+  - DMG com nome fixo no GitHub Releases
+  - Atualização automática pelo Sparkle
+  - Abertura no login pelo SMAppService
 
 ## Ideias
 _sem data_ — Possibilidades levantadas no caminho.
@@ -128,6 +141,7 @@ _sem data_ — Possibilidades levantadas no caminho.
 - **Certificado local de assinatura** — O Acesso Total ao Disco fica preso à assinatura; a assinatura ad hoc muda a cada build e a permissão se perderia.
 - **Nada é apagado de vez** — Só o Lixo ou o comando oficial da ferramenta; o DiskNotch nunca esvazia o Lixo.
 - **Uma cópia do app por vez** — Se a cópia aberta é de uma versão anterior, a nova a encerra e assume; se é da mesma versão, a nova repassa o link e fecha.
+- **Ícone de ponta a ponta** — Quadrado opaco, em 8 bits por canal e sem cantos arredondados: é assim que o macOS 26+ aplica o recorte e o vidro sem moldura cinza.
 
 ## Pontos de atenção
 
@@ -138,3 +152,5 @@ _sem data_ — Possibilidades levantadas no caminho.
 - **"Sistema e outros" é estimado** — É o espaço usado menos tudo o que foi medido; não há como medir o próprio macOS sem permissões de administrador.
 - **Pastas de nuvem não são medidas** — O espaço local usado pelo Google Drive, Dropbox e afins fica de fora da análise.
 - **O espaço do Lixo só volta ao esvaziar** — O que vai para o Lixo continua ocupando o disco até ele ser esvaziado no Finder.
+- **Foco segura os alertas** — Com um Foco ativo, as notificações vão direto para a Central de Notificações, a não ser que o DiskNotch esteja entre os apps permitidos.
+- **Distribuição depende de conta paga** — A Fase 5 exige o Apple Developer Program (certificado Developer ID e notarização).

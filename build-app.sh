@@ -14,6 +14,8 @@ rm -rf "$APP"
 mkdir -p "$APP/Contents/MacOS" "$APPEX/Contents/MacOS"
 cp "$BIN_DIR/DiskNotch" "$APP/Contents/MacOS/DiskNotch"
 cp Support/Info.plist "$APP/Contents/Info.plist"
+mkdir -p "$APP/Contents/Resources"
+cp Support/AppIcon.icns "$APP/Contents/Resources/AppIcon.icns"   # gerado por Scripts/gerar-icone.sh
 cp "$BIN_DIR/DiskNotchWidget" "$APPEX/Contents/MacOS/DiskNotchWidget"
 cp Support/Widget-Info.plist "$APPEX/Contents/Info.plist"
 

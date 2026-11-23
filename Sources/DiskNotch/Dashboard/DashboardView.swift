@@ -5,7 +5,7 @@ import StorageCore
 import SwiftUI
 
 enum DashboardSection: String, CaseIterable, Identifiable, Hashable {
-    case overview, cleanup, development, categories, folders, history, volumes
+    case overview, cleanup, development, categories, folders, history, volumes, settings
     var id: Self { self }
 
     var title: String {
@@ -17,6 +17,7 @@ enum DashboardSection: String, CaseIterable, Identifiable, Hashable {
         case .folders: "Pastas e arquivos"
         case .history: "Histórico"
         case .volumes: "Volumes"
+        case .settings: "Ajustes"
         }
     }
 
@@ -29,6 +30,7 @@ enum DashboardSection: String, CaseIterable, Identifiable, Hashable {
         case .folders: "folder"
         case .history: "chart.xyaxis.line"
         case .volumes: "externaldrive"
+        case .settings: "slider.horizontal.3"
         }
     }
 }
@@ -92,6 +94,7 @@ struct DashboardDetail: View {
         case .folders: FoldersPage(model: model, state: state)
         case .history: HistoryView(state: state.history).padding(.top, -6)
         case .volumes: VolumesPage(model: model)
+        case .settings: SettingsPage(model: model)
         }
     }
 }

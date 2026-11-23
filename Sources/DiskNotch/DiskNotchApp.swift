@@ -82,6 +82,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     private func handle(_ url: URL) {
         switch url.host {
         case "historico": DashboardWindowController.shared.show(model: model, section: .history)
+        case "ajustes": DashboardWindowController.shared.show(model: model, section: .settings)
         default: DashboardWindowController.shared.show(model: model)
         }
     }
@@ -99,11 +100,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
         notch.setSide(side)
     }
 
+    /// Botão "Ajustes" do notch: faixas, cores e alertas, no painel.
     func openSettings() {
-        // Fase 0: abre os Ajustes de Armazenamento do sistema até termos a janela própria.
-        if let url = URL(string: "x-apple.systempreferences:com.apple.settings.Storage") {
-            NSWorkspace.shared.open(url)
-        }
+        DashboardWindowController.shared.show(model: model, section: .settings)
     }
 }
 
@@ -152,7 +151,9 @@ private struct MenuContent: View {
             .pickerStyle(.segmented)
             .disabled(!notch.notchEnabled)
             Divider()
-            AlertSettingsView(settings: model.alertSettings, sendTest: model.sendTestAlert)
+            AlertSummaryView(settings: model.alertSettings) {
+                DashboardWindowController.shared.show(model: model, section: .settings)
+            }
             Divider()
             if let forecast = model.rootForecast {
                 Label(forecast.summary(), systemImage: "chart.line.downtrend.xyaxis")
@@ -171,45 +172,26 @@ private struct MenuContent: View {
     }
 }
 
-/// Liga e desliga os alertas e ajusta os limites. Os limites também definem as cores.
-private struct AlertSettingsView: View {
+/// Resumo dos alertas no menu; faixas e cores ficam nos Ajustes do painel.
+private struct AlertSummaryView: View {
     @Bindable var settings: AlertSettings
-    var sendTest: () -> Void
+    var openSettings: () -> Void
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: 6) {
             Toggle("Avisar quando houver pouco espaço", isOn: $settings.enabled)
-            Grid(alignment: .leading, horizontalSpacing: 8, verticalSpacing: 6) {
-                GridRow {
-                    Label("Atenção abaixo de", systemImage: "circle.fill")
-                        .foregroundStyle(StorageLevel.warning.color)
-                    Picker("", selection: $settings.warningPercent) {
-                        ForEach(AlertSettings.warningOptions, id: \.self) { Text("\($0)% livre").tag($0) }
-                    }
-                    .labelsHidden()
-                }
-                GridRow {
-                    Label("Crítico abaixo de", systemImage: "circle.fill")
-                        .foregroundStyle(StorageLevel.critical.color)
-                    Picker("", selection: $settings.criticalPercent) {
-                        ForEach(AlertSettings.criticalOptions, id: \.self) { Text("\($0)% livre").tag($0) }
-                    }
-                    .labelsHidden()
-                }
-            }
-            .labelStyle(DotLabelStyle())
-            .font(.callout)
-            Button("Enviar notificação de teste", action: sendTest)
-                .disabled(!settings.enabled)
+            Text(summary).font(.caption).foregroundStyle(.secondary)
+            Button("Faixas, cores e alertas…", action: openSettings)
         }
     }
-}
 
-private struct DotLabelStyle: LabelStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        HStack(spacing: 6) {
-            configuration.icon.font(.system(size: 7))
-            configuration.title.foregroundStyle(.primary)
+    private var summary: String {
+        let percent = "\(settings.warningPercent)% e \(settings.criticalPercent)% livres"
+        let gb = "\(settings.warningGB) GB e \(settings.criticalGB) GB livres"
+        switch settings.mode {
+        case .percent: return "Atenção e crítico abaixo de \(percent)."
+        case .bytes: return "Atenção e crítico abaixo de \(gb)."
+        case .both: return "Atenção e crítico abaixo de \(percent), ou de \(gb)."
         }
     }
 }

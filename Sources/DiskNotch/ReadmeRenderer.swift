@@ -19,6 +19,7 @@ enum ReadmeRenderer {
 
         var ok = true
         ok = write(Banner(model: model), named: "disknotch-banner.png", in: outputDirectory) && ok
+        ok = write(AppIconView(), named: "app-icon.png", in: outputDirectory, opaque8Bit: true) && ok
         ok = write(Screen(height: 300) { NotchView(state: expanded, model: model, openSettings: {}) },
                    named: "notch-expandido.png", in: outputDirectory) && ok
         ok = write(Screen(height: 90) { NotchView(state: collapsed, model: model, openSettings: {}) },
@@ -50,10 +51,22 @@ enum ReadmeRenderer {
         return ok
     }
 
-    private static func write<V: View>(_ view: V, named name: String, in directory: URL) -> Bool {
+    /// - Parameter opaque8Bit: grava em 8 bits por canal e sem transparência. É o formato que o macOS 26+
+    ///   aceita como ícone "moderno"; com 16 bits ou canal alfa, ele põe o ícone numa moldura cinza.
+    private static func flatten(_ image: CGImage) -> CGImage? {
+        guard let context = CGContext(data: nil, width: image.width, height: image.height, bitsPerComponent: 8,
+                                      bytesPerRow: 0, space: CGColorSpace(name: CGColorSpace.sRGB)!,
+                                      bitmapInfo: CGImageAlphaInfo.noneSkipLast.rawValue) else { return nil }
+        context.draw(image, in: CGRect(x: 0, y: 0, width: image.width, height: image.height))
+        return context.makeImage()
+    }
+
+    private static func write<V: View>(_ view: V, named name: String, in directory: URL, opaque8Bit: Bool = false) -> Bool {
         let renderer = ImageRenderer(content: view)
         renderer.scale = 2
-        guard let image = renderer.cgImage,
+        guard var image = renderer.cgImage else { print("falhou: \(name)"); return false }
+        if opaque8Bit, let flat = flatten(image) { image = flat }
+        guard
               let data = NSBitmapImageRep(cgImage: image).representation(using: .png, properties: [:]) else {
             print("falhou: \(name)")
             return false
@@ -120,5 +133,33 @@ private struct Banner: View {
                                      startPoint: .topLeading, endPoint: .bottomTrailing))
         )
         .environment(\.colorScheme, .dark)
+    }
+}
+
+/// Ícone do app: o anel e o disco do banner. Desenhado em 512 pt (1024 px na escala 2x), com as
+/// cores padrão (não as escolhidas nos ajustes).
+///
+/// O fundo ocupa o quadrado inteiro, sem cantos arredondados: o macOS 26+ aplica sozinho o formato
+/// e o acabamento de vidro. Um ícone já arredondado, com margem transparente, vai para uma moldura cinza.
+struct AppIconView: View {
+    private let amber = LevelAppearance.defaults[.warning]!
+
+    var body: some View {
+        ZStack {
+            LinearGradient(colors: [Color(red: 0.10, green: 0.11, blue: 0.17), Color(red: 0.17, green: 0.12, blue: 0.26)],
+                           startPoint: .top, endPoint: .bottom)
+            ZStack {
+                Circle().stroke(.white.opacity(0.14), lineWidth: 44)
+                Circle()
+                    .trim(from: 0, to: 0.82)
+                    .stroke(amber.gradient, style: StrokeStyle(lineWidth: 44, lineCap: .round))
+                    .rotationEffect(.degrees(-90))
+                Image(systemName: "internaldrive.fill")
+                    .font(.system(size: 118, weight: .semibold))
+                    .foregroundStyle(LinearGradient(colors: [.white, Color(white: 0.80)], startPoint: .top, endPoint: .bottom))
+            }
+            .frame(width: 336, height: 336)
+        }
+        .frame(width: 512, height: 512)
     }
 }
