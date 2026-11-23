@@ -34,6 +34,7 @@ enum ReadmeRenderer {
         // Páginas do painel completo.
         let dashboard = DashboardState(model: model)
         for (section, name, height) in [(DashboardSection.overview, "painel-visao-geral.png", 640.0),
+                                        (.cleanup, "painel-limpeza.png", 700.0),
                                         (.development, "painel-desenvolvimento.png", 900.0)] {
             dashboard.section = section
             ok = write(DashboardDetail(model: model, state: dashboard)

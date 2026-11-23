@@ -19,7 +19,7 @@ Passe o mouse sob o notch para ver o disco de inicialização em detalhe, os
 discos externos e a tendência das últimas 24 horas. Recolhido, ele ocupa só um
 lado do notch e não cobre os ícones da barra de menus.
 
-> **Status:** em desenvolvimento, fase 3 de 5. Veja o [ROADMAP.md](ROADMAP.md).
+> **Status:** em desenvolvimento, fase 4 de 5. Veja o [ROADMAP.md](ROADMAP.md).
 
 ## Instalação
 
@@ -130,6 +130,7 @@ para 1 milhão de arquivos. O resultado fica salvo em
 | Seção | O que mostra |
 |---|---|
 | **Visão geral** | O disco, a previsão e um mapa em que cada categoria tem área proporcional ao espaço que ocupa. |
+| **Limpeza** | O que dá para liberar com segurança, com confirmação e registro do que foi liberado. |
 | **Desenvolvimento** | Caches de ferramentas e pastas de projeto, com o comando oficial de limpeza de cada uma. |
 | **Categorias** | Aplicativos, Documentos, Fotos, Mail, Caches, Lixo e outras, em lista. |
 | **Pastas e arquivos** | Mapa navegável das pastas grandes (clique para entrar) e os maiores arquivos. |
@@ -158,14 +159,49 @@ Um catálogo de lugares conhecidos ([`DevCatalog.swift`](Sources/StorageCore/Dev
 
 Cada item diz quão seguro é liberar o espaço: **cache, recriado sozinho**;
 **recriável**, com novo download ou build; ou **revisar antes de apagar**, quando
-há dados seus, como simuladores, imagens do Docker e modelos de IA. O painel não
-apaga nada: mostra o comando oficial de cada ferramenta, com um botão para copiar.
+há dados seus, como simuladores, imagens do Docker e modelos de IA. Cada item
+mostra o comando oficial da ferramenta, com um botão para copiar.
 
 **Pastas de projeto** são `node_modules` (ao lado de um `package.json`), `.venv`
 (com `pyvenv.cfg`), `.build` (ao lado de um `Package.swift`) e `target` (ao lado de
 um `Cargo.toml`). Elas só são procuradas na pasta pessoal, fora da Biblioteca e de
 pastas ocultas como `~/.npm`: ali, um `node_modules` é cache de ferramenta, não
 projeto seu.
+
+### Limpeza assistida
+
+![Painel: sugestões de limpeza com o quanto cada uma libera](docs/design/painel-limpeza.png)
+
+A seção **Limpeza** junta o que dá para liberar com segurança: caches que as
+ferramentas recriam sozinhas e pastas de projeto paradas há mais de 30 dias (itens
+com menos de 50 MB ficam de fora). Cada sugestão tem um botão **Liberar…**, que
+mostra exatamente o que vai acontecer e só age depois da sua confirmação. O mesmo
+botão aparece nas linhas da seção Desenvolvimento.
+
+**Nada é apagado de vez.** Há só dois jeitos de liberar:
+
+- **Comando oficial da ferramenta**, quando ela está instalada (o app procura no PATH
+  do seu shell de login): `npm cache clean --force`, `pnpm store prune`,
+  `yarn cache clean`, `bun pm cache rm`, `pip3 cache purge`, `uv cache clean`,
+  `conda clean --all --yes`, `go clean -cache -modcache`, `brew cleanup --prune=all`,
+  `xcrun simctl delete unavailable` e `pod cache clean --all`. Todos rodam sem
+  perguntar nada e removem só cache. O comando aparece antes de rodar e a saída
+  aparece na hora, com um botão para interromper.
+- **Mover para o Lixo**, para caches sem comando (como o DerivedData do Xcode) e
+  pastas de projeto. Dá para devolver pelo Finder com "Colocar de Volta", e o
+  espaço volta quando você esvaziar o Lixo. O DiskNotch nunca esvazia o Lixo.
+
+Antes de mover qualquer coisa, uma última barreira
+([`Cleanup.swift`](Sources/StorageCore/Cleanup.swift)) recusa tudo o que não for um
+caminho do catálogo ou uma pasta de projeto detectada, além de links simbólicos,
+caminhos fora da pasta pessoal e pastas como a própria pasta pessoal, a Biblioteca,
+Documentos e Downloads, mesmo que apareçam na lista. Itens que pedem revisão
+(Docker, modelos de IA, Archives do Xcode) não têm botão de liberar: só o comando
+para copiar e o atalho para o Finder.
+
+Depois de cada limpeza, o app mede o item de novo e registra quanto foi liberado.
+Uma sugestão pode ser escondida com o ícone de olho, e o painel avisa se o Xcode
+estiver aberto antes de mexer no DerivedData ou nos simuladores.
 
 ### Acesso Total ao Disco
 
@@ -242,6 +278,7 @@ swift run disknotch-probe --testar-historico     # 11 casos de histórico e prev
 swift run disknotch-probe --historico            # resumo do histórico real gravado pelo app
 swift run disknotch-probe --testar-analise       # 20 casos de varredura, categorias e treemap (pasta pessoal falsa)
 swift run disknotch-probe --analisar             # análise real, com tempo, categorias e pastas de projeto
+swift run disknotch-probe --testar-limpeza       # 21 casos: o que é oferecido e o que é recusado antes do Lixo
 ```
 
 Com um duplo clique, [`iniciar-disknotch.command`](iniciar-disknotch.command) faz
@@ -271,7 +308,8 @@ Sources/
 │   ├── DevCatalog        caches e dados de ferramentas de desenvolvimento
 │   ├── StorageCategories categorias, sem contar nada duas vezes
 │   ├── Treemap           layout "squarified" do mapa
-│   └── FullDiskAccess    detecção do Acesso Total ao Disco
+│   ├── FullDiskAccess    detecção do Acesso Total ao Disco
+│   └── Cleanup           o que pode ser liberado e a barreira antes do Lixo
 ├── DiskNotchUI/          cores, anel, barra de uso, formato do notch e mapa
 ├── DiskNotch/            o app: notch, barra de menus, alertas, painel e modo demonstração
 ├── DiskNotchWidget/      a extensão de widgets
@@ -316,7 +354,7 @@ Planejamento e decisões: [ROADMAP.md](ROADMAP.md).
   e pode travar. O painel lista o que foi pulado.
 - **"Sistema e outros" é o que sobra.** Não há como medir o próprio macOS sem
   permissões de administrador, então ele é o espaço usado menos tudo o que foi medido.
-- **Testes só da lógica.** Alertas, histórico, previsão e análise têm testes
+- **Testes só da lógica.** Alertas, histórico, previsão, análise e limpeza têm testes
   automáticos no `disknotch-probe`, que o CI roda a cada push; a interface ainda é
   verificada à mão.
 

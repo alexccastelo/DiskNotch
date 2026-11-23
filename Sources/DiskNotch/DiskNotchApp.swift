@@ -32,7 +32,16 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
         guard !CommandLine.arguments.contains("--render-readme-images") else { return }
         let others = NSRunningApplication.runningApplications(withBundleIdentifier: Bundle.main.bundleIdentifier ?? "")
             .filter { $0.processIdentifier != ProcessInfo.processInfo.processIdentifier }
-        isDuplicate = !others.isEmpty
+        // Cópia aberta antes deste executável ser compilado é de uma versão antiga: ela sai e esta fica.
+        let built = (try? Bundle.main.executableURL?.resourceValues(forKeys: [.contentModificationDateKey]))?
+            .contentModificationDate ?? .distantPast
+        let (outdated, current) = (others.filter { ($0.launchDate ?? .distantPast) < built },
+                                   others.filter { ($0.launchDate ?? .distantPast) >= built })
+        for old in outdated {
+            AlertCenter.log("encerrando cópia de uma versão anterior (pid \(old.processIdentifier))")
+            if !old.terminate() { old.forceTerminate() }
+        }
+        isDuplicate = !current.isEmpty
     }
 
     func applicationDidFinishLaunching(_ notification: Notification) {

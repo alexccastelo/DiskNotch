@@ -21,3 +21,5 @@ jobs:
         run: swift run disknotch-probe --testar-historico
       - name: Testar análise do disco
         run: swift run disknotch-probe --testar-analise
+      - name: Testar regras de limpeza
+        run: swift run disknotch-probe --testar-limpeza

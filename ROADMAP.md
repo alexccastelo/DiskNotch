@@ -2,7 +2,7 @@
 projeto: DiskNotch
 slug: disknotch
 descricao: Monitor de armazenamento do Mac no notch, na barra de menus e em widgets, com histórico, análise e limpeza assistida.
-atualizado: 2026-11-23 08:53
+atualizado: 2026-11-23 09:20
 ---
 
 # Roadmap · DiskNotch
@@ -72,26 +72,30 @@ _23 nov 2026_ — Descobrir o que ocupa o disco e onde está o crescimento.
   Mede caches de programação: Xcode, node_modules, npm, pnpm, pip, uv, Homebrew, Docker e modelos de IA locais.
   - Comando oficial de limpeza de cada ferramenta, com botão para copiar; o painel não apaga nada
   - Pastas de projeto (node_modules, .venv, .build, target) só na pasta pessoal
-  > local: 2026-11-23
+  > local: 2026-11-23 · github: 6f921b8
 - [entregue] **Categorias e maiores pastas** · Análise · sugestão
   Apps, Documentos, Downloads, Mídia, Caches, Sistema e outras, com as maiores pastas e arquivos.
   - Cada byte numa categoria só; o que sobra do espaço usado vira "Sistema e outros"
   - Mapa navegável das pastas grandes
-  > local: 2026-11-23
+  > local: 2026-11-23 · github: 6f921b8
 - [entregue] **Permissão de Acesso Total ao Disco** · Permissões · sugestão
   Explica por que a permissão é necessária e leva direto ao lugar certo nos Ajustes do Sistema.
   - Certificado local para a permissão sobreviver aos builds
-  > local: 2026-11-23
+  > local: 2026-11-23 · github: 6f921b8
 - [entregue] **Janela de painel completo** · Produto · sugestão
   Visão geral, desenvolvimento, categorias, pastas, histórico e volumes numa janela própria, com mapa visual do disco.
-  > local: 2026-11-23
+  > local: 2026-11-23 · github: 6f921b8
 
 ## Fase 4 · Limpeza assistida
-_a definir_ — Liberar espaço com segurança.
+_23 nov 2026_ — Liberar espaço com segurança.
 
-- [planejado] **Sugestões de limpeza** · Limpeza · sugestão
+- [entregue] **Sugestões de limpeza** · Limpeza · sugestão
   Mostra quanto cada item libera e só move para o Lixo depois de confirmar.
-  - Comandos de limpeza de ferramentas de dev exibidos antes de rodar
+  - Comando oficial da ferramenta, quando ela está instalada, com a saída na hora
+  - Lixo para caches sem comando e para pastas de projeto paradas há mais de 30 dias
+  - Barreira que recusa pastas protegidas, links simbólicos e caminhos fora da pasta pessoal
+  - Registro do quanto foi liberado
+  > local: 2026-11-23
 
 ## Fase 5 · Acabamento e distribuição
 _a definir_ — Deixar o app pronto para outras pessoas usarem.
@@ -122,12 +126,15 @@ _sem data_ — Possibilidades levantadas no caminho.
 - **Análise sob demanda numa passada só** — A pasta pessoal, os Aplicativos e o Homebrew são percorridos juntos, em cerca de 20 s para 1 milhão de arquivos; o resultado fica salvo.
 - **Pastas de nuvem fora da análise** — Abrir ~/Library/CloudStorage e pastas sem cópia local força o serviço a baixar listagens e trava a varredura.
 - **Certificado local de assinatura** — O Acesso Total ao Disco fica preso à assinatura; a assinatura ad hoc muda a cada build e a permissão se perderia.
+- **Nada é apagado de vez** — Só o Lixo ou o comando oficial da ferramenta; o DiskNotch nunca esvazia o Lixo.
+- **Uma cópia do app por vez** — Se a cópia aberta é de uma versão anterior, a nova a encerra e assume; se é da mesma versão, a nova repassa o link e fecha.
 
 ## Pontos de atenção
 
 - **Sem botão interativo no widget** — Botões em widgets dependem de App Intents, cujos metadados só o Xcode gera; o app atualiza os widgets por conta própria.
 - **Notch sem API oficial** — O posicionamento é manual e pode mudar entre versões do macOS; o ícone na barra de menus fica sempre como alternativa.
-- **Testes só da lógica** — Alertas, histórico e previsão têm testes automáticos no `disknotch-probe`; a interface ainda é verificada à mão.
+- **Testes só da lógica** — Alertas, histórico, previsão, análise e limpeza têm testes automáticos no `disknotch-probe` (63 casos, rodados pelo CI); a interface ainda é verificada à mão.
 - **Histórico começa na instalação** — O macOS não guarda histórico de espaço livre, então os gráficos se preenchem com o tempo e ficam com lacunas quando o Mac está desligado.
 - **"Sistema e outros" é estimado** — É o espaço usado menos tudo o que foi medido; não há como medir o próprio macOS sem permissões de administrador.
 - **Pastas de nuvem não são medidas** — O espaço local usado pelo Google Drive, Dropbox e afins fica de fora da análise.
+- **O espaço do Lixo só volta ao esvaziar** — O que vai para o Lixo continua ocupando o disco até ele ser esvaziado no Finder.

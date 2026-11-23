@@ -5,12 +5,13 @@ import StorageCore
 import SwiftUI
 
 enum DashboardSection: String, CaseIterable, Identifiable, Hashable {
-    case overview, development, categories, folders, history, volumes
+    case overview, cleanup, development, categories, folders, history, volumes
     var id: Self { self }
 
     var title: String {
         switch self {
         case .overview: "Visão geral"
+        case .cleanup: "Limpeza"
         case .development: "Desenvolvimento"
         case .categories: "Categorias"
         case .folders: "Pastas e arquivos"
@@ -22,6 +23,7 @@ enum DashboardSection: String, CaseIterable, Identifiable, Hashable {
     var symbol: String {
         switch self {
         case .overview: "chart.pie"
+        case .cleanup: "sparkles"
         case .development: "hammer"
         case .categories: "square.grid.2x2"
         case .folders: "folder"
@@ -70,6 +72,9 @@ struct DashboardView: View {
             DashboardDetail(model: model, state: state)
         }
         .frame(minWidth: 860, minHeight: 560)
+        .sheet(item: Bindable(model.cleanup).pending) { option in
+            CleanupSheet(cleanup: model.cleanup, option: option)
+        }
     }
 }
 
@@ -81,6 +86,7 @@ struct DashboardDetail: View {
     var body: some View {
         switch state.section {
         case .overview: OverviewPage(model: model, state: state)
+        case .cleanup: CleanupPage(model: model)
         case .development: DevelopmentPage(model: model)
         case .categories: CategoriesPage(model: model)
         case .folders: FoldersPage(model: model, state: state)
@@ -93,7 +99,7 @@ struct DashboardDetail: View {
 // MARK: - Peças comuns
 
 /// Cabeçalho das páginas de análise: data da última análise, progresso e botão.
-private struct AnalysisHeader: View {
+struct AnalysisHeader: View {
     var title: String
     var analysis: AnalysisModel
     @Environment(\.isSnapshot) private var isSnapshot
@@ -122,7 +128,7 @@ private struct AnalysisHeader: View {
 }
 
 /// Aviso quando falta Acesso Total ao Disco.
-private struct AccessBanner: View {
+struct AccessBanner: View {
     var analysis: AnalysisModel
     @Environment(\.isSnapshot) private var isSnapshot
 
@@ -151,7 +157,7 @@ private struct AccessBanner: View {
     }
 }
 
-private struct EmptyAnalysis: View {
+struct EmptyAnalysis: View {
     var analysis: AnalysisModel
 
     var body: some View {
@@ -168,16 +174,16 @@ private struct EmptyAnalysis: View {
     }
 }
 
-private func reveal(_ path: String) {
+func reveal(_ path: String) {
     NSWorkspace.shared.activateFileViewerSelecting([URL(fileURLWithPath: path)])
 }
 
-private func copy(_ text: String) {
+func copy(_ text: String) {
     NSPasteboard.general.clearContents()
     NSPasteboard.general.setString(text, forType: .string)
 }
 
-private struct SizeBar: View {
+struct SizeBar: View {
     var fraction: Double
     var color: Color
 
@@ -359,6 +365,9 @@ private struct DevelopmentPage: View {
             VStack(alignment: .trailing, spacing: 5) {
                 HStack(spacing: 8) {
                     Text(ByteFormat.string(row.bytes)).font(.body.weight(.semibold)).monospacedDigit()
+                    if !isSnapshot, let option = model.cleanup.option(forDevItem: row.item.id) {
+                        Button("Liberar…") { model.cleanup.ask(option) }.controlSize(.small)
+                    }
                     if !isSnapshot, let path = row.foundPaths.first {
                         Button { reveal(path) } label: { Image(systemName: "magnifyingglass") }
                             .buttonStyle(.plain).foregroundStyle(.secondary).help("Mostrar no Finder")
@@ -387,6 +396,9 @@ private struct DevelopmentPage: View {
             VStack(alignment: .trailing, spacing: 5) {
                 HStack(spacing: 8) {
                     Text(ByteFormat.string(artifact.bytes)).font(.body.weight(.semibold)).monospacedDigit()
+                    if !isSnapshot, let option = model.cleanup.option(forArtifact: artifact.path) {
+                        Button("Liberar…") { model.cleanup.ask(option) }.controlSize(.small)
+                    }
                     if !isSnapshot {
                         Button { reveal(artifact.path) } label: { Image(systemName: "magnifyingglass") }
                             .buttonStyle(.plain).foregroundStyle(.secondary).help("Mostrar no Finder")
@@ -622,7 +634,7 @@ final class DashboardWindowController {
 }
 
 /// Rolagem da página; nas imagens do README (ImageRenderer não desenha NSScrollView) fica sem ela.
-private struct PageScroll<Content: View>: View {
+struct PageScroll<Content: View>: View {
     @Environment(\.isSnapshot) private var isSnapshot
     @ViewBuilder var content: () -> Content
 

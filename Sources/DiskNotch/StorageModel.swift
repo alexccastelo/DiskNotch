@@ -14,6 +14,8 @@ final class StorageModel {
     let alertSettings = AlertSettings()
     /// Análise do disco (categorias, desenvolvimento, pastas).
     @ObservationIgnored let analysis: AnalysisModel
+    /// Limpeza assistida (sugestões, confirmação e registro).
+    @ObservationIgnored let cleanup: CleanupModel
 
     /// Amostras das últimas 24 h do volume de inicialização (para o gráfico do notch).
     private(set) var rootLast24h: [StorageSample] = []
@@ -44,6 +46,7 @@ final class StorageModel {
 
     init(interval: TimeInterval = 60, demo: Bool = false) {
         analysis = AnalysisModel(demo: demo)
+        cleanup = CleanupModel(analysis: analysis, demo: demo)
         if demo {
             loadDemoData()
             return

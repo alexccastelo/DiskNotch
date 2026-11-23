@@ -92,6 +92,13 @@ final class AnalysisModel {
         task?.cancel()
     }
 
+    func updateReport(_ change: (inout ScanReport) -> Void) {
+        guard var report, !isDemo else { return }
+        change(&report)
+        self.report = report
+        Self.save(report)
+    }
+
     // MARK: Persistência
 
     private static func load() -> ScanReport? {
@@ -159,5 +166,27 @@ final class AnalysisModel {
                           roots: [home: b(320.2), "/Applications": b(38), "/opt/homebrew": b(8)],
                           fileCount: 1_843_210, measured: measured, children: children, topFiles: topFiles,
                           artifacts: artifacts, fullDiskAccess: true)
+    }
+}
+
+extension AnalysisModel {
+    /// Mede de novo alguns caminhos (depois de uma limpeza) e atualiza a última análise.
+    /// Retorna a soma dos tamanhos atuais.
+    func remeasure(_ paths: [String]) async -> Int64 {
+        let existing = paths.filter { FileManager.default.fileExists(atPath: $0) }
+        var options = ScanOptions(measure: Set(paths), treeThreshold: .max, topFileMinimum: .max)
+        options.artifactRoots = ["/"]   // nenhuma raiz é "/": não procura pastas de projeto aqui
+        let roots = existing.map { URL(fileURLWithPath: $0) }
+        let measured = await Task.detached(priority: .userInitiated) {
+            try? await DiskScanner.scan(roots: roots, options: options)
+        }.value
+
+        let sizes = Dictionary(uniqueKeysWithValues: paths.map { ($0, measured?.roots[$0] ?? 0) })
+        updateReport { report in
+            for (path, bytes) in sizes { report.measured[path] = bytes }
+            report.artifacts.removeAll { !FileManager.default.fileExists(atPath: $0.path) }
+            report.topFiles.removeAll { !FileManager.default.fileExists(atPath: $0.path) }
+        }
+        return sizes.values.reduce(0, +)
     }
 }
