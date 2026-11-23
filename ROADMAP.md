@@ -2,7 +2,7 @@
 projeto: DiskNotch
 slug: disknotch
 descricao: Monitor de armazenamento do Mac no notch, na barra de menus e em widgets, com histórico, análise e limpeza assistida.
-atualizado: 2026-11-23 09:56
+atualizado: 2026-11-23 10:10
 ---
 
 # Roadmap · DiskNotch
@@ -107,10 +107,10 @@ _a definir_ — Deixar o app pronto para outras pessoas usarem.
   - Por porcentagem livre, por GB livres ou pelos dois (vale o que disparar primeiro), com prévia nos seus discos
   - Cores aplicadas no notch, no menu, no painel e nos widgets
   - Seção Ajustes no painel; o teste de notificação explica quando um Foco segura o aviso
-  > local: 2026-11-23
+  > local: 2026-11-23 · github: e87b2f1
 - [entregue] **Ícone do app** · Produto · pedido
   O mesmo anel do banner, no formato que o macOS 26+ exige.
-  > local: 2026-11-23
+  > local: 2026-11-23 · github: e87b2f1
 - [proximo] **Instalação assinada com atualizações automáticas** · Distribuição · sugestão
   App assinado e notarizado pela Apple, que se atualiza sozinho.
   - Developer ID, runtime endurecido e notarização
@@ -119,6 +119,10 @@ _a definir_ — Deixar o app pronto para outras pessoas usarem.
   - Abertura no login pelo SMAppService
 - [proximo] **Aviso de picos de ocupação** · Alertas · sugestão
   Avisar quando o disco cresce muito em pouco tempo e apontar a pasta responsável.
+- [proximo] **Inspeção de segurança** · Segurança · pedido
+  Revisar o código em busca de falhas, brechas que exponham o Mac e riscos de apagar arquivos indevidos, antes da primeira versão distribuída.
+  - Checklist com 30 pontos de inspeção e os requisitos da Apple (Developer ID e notarização) em docs/checklist-seguranca-e-apple.md
+  - Já levantados: runtime endurecido desligado, shell de login nos comandos, link simbólico no meio do caminho e permissão do arquivo de análise
 
 ## Ideias
 _sem data_ — Possibilidades levantadas no caminho.
