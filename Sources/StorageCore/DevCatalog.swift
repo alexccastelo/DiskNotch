@@ -108,7 +108,8 @@ public enum DevCatalog {
 
         // Gerenciadores de pacotes
         .init(id: "homebrew-cache", name: "Homebrew · downloads", group: .packages,
-              detail: "Instaladores baixados pelo Homebrew.", paths: ["Library/Caches/Homebrew"], safety: .cache,
+              detail: "Instaladores e pacotes baixados pelo Homebrew. A pasta api, com a lista de pacotes que o Homebrew usa para funcionar, fica de fora.",
+              paths: ["Library/Caches/Homebrew/downloads"], safety: .cache,
               cleanupCommand: "brew cleanup --prune=all"),
         .init(id: "homebrew", name: "Homebrew · pacotes instalados", group: .packages,
               detail: "Programas instalados pelo Homebrew. Só informativo.",

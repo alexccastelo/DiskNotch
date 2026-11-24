@@ -2,7 +2,7 @@
 projeto: DiskNotch
 slug: disknotch
 descricao: Monitor de armazenamento do Mac no notch, na barra de menus e em widgets, com histórico, análise e limpeza assistida.
-atualizado: 2026-11-23 10:10
+atualizado: 2026-11-24 15:44
 ---
 
 # Roadmap · DiskNotch
@@ -95,6 +95,8 @@ _23 nov 2026_ — Liberar espaço com segurança.
   - Lixo para caches sem comando e para pastas de projeto paradas há mais de 30 dias
   - Barreira que recusa pastas protegidas, links simbólicos e caminhos fora da pasta pessoal
   - Registro do quanto foi liberado
+  - Explica quando um comando não libera espaço, como os avisos de pacotes desatualizados do Homebrew
+  - Homebrew: mede só os instaladores baixados; a pasta api, que o Homebrew usa para funcionar, fica de fora
   > local: 2026-11-23 · github: 8406a5a
 
 ## Fase 5 · Acabamento e distribuição
@@ -158,3 +160,4 @@ _sem data_ — Possibilidades levantadas no caminho.
 - **O espaço do Lixo só volta ao esvaziar** — O que vai para o Lixo continua ocupando o disco até ele ser esvaziado no Finder.
 - **Foco segura os alertas** — Com um Foco ativo, as notificações vão direto para a Central de Notificações, a não ser que o DiskNotch esteja entre os apps permitidos.
 - **Distribuição depende de conta paga** — A Fase 5 exige o Apple Developer Program (certificado Developer ID e notarização).
+- **Ícone das notificações em cache** — Se o app notificar antes de ter ícone, o macOS guarda um ícone genérico; para trocar, é preciso limpar o cache de ícones do sistema (senha de administrador) e reiniciar o Mac.

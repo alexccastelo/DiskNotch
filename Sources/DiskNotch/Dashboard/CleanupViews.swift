@@ -176,7 +176,9 @@ struct CleanupSheet: View {
                 Label(error, systemImage: "xmark.octagon").foregroundStyle(.red)
             }
             if let result = cleanup.result, cleanup.errorMessage == nil {
-                Label(resultText(result), systemImage: "checkmark.circle.fill").foregroundStyle(.green)
+                Label(resultText(result), systemImage: result.freedBytes > 0 ? "checkmark.circle.fill" : "info.circle")
+                    .foregroundStyle(result.freedBytes > 0 ? Color.green : Color.secondary)
+                    .fixedSize(horizontal: false, vertical: true)
             }
 
             HStack {
@@ -231,7 +233,16 @@ struct CleanupSheet: View {
     }
 
     private func resultText(_ record: CleanupRecord) -> String {
-        if record.freedBytes == 0 { return "Pronto. O tamanho não mudou." }
+        if record.freedBytes == 0 {
+            var text = "O comando rodou sem erro, mas não havia nada que ele pudesse remover."
+            // Homebrew: "Skipping x: most recent version y not installed" = pacote desatualizado.
+            let outdated = cleanup.output.components(separatedBy: "\n")
+                .filter { $0.contains("most recent version") && $0.contains("not installed") }.count
+            if outdated > 0 {
+                text += " Os \(outdated) avisos \"Skipping\" do Homebrew indicam pacotes desatualizados: as versões antigas só saem depois de atualizá-los (brew upgrade) e rodar a limpeza de novo."
+            }
+            return text
+        }
         if record.method == "Lixo" { return "\(ByteFormat.string(record.freedBytes)) foram para o Lixo." }
         return "Liberado: \(ByteFormat.string(record.freedBytes))."
     }
